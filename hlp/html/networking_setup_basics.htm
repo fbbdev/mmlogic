@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Networking Setup Basics</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Networking Setup Basics">
+</OBJECT>
+
+<P><A NAME="networking_setup_basics"></A><B>Networking Setup Basics</B></P>
+
+<P>Networking allows MMLogic to communicate with the rest of the world.  There are numerous forms of networking and MMLogic uses just one them.  This form is known as TCP/IP sockets (this is primarily what is used to build the Internet).  MMLogic can receive data from other computers or send data to other computers.  The other computer does not need to be running MMLogic although it will be very likely.</P>
+
+<P>MMLogic <A HREF="network_device.htm">Network Device</A> assumes that the TCP/IP protocol is available and that it is available through what is known as 32bit WinSock (WSOCK32.DLL). All TCP/IP protocols have to be explicitly installed and setup on all platforms.  Some TCP/IP stacks available at no cost are:</P>
+
+<P>32bit TCP/IP protocol for Windows 95 (included).<BR>
+
+32bit TCP/IP protocol for Windows NT (included).<BR>
+
+16bit TCP/IP protocol for Windows For WorkGroups 3.11 from Microsoft (public domain).<BR>
+
+16bit TCP/IP protocol for Windows 3.x known as Trumpet (public domain).<BR>
+
+32bit TCP/IP protocol for Windows ??? known as Trumpet (public domain).</P>
+
+<P>Win32s includes a WSOCK32.DLL that maps to any available 16bit WinSock (WinSock.DLL)<BR>
+
+[this is not confirmed as yet].</P>
+
+<P>TCP/IP networks can run over a wide variety of devices, a modem running PPP, a LapLink cable running direct connect, Twisted Pair, or etc.  Compuserve Information Service (CIS), Microsoft Network (MSN), America OnLine and private Internet Service Providers (ISPs) all offer TCP/IP access to the rest of the world.  What this means is that your friend can be on the west cost and you can be on the east coast and both run MMLogic and operate on each others circuits or build games that you can both participate in.  Assuming you can find one another over the Internet.</P>
+
+<P>Tools of the trade (outside of MMLogic):</P>
+
+<P>DNS (Domain Name Service):  DNS is an integral part of using TCP/IP protocols.  TCP/IP in itself only understands machine addresses that look something like 21.100.200.5 (note each number field must be less than 255).  But numbers have no meaning and are hard to remember for us humans, so machines are assigned names.  DNS is basically machines on the network that maintain databases of these mappings of names to numbers.  DNS machines talk to each other to share information.  MMLogic can use DNS names or TCP/IP addresses when trying to make a connection.  DNS is not required to setup a small TCP/IP network keep reading.</P>
+
+<P>PING: Ping is a simple program (usually command line) used as a simple test of network connectivity.  Most TCP/IP implementations include a PING program.  To use it just enter "PING remotenode" where remotenode is the machine you’d like to test connectivity to.  PING will tell if it can reach that machine and, if it can, how long it will take.  Until PING works don’t bother trying any other TCP/IP based software (including MMLogic Network Devices).  PING will accept both forms of the address (the DNS name or the TCP/IP address).  If the PING fails with the name then try the number (if you know it).  If the number works but the name does not, it usually indicates a DNS problem.</P>
+
+<P>No DNS: If there is no DNS server,  you can use what is known as a HOSTS file (usually kept in C:\Windows).  Microsoft frequently installs a sample HOSTS file called HOSTS.SAM (copy HOSTS.SAM to HOSTS. and edit it).  It is simply a database for mapping name addresses to numbers.  If using a HOSTS file then each machine on the network should use a copy of the same HOSTS file with the name to mapping of all the machines in the network.  You can have both DNS and a HOSTS file, usually the HOSTS file is checked before DNS is attempted.</P>
+
+<P>Ports and Services: Services is to Ports as DNS is to Network Addresses. Services map "Service Names" like (TELNET, FTP, POPMAIL) to port numbers.  You may find a SERVICES file in C:\Windows and you can browse it if you like.  MMLogic does not support the Service name to port number, it only uses Socket port numbers.  But if you wish to connect to a service such as TELNET or act as a TELNET server then just look it up in the services file. In general, port numbers under 1024 are reserved for things such as TELNET and FTP.  It is best to use socket numbers greater than 1024 and less than 5000.</P>
+
+<P>Networks: If it is a private network under your total control you can do what ever you want.  If they are all Windows PC’s then you’ll probably have to do without a DNS server (and use a HOSTS file).  Generally DNS servers are UNIX or NT machines.  If your part of a larger network you should contact your network administrators.  If your already networked using Netware, it is common to run both TCP/IP and Netware at the same time.</P>
+
+<P>Internet Service Providers: Some ISP’s do not give you a name, in this case you can add your own name to the HOSTS file (on both machines) or just use the TCP/IP address.  Many ISP’s assign your TCP/IP address "on-the-fly" each time when you login.  In Windows 95 you can run WINIPCFG.EXE to find out what your address is for your current connection.  Some ISP’s completely "wrap" your network access up into one application that gives all the services you need and might not offer WinSock access.  When asking ISP’s for help, tell them that you want to run something like NetScape ®.  If NetScape works then MMLogic’s Network Device should also work (calling anyway).  Allowing you to listen for a call is more complex, the other application needs to be able to find you by name or by address.</P>
+
+</BODY>
+</HTML>

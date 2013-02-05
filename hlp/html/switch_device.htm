@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Switch Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Device">
+	<PARAM NAME="Keyword" VALUE="Switch">
+</OBJECT>
+
+<P><A NAME="switch_device"></A><B>Switch Device <IMG SRC="../images/bm13.gif" ALT="" BORDER=0></B></P>
+
+<P>The switch device is a 2 state input device.  It can be used as both an interactive input device or as an alternative to using Ground and Plus devices to hardwire some inputs by setting its initial state.</P>
+
+<P>Behavior:</P>
+
+<P>When the user clicks on the switch while the simulator is running it will:</P>
+
+<P CLASS="tab">Output a 1 IF the output is 0.
+
+<BR>Output a 0 IF the output is 1.</P>
+
+<P>If the switch is a momentary switch, it will return to its original state when the mouse is let go.
+
+<BR>If the switch is not a momentary switch, it will not return to its original state when the mouse is let go.</P>
+
+<P>See Also:</P>
+
+<P><A HREF="oscillator_device.htm">Oscillator Device</A>
+
+<BR><A HREF="ground_device.htm">Ground Device</A>
+
+<BR><A HREF="plus_device.htm">Plus Device</A></P>
+
+<P>See Examples:</P>
+
+<P>MEMORY.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Momentary (Default False): True (Momentary) or False (Throw)
+
+<BR>Normally on (Default False): True (On) or False (Off)</P>
+
+</BODY>
+</HTML>

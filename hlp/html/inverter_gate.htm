@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Inverter Gate</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Gate">
+	<PARAM NAME="Keyword" VALUE="Inverter">
+</OBJECT>
+
+<P><A NAME="inverter_gate"></A><B>Inverter/Buffer Gate <IMG SRC="../images/bm22.gif" ALT="" BORDER=0></B></P>
+
+<P>The Inverter Gate performs a logical invert of the input signal.  The Buffer Gate just passes the input through.  The Buffer Gate may seem useless at first glance, but it isn’t.  It can be used to synchronize arrival of signals to a device.  For example, lets say one input to a device goes through 2 AND gates and another only goes through 1.  The path going through 1 gate will arrive 1 cycle too soon (this is not always a problem).  To correct this, a dummy device (a buffer) can be added to the path to synchronize the two paths.</P>
+
+<P>In real circuits Buffers are often used to increase the driving capability of signal (an amplifier).</P>
+
+<P>Behavior (as an Inverter):</P>
+
+<P CLASS="tab">IF the input is 0 THEN the output is 1
+
+<BR>IF the input is 1 THEN the output is 0
+
+<BR>otherwise the output is U</P>
+
+<P>Behavior (as a Buffer):</P>
+
+<P CLASS="tab">IF the input is 0 THEN the output is 0
+
+<BR>IF the input is 1 THEN the output is 1
+
+<BR>otherwise the output is U</P>
+
+<P>See Also:</P>
+
+<P><A HREF="and_gate.htm">AND Gate</A>
+
+<BR><A HREF="or_gate.htm">OR Gate</A></P>
+
+<P>See Examples:</P>
+
+<P>SPIN.LGI
+
+<BR>INVERT.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Invert output (Default False): True (Buffer) or False (Inverter).</P>
+
+</BODY>
+</HTML>

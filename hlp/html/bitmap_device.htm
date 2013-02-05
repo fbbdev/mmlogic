@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Bitmap Device</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Bitmap Device">
+</OBJECT>
+
+<P><A NAME="bitmap_device"></A><B>Bitmap Device <IMG SRC="../images/bm42.gif" ALT="" BORDER=0></B></P>
+
+<P>The Bitmap device is a very powerful Output device. It allows you to display any Bitmap based on inputs from your circuit.  The circuit can choose up to 16 different bitmaps from its 4 inputs.  You can also hook a counter to this device to sequence through a set of similar bitmaps to get an animation effect (e.g. A person running could show that your circuit is in a running state).</P>
+
+<P>The Bitmap name must be of the form ????0.BMP and the simulator will assume ????1.BMP up to ????15.BMP could exist. You do not need all 16 bitmaps. The simulator will only look for bitmaps based on your inputs.</P>
+
+<P>Example:</P>
+
+<P>TRAFFICLIGHT0.BMP
+
+<BR>TRAFFICLIGHT1.BMP
+
+<BR>TRAFFICLIGHT2.BMP</P>
+
+<P>And only use the input connections 0 and 1. But you must ground input connections 2 and 3.</P>
+
+<P>The Bitmap Device can act as a "fixed" bitmap for the purposes of documentation or as a "Playground" for a <A HREF="robot_device.htm">Robot Device</A>.</P>
+
+<P>Rules:</P>
+<UL>
+<LI>Each bitmap should be the same size but is not required.</LI>
+
+<LI>Bitmaps must be 16 color bitmaps.</LI>
+
+<LI>It is best to draw the first from scratch and copy it as a base for the rest.</LI>
+</UL>
+<P>Behavior:</P>
+
+<P>Based on the 4 inputs the string 0 in ????0.BMP is replaced in the filename you specify and displayed.  The simulator will have to read the files from disk the first time, but will cache them subsequently.</P>
+
+<P>See Also:</P>
+
+<P><A HREF="ascii_display_device.htm">ASCII Display Device</A>
+
+<BR><A HREF="robot_device.htm">Robot Device</A></P>
+
+<P>See Examples:</P>
+
+<P>BITMAP.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Style (Default Single): Single or Multiple.
+
+<BR>File (Default NUL): Path to ????0.BMP
+
+<BR>Robot Playground (Default False): True (Playground) or False (Not a Playground).</P>
+
+</BODY>
+</HTML>

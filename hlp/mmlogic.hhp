@@ -1,0 +1,142 @@
+[OPTIONS]
+Auto Index=Yes
+Compatibility=1.1 or later
+Compiled file=mmlogic.chm
+Contents file=Table of Contents.hhc
+Default Window=Multimedia Logic Help
+Default topic=html\introduction.htm
+Display compile notes=No
+Display compile progress=No
+Enhanced decompilation=Yes
+Full-text search=Yes
+Index file=MMLOGIC.hhk
+Language=0x409 English (United States)
+Title=Multimedia Logic Help
+
+[WINDOWS]
+Multimedia Logic Help=,"Table of Contents.hhc","MMLOGIC.hhk","html\introduction.htm","html\introduction.htm",,,,,0x42520,,0x380e,[202,18,1002,618],,,,,,,0
+
+
+[FILES]
+html\introduction.htm
+html\what_is_a_multimedia_logic_simulator.htm
+html\states_of_a_node.htm
+html\modes_of_operation.htm
+html\simulation_setup.htm
+html\tutorial.htm
+html\pointer_tool.htm
+html\wiring_tool.htm
+html\node_tool.htm
+html\probe_tool.htm
+html\bus_tool.htm
+html\changing_device_options.htm
+html\managing_pages.htm
+html\and_gate.htm
+html\or_gate.htm
+html\xor_gate.htm
+html\inverter_gate.htm
+html\oscillator_device.htm
+html\led_device.htm
+html\select_device.htm
+html\switch_device.htm
+html\clock_device.htm
+html\timer_device.htm
+html\buzzer_device.htm
+html\7_segment_led_device.htm
+html\keyboard_device.htm
+html\text.htm
+html\flipflop_device.htm
+html\keypad_device.htm
+html\sound_wave_device.htm
+html\ascii_display_device.htm
+html\ground_device.htm
+html\plus_device.htm
+html\bitmap_device.htm
+html\read_file.htm
+html\write_file_device.htm
+html\network_device.htm
+html\networking_setup_basics.htm
+html\port_out_device.htm
+html\port_in_device.htm
+html\signal_sender_device.htm
+html\signal_receiver_device.htm
+html\counter_device.htm
+html\pause_simulator_device.htm
+html\multiplexer_device.htm
+html\memory_device.htm
+html\file_formats.htm
+html\alu_device.htm
+html\bit_bucket_device.htm
+html\random_device.htm
+html\robot_device.htm
+html\tristate_gate.htm
+html\tapedrive_device.htm
+
+[ALIAS]
+main_index						= html\introduction.htm
+hid_help_index					= html\introduction.htm
+
+hid_introduction				= html\introduction.htm
+hid_what_is_a_multimedia_logic_simulator	= html\what_is_a_multimedia_logic_simulator.htm
+hid_states_of_a_node			= html\states_of_a_node.htm
+hid_modes_of_operation			= html\modes_of_operation.htm
+hid_simulation_setup			= html\simulation_setup.htm
+hid_tutorial					= html\tutorial.htm
+hid_pointer_tool				= html\pointer_tool.htm
+hid_wiring_tool					= html\wiring_tool.htm
+hid_node_tool					= html\node_tool.htm
+hid_probe_tool					= html\probe_tool.htm
+hid_bus_tool					= html\bus_tool.htm
+hid_changing_device_options		= html\changing_device_options.htm
+hid_managing_pages				= html\managing_pages.htm
+hid_and_gate					= html\and_gate.htm
+hid_or_gate						= html\or_gate.htm
+hid_xor_gate					= html\xor_gate.htm
+hid_inverter_gate				= html\inverter_gate.htm
+hid_oscillator_device			= html\oscillator_device.htm
+hid_led_device					= html\led_device.htm
+hid_select_device				= html\select_device.htm
+hid_switch_device				= html\switch_device.htm
+hid_clock_device				= html\clock_device.htm
+hid_timer_device				= html\timer_device.htm
+hid_buzzer_device				= html\buzzer_device.htm
+hid_7_segment_led_device		= html\7_segment_led_device.htm
+hid_keyboard_device				= html\keyboard_device.htm
+hid_text						= html\text.htm
+hid_flipflop_device				= html\flipflop_device.htm
+hid_keypad_device				= html\keypad_device.htm
+hid_sound_wave_device			= html\sound_wave_device.htm
+hid_ascii_display_device		= html\ascii_display_device.htm
+hid_ground_device				= html\ground_device.htm
+hid_plus_device					= html\plus_device.htm
+hid_bitmap_device				= html\bitmap_device.htm
+hid_read_file					= html\read_file.htm
+hid_write_file_device			= html\write_file_device.htm
+hid_network_device				= html\network_device.htm
+hid_networking_setup_basics		= html\networking_setup_basics.htm
+hid_port_out_device				= html\port_out_device.htm
+hid_port_in_device				= html\port_in_device.htm
+hid_signal_sender_device		= html\signal_sender_device.htm
+hid_signal_receiver_device		= html\signal_receiver_device.htm
+hid_counter_device				= html\counter_device.htm
+hid_pause_simulator_device		= html\pause_simulator_device.htm
+hid_multiplexer_device			= html\multiplexer_device.htm
+hid_memory_device				= html\memory_device.htm
+hid_file_formats				= html\file_formats.htm
+hid_alu_device					= html\alu_device.htm
+hid_bit_bucket_device			= html\bit_bucket_device.htm
+hid_random_device				= html\random_device.htm
+hid_robot_device				= html\robot_device.htm
+hid_tristate_gate				= html\tristate_gate.htm
+hid_tapedrive_device			= html\tapedrive_device.htm
+
+[MAP]
+#include HTMLDefines.h
+#include <C:\Program Files\Microsoft Visual Studio .NET 2003\Vc7\atlmfc\include\afxhelp.h>
+#include LOGICLI.h
+
+[TEXT POPUPS]
+HTMLDefines.h
+
+[INFOTYPES]
+

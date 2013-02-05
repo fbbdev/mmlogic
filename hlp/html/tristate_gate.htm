@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Tristate Gate</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Tristate Gate">
+</OBJECT>
+
+<P><A NAME="tristate_gate"></A><B>Tristate Gate <IMG SRC="../images/bm59.gif" ALT="" BORDER=0></B></P>
+
+<P>The Tristate Gate is a powerful control device.  It is the only device that generates floating states (+, - and ?).  A Tristate gate will normally be connected to the Bus device.  The purpose of the Tristate Gate is to allow multiple sources (one at a time) to drive an input.</P>
+
+<P>Behavior (as a Tristate Inverter):</P>
+
+<P CLASS="tabNoPad">IF the E (enable) input is 1 (0 if bubbled)</P>
+
+<P CLASS="tabtabNoPad">IF the input is 0 THEN the output is 1
+
+<BR>IF the input is 1 THEN the output is 0
+
+<BR>otherwise the output is U</P>
+
+<P CLASS="tabNoPad">otherwise the output is ?</P>
+
+<P>Behavior (as a Tristate Buffer):</P>
+
+<P CLASS="tabNoPad">IF the E (enable) input is 1 (0 if bubbled)</P>
+
+<P CLASS="tabtabNoPad">IF the input is 0 THEN the output is 0
+
+<BR>IF the input is 1 THEN the output is 1
+
+<BR>otherwise the output is U</P>
+
+<P CLASS="tabNoPad">otherwise the output is ?</P>
+
+<P>See Also:</P>
+
+<P><A HREF="inverter_gate.htm">Inverter Gate</A>
+
+<BR><A HREF="bus_tool.htm">Bus Tool</A></P>
+
+<P>See Examples:</P>
+
+<P>TRISTATE.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Invert output (Default False): True (Tristate Buffer) or False (Tristate Inverter).
+
+<BR>Assert LO (Default False): True (Assert LO) or False (Assert HI).</P>
+
+</BODY>
+</HTML>

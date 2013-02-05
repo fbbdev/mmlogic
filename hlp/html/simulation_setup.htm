@@ -1,0 +1,31 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Simulation Setup</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Simulation Setup">
+</OBJECT>
+
+<P><A NAME="simulation_setup"></A><B>Simulation Setup</B></P>
+
+<P>The simulator can handle unconnected inputs in several ways.  The conservative mode is to assume all unconnected inputs are being driven with Unknown (U).  This mode flushes out possible problems with your circuit.  The problem with this is, that it is tedious to tie off unused inputs with grounds.  So the simulator offers both modes and more.  The mode is kept in the project file.</P>
+
+<P>IF Input is unconnected</P>
+
+<P>THEN consider it Unknown (U)<BR>
+
+THEN consider it LO (0)<BR>
+
+THEN consider it Pulled Down (-), it can still be over driven<BR>
+
+THEN consider it Floating (?), it can still be over driven</P>
+
+<P>To change the mode see Menu-&gt;Simulate-&gt;Setup...</P>
+
+</BODY>
+</HTML>

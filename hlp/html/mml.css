@@ -1,0 +1,14 @@
+.noPad  { margin-top: 0em;
+          margin-bottom: 0em; }
+
+.tab { margin-left: 2em; }
+
+.tabNoPad { margin-left: 2em;
+            margin-top: 0em;
+            margin-bottom: 0em; }
+
+.tabtab { margin-left: 4em; }
+
+.tabtabNoPad { margin-left: 4em;
+               margin-top: 0em;
+               margin-bottom: 0em; }

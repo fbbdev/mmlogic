@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Arithmetic Logic Unit (ALU) device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Arithmetic Logic Unit (ALU) device">
+</OBJECT>
+
+<P><A NAME="alu_device"></A><B>Arithmetic Logic Unit (ALU) device <IMG SRC="../images/bm55.gif" ALT="" BORDER=0></B></P>
+
+<P>The ALU is an 8 bit control unit. It can perform Addition, Subtraction, Multiplication, Division, Shifting and Comparing.</P>
+
+<P>Behavior (Common to all functions):</P>
+
+<P CLASS="tab">IF the result is 0 THEN Z is 1 otherwise Z is 0
+
+<BR>IF the result overflows or underflows THEN V is 1 otherwise V is 0
+
+<BR>N is 0 (future)</P>
+
+<P>Behavior (IF S is 0):</P>
+
+<P CLASS="tab">Output to F is A + (B + Cin)
+
+<BR>IF the result overflows THEN Cout is 1 otherwise Cout is 0</P>
+
+<P>Behavior (IF S is 1):</P>
+
+<P CLASS="tab">Output to F is A - (B + Cin)
+
+<BR>IF the result underflows THEN Cout is 1 otherwise Cout is 0</P>
+
+<P>Behavior (IF S is 2):</P>
+
+<P CLASS="tab">Output to F is A * B
+
+<BR>Cout is 0</P>
+
+<P>Behavior (IF S is 3):</P>
+
+<P CLASS="tab">Output to F is A / B
+
+<BR>Cout is 0</P>
+
+<P>Behavior (IF S is 4):</P>
+
+<P CLASS="tab">Output to F is A = B (output is 0 for False and 1 for True)
+
+<BR>Cout is 0</P>
+
+<P>Behavior (IF S is 5):</P>
+
+<P CLASS="tab">Output to F is A &lt; B (output is 0 for False and 1 for True)
+
+<BR>Cout is 0</P>
+
+<P>Behavior (IF S is 6):</P>
+
+<P CLASS="tab">Output to F is A &lt;&lt; B (A left shifted by B) fill with Cin
+
+<BR>Cout is the last (upper) bit shifted out of A.</P>
+
+<P>Behavior (IF S is 7):</P>
+
+<P CLASS="tab">Output to F is A &gt;&gt; B (A right shifted by B) fill with Cin
+
+<BR>Cout is the last (lower) bit shifted out of A.</P>
+
+<P>See Also:</P>
+
+<P><A HREF="counter_device.htm">Counter Device</A></P>
+
+<P>See Examples:</P>
+
+<P>ALU.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>None:</P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Bus Tool</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Bus Tool">
+</OBJECT>
+
+<P><A NAME="bus_tool"></A><B>Bus Tool <IMG SRC="../images/bm16.gif" ALT="" BORDER=0></B></P>
+
+<P>The Bus Tool is a control device.  It is the only device that process multiple drivers (Tristate Gates).  The Bus Device has no delay.</P>
+
+<P>Rules:</P>
+<UL>
+<LI>To pullup or pulldown the bus place a Node Tool just at the output.</LI>
+
+<LI>You should only drive the Bus Tool with Tristate Gates.</LI>
+</UL>
+<P>Behavior:</P>
+
+<P>IF the bus sees 1 or more drivers THEN
+
+	<P CLASS="tab">IF the bus sees more than one input driving THEN the output is U.
+
+	<BR>IF the bus sees exactly one driver THEN the output is that drivers state.</P>
+
+OTHERWISE
+
+	<P CLASS="tab">IF the bus sees 1 or more pulldowns and no pullups THEN the output is -.
+
+	<BR>IF the bus sees 1 or more pullups and no pulldowns THEN the output is +.
+
+	<BR>IF the bus sees 1 or more pullups and 1 or more pulldowns THEN the output is ?</P>
+
+<P>See Also:</P>
+
+<P><A HREF="tristate_gate.htm">Tristate Gate</A></P>
+
+<P>See Examples:</P>
+
+<P>TRISTATE.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Width (Default 2): 2, 4 or 8.</P>
+
+</BODY>
+</HTML>

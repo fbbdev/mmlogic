@@ -1,0 +1,38 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Keyboard Device</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Device">
+	<PARAM NAME="Keyword" VALUE="Keyboard">
+</OBJECT>
+
+<P><A NAME="keyboard_device"></A><B>Keyboard Device <IMG SRC="../images/bm29.gif" ALT="" BORDER=0></B></P>
+
+<P>The Keyboard device allows you to hook your computers keyboard into the circuit.  Click on the Keyboard device while the simulator is running to enable it.  Once enabled all keyboard input will go to this device.  You may have more that one keyboard in your circuit, but only one can be enabled at any given time.  You must disable any enabled keyboards before trying to enable another.</P>
+
+<P>Behavior: (in ASCII mode)</P>
+
+<P>The "E" output will pulse when a key is hit or auto repeated.  The value of the outputs will reflect the ASCII translated code (e.g. Shift-A will send ASCII code for the letter "A").</P>
+
+<P>Behavior: (in Virtual Key Code mode)</P>
+
+<P>The "E" output reflects that a Key is down.  The value of the outputs will reflect the untranslated Virtual Key Code (Shift-A will send a Virtual Key Code of the Shift Key and the Virtual Key Code of  the A Key).</P>
+
+<P><A HREF="ascii_display_device.htm">ASCII Display Device</A></P>
+
+<P>See Examples:</P>
+
+<P>KEYBOARD.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>ASCII Mode (Default False): True (ASCII Mode) or False (Virtual Key Code Mode).</P>
+
+</BODY>
+</HTML>

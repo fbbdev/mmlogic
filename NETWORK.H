@@ -1,0 +1,53 @@
+typedef int (CALLBACK *LPWSAASYNCSELECT)(SOCKET, HWND, u_int, long);
+typedef int (CALLBACK *LPCONNECT)(SOCKET, const struct sockaddr FAR *, int);
+typedef int (CALLBACK *LPRECV)(SOCKET, char FAR *, int, int);
+typedef int (CALLBACK *LPWSAGETLASTERROR)(void);
+typedef SOCKET (CALLBACK *LPACCEPT)(SOCKET, struct sockaddr FAR *, int FAR *);
+typedef u_short (CALLBACK *LPHTONS)(u_short);
+typedef u_long (CALLBACK *LPHTONL)(u_long);
+typedef u_long (CALLBACK *LPINET_ADDR)(const char FAR *);
+typedef int (CALLBACK *LPSETSOCKOPT)(SOCKET, int, int, const char FAR *, int);
+typedef int (CALLBACK *LPBIND)(SOCKET, const struct sockaddr FAR *, int);
+typedef int (CALLBACK *LPLISTEN)(SOCKET, int);
+typedef int (CALLBACK *LPCLOSESOCKET)(SOCKET);
+typedef int (CALLBACK *LPSEND)(SOCKET, const char FAR *, int, int);
+typedef int (CALLBACK *LPSHUTDOWN)(SOCKET, int);
+typedef SOCKET (CALLBACK *LPSOCKET)(int, int, int);
+typedef int (CALLBACK *LPGETHOSTNAME)(char FAR * name, int namelen);
+typedef struct hostent FAR * (CALLBACK *LPGETHOSTBYNAME)(const char FAR *);
+typedef int (CALLBACK *LPWSASTARTUP)(WORD, LPWSADATA);
+typedef int (CALLBACK *LPWSACLEANUP)();
+typedef void (CALLBACK *LPWSASETLASTERROR)(int);
+typedef HANDLE (CALLBACK *LPWSAASYNCGETHOSTBYNAME)(HWND, u_int, const char FAR *, char FAR *, int);
+typedef HANDLE (CALLBACK *LPWSAASYNCGETHOSTBYADDR)(HWND, u_int, const char FAR *, int, int, char FAR *, int);
+
+extern LPWSAASYNCSELECT lpWSAAsyncSelect;
+extern LPCONNECT lpconnect;
+extern LPRECV lprecv;
+extern LPWSAGETLASTERROR lpWSAGetLastError;
+extern LPACCEPT lpaccept;
+extern LPHTONS lphtons;
+extern LPHTONL lphtonl;
+extern LPINET_ADDR lpinet_addr;
+extern LPSETSOCKOPT lpsetsockopt;
+extern LPBIND lpbind;
+extern LPLISTEN lplisten;
+extern LPCLOSESOCKET lpclosesocket;
+extern LPSEND lpsend;
+extern LPSHUTDOWN lpshutdown;
+extern LPSOCKET lpsocket;
+extern LPGETHOSTNAME lpgethostname;
+extern LPGETHOSTBYNAME lpgethostbyname;
+extern LPGETHOSTBYNAME lpgethostbyaddr;
+extern LPWSASTARTUP lpWSAStartup;
+extern LPWSACLEANUP lpWSACleanup;
+extern LPWSASETLASTERROR lpWSASetLastError;
+extern LPWSAASYNCGETHOSTBYNAME lpWSAAsyncGetHostByName;
+extern LPWSAASYNCGETHOSTBYADDR lpWSAAsyncGetHostByAddr;
+
+extern BOOL NetworkStartup();
+extern void NetworkShutdown();
+extern LPSTR WSAGetLastErrorString( int error_arg );
+
+extern HMODULE hWinSockDLL;
+

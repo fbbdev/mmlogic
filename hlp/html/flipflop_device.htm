@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>FlipFlop Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Device">
+	<PARAM NAME="Keyword" VALUE="FlipFlop">
+</OBJECT>
+
+<P><A NAME="flipflop_device"></A><B>FlipFlop Device <IMG SRC="../images/bm31.gif" ALT="" BORDER=0></B></P>
+
+<P>The FlipFlop is the most primitive storage device (it remembers).  You can think of it as a memory that can only hold 1 bit of data (0 or 1).</P>
+
+<P>Master Slaves are internally made up from 2 Storage cells rather than just one.  When the Clock is not asserted the transfer from the 1st stage to the 2nd is enabled.  The JK is considered a Master Slave FlipFlop.</P>
+
+<P>When the "Edge Triggered" clock is enabled the inputs are read only when the clock transitions from the unasserted state to the asserted state.  Where as when the "Edge Triggered" clock is disabled (Level Sensitive) the inputs effect the device as long as the clock is in the asserted state.</P>
+
+<P>Behavior: (Common to all non Master Slaves)</P>
+
+	<P CLASS="tab">I0 Represents the internal state.
+
+	<BR>I0 is initialized to U</P>
+
+	<P CLASS="tab">IF I0 is 1 THEN Q is 1 and Q-bar is 0
+
+	<BR>IF I0 is 0 THEN Q is 0 and Q-bar is 1
+
+	<BR>otherwise Q is U and Q-bar is U</P>
+
+<TABLE cols=3 width=125 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=23%>I0</TD>
+<TD width=25%>Q</TD>
+<TD width=52%>Q-BAR</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>0</TD>
+<TD width=25%>0</TD>
+<TD width=52%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>1</TD>
+<TD width=25%>1</TD>
+<TD width=52%>0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>U</TD>
+<TD width=25%>U</TD>
+<TD width=52%>U</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior: (Common to all Master Slaves)</P>
+
+	<P CLASS="tab">I0 Represents the internal state of the 1st stage.
+
+	<BR>I1 Represents the internal state of the 2nd stage.
+
+	<BR>I0 and I1 are initialized to U</P>
+
+	<P CLASS="tab">IF I1 is 1 THEN Q is 1 and Q-bar is 0
+
+	<BR>IF I1 is 0 THEN Q is 0 and Q-bar is 1
+
+	<BR>otherwise Q is U and Q-bar is U</P>
+
+<TABLE cols=3 width=125 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=23%>I1</TD>
+<TD width=25%>Q</TD>
+<TD width=52%>Q-BAR</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>0</TD>
+<TD width=25%>0</TD>
+<TD width=52%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>1</TD>
+<TD width=25%>1</TD>
+<TD width=52%>0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>U</TD>
+<TD width=25%>U</TD>
+<TD width=52%>U</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior: (as a Reset Set) <IMG SRC="../images/bm32.gif" ALT="" BORDER=0></P>
+
+	<P CLASS="tab">IF S is 0 and R is 0 THEN I0 is unchanged.
+
+	<BR>IF S is 1 and R is 0 THEN I0 is set to 1.
+
+	<BR>IF S is 0 and R is 1 THEN I0 is set to 0.
+
+	<BR>IF S is 1 and R is 1 THEN I0 is set to U.</P>
+
+<TABLE cols=3 width=95 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=32%>S</TD>
+<TD width=32%>R</TD>
+<TD width=36%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>0</TD>
+<TD width=32%>0</TD>
+<TD width=36%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>1</TD>
+<TD width=32%>0</TD>
+<TD width=36%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>0</TD>
+<TD width=32%>1</TD>
+<TD width=36%>0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=32%>1</TD>
+<TD width=32%>1</TD>
+<TD width=36%>U</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior: (as a Data Latch) <IMG SRC="../images/bm33.gif" ALT="" BORDER=0></P>
+
+	<P CLASS="tab">IF C is 0 THEN I0 is unchanged.
+
+	<BR>IF C is 1 THEN I0 is set to D.</P>
+
+<TABLE cols=3 width=97 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=31%>C</TD>
+<TD width=31%>D</TD>
+<TD width=38%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>0</TD>
+<TD width=31%>X</TD>
+<TD width=38%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=31%>1</TD>
+<TD width=31%>X</TD>
+<TD width=38%>D</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior: (as a Clocked Reset Set) <IMG SRC="../images/bm34.gif" ALT="" BORDER=0></P>
+
+	<P CLASS="tab">IF C is 0 THEN I0 is unchanged.
+
+	<BR>IF C is 1 and S is 0 and R is 0 THEN I0 is unchanged.
+
+	<BR>IF C is 1 and S is 1 and R is 0 THEN I0 is set to 1.
+
+	<BR>IF C is 1 and S is 0 and R is 1 THEN I0 is set to 0.
+
+	<BR>IF C is 1 and S is 1 and R is 1 THEN I0 is set to U.</P>
+
+<TABLE cols=4 width=125 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=24%>C</TD>
+<TD width=24%>S</TD>
+<TD width=25%>R</TD>
+<TD width=27%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=24%>0</TD>
+<TD width=24%>X</TD>
+<TD width=25%>X</TD>
+<TD width=27%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=24%>1</TD>
+<TD width=24%>0</TD>
+<TD width=25%>0</TD>
+<TD width=27%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=24%>1</TD>
+<TD width=24%>1</TD>
+<TD width=25%>0</TD>
+<TD width=27%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=24%>1</TD>
+<TD width=24%>0</TD>
+<TD width=25%>1</TD>
+<TD width=27%>0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=24%>1</TD>
+<TD width=24%>1</TD>
+<TD width=25%>1</TD>
+<TD width=27%>U</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior: (as a Master Slave Reset Set) <IMG SRC="../images/bm35.gif" ALT="" BORDER=0></P>
+
+	<P CLASS="tab">IF C is 1 THEN I0 is unchanged and I1 is set to I0.
+
+	<BR>IF C is 0 and S is 0 and R is 0 THEN I0 is unchanged.
+
+	<BR>IF C is 0 and S is 1 and R is 0 THEN I0 is set to 1.
+
+	<BR>IF C is 0 and S is 0 and R is 1 THEN I0 is set to 0.
+
+	<BR>IF C is 0 and S is 1 and R is 1 THEN I0 is set to U.</P>
+
+<TABLE cols=5 width=151 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=20%>C</TD>
+<TD width=20%>S</TD>
+<TD width=20%>R</TD>
+<TD width=20%>I0</TD>
+<TD width=20%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=20%>1</TD>
+<TD width=20%>X</TD>
+<TD width=20%>X</TD>
+<TD width=20%>I0</TD>
+<TD width=20%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=20%>0</TD>
+<TD width=20%>0</TD>
+<TD width=20%>0</TD>
+<TD width=20%>I0</TD>
+<TD width=20%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=20%>0</TD>
+<TD width=20%>1</TD>
+<TD width=20%>0</TD>
+<TD width=20%>1</TD>
+<TD width=20%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=20%>0</TD>
+<TD width=20%>0</TD>
+<TD width=20%>1</TD>
+<TD width=20%>0</TD>
+<TD width=20%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=20%>0</TD>
+<TD width=20%>1</TD>
+<TD width=20%>1</TD>
+<TD width=20%>U</TD>
+<TD width=20%>I1</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior: (as a Master Slave Data Latch) <IMG SRC="../images/bm36.gif" ALT="" BORDER=0></P>
+
+	<P CLASS="tab">IF C is 1 THEN I0 is unchanged and I1is set to I0.
+
+	<BR>IF C is 0 THEN I0 is set to D and I1 is unchanged.</P>
+
+<TABLE cols=4 width=133 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=23%>C</TD>
+<TD width=23%>D</TD>
+<TD width=27%>I0</TD>
+<TD width=27%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>1</TD>
+<TD width=23%>X</TD>
+<TD width=27%>I0</TD>
+<TD width=27%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=23%>0</TD>
+<TD width=23%>X</TD>
+<TD width=27%>D</TD>
+<TD width=27%>I1</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior: (as a JK) <IMG SRC="../images/bm31.gif" ALT="" BORDER=0></P>
+
+	<P CLASS="tab">IF C is 1 THEN I0 is unchanged and I1 is set to I0.
+
+	<BR>IF C is 0 and S is 0 and R is 0 THEN I0 is unchanged.
+
+	<BR>IF C is 0 and S is 1 and R is 0 THEN I0 is set to 1.
+
+	<BR>IF C is 0 and S is 0 and R is 1 THEN I0 is set to 0.
+
+	<BR>IF C is 0 and S is 1 and R is 1 THEN I0 is set to Not I0.</P>
+
+<TABLE cols=5 width=175 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=17%>C</TD>
+<TD width=17%>S</TD>
+<TD width=18%>R</TD>
+<TD width=30%>I0</TD>
+<TD width=18%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=17%>1</TD>
+<TD width=17%>X</TD>
+<TD width=18%>X</TD>
+<TD width=30%>I0</TD>
+<TD width=18%>I0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=17%>0</TD>
+<TD width=17%>0</TD>
+<TD width=18%>0</TD>
+<TD width=30%>I0</TD>
+<TD width=18%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=17%>0</TD>
+<TD width=17%>1</TD>
+<TD width=18%>0</TD>
+<TD width=30%>1</TD>
+<TD width=18%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=17%>0</TD>
+<TD width=17%>0</TD>
+<TD width=18%>1</TD>
+<TD width=30%>0</TD>
+<TD width=18%>I1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=17%>0</TD>
+<TD width=17%>1</TD>
+<TD width=18%>1</TD>
+<TD width=30%>Not I0</TD>
+<TD width=18%>I1</TD>
+</TR>
+</TABLE><BR>
+
+<P>See Also:</P>
+
+<P><A HREF="memory_device.htm">Memory Device</A></P>
+
+<P>See Examples:</P>
+
+<P>FLIPFLOP.LGI
+
+<BR>*FF.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Style (Default Reset Set): Reset Set ... JK.
+
+<BR>Edge triggered (Default False): True (Edge Triggered) or False (Level Sensitive).</P>
+
+</BODY>
+</HTML>

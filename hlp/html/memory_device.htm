@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Memory Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Memory Device">
+</OBJECT>
+
+<P><A NAME="memory_device"></A><B>Memory Device <IMG SRC="../images/bm54.gif" ALT="" BORDER=0></B></P>
+
+<P>The Memory Device is a Control device.  It can store up to 256 bytes of data. You can increase the data width by ganging up more memory devices all using the same address.  The memory can be optionally initialized with data from a file (upon each reset of simulator).  If it is not initialized with a file then it is initialized with all Unknown (U).</P>
+
+<P>Behavior:</P>
+
+<P>IF the Write Enable input "W" is 1 THEN</P>
+
+<P CLASS="tab">The data inputs are written to the address selected on the address inputs.
+
+<BR>IF any address line is Unknown THEN the entire memory is written with Unknown (U).
+
+<BR>IF any data input line is Unknown THEN it will be read as Unknown (U).</P>
+
+<P>IF the Write Enable input "W" is 0 THEN</P>
+
+<P CLASS="tab">The data outputs are driven with what is stored in memory specified by the address inputs.
+
+<BR>IF any address line is Unknown THEN the data outputs are driven with an Unknown (U).</P>
+
+<P>See Also:</P>
+
+<P><A HREF="flipflop_device.htm">FlipFlop Device</A>
+
+<BR><A HREF="file_formats.htm">File Formats</A></P>
+
+<P>See Examples:</P>
+
+<P>MEMORY.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Format (Default ASCII Hex): Format of file to load.
+
+<BR>Filename (Default NUL): Path to Filename.Ext</P>
+
+</BODY>
+</HTML>

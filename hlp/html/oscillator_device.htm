@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Oscillator Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" VIEWASTEXT>
+	<PARAM NAME="Keyword" VALUE="Device">
+	<PARAM NAME="Keyword" VALUE="Oscillator">
+</OBJECT>
+
+<P><A NAME="oscillator_device"></A><B>Oscillator Device <IMG SRC="../images/bm23.gif" ALT="" BORDER=0></B></P>
+
+<P>The Oscillator device is a powerful device that is often used to "drive" or "pump" your circuit.  It is also often referred to as the Clock or Waveform device.  It can be thought of as a switch (hooked to power source) that is being flipped on and off at a constant rate.  You can adjust how long the switch is up relative to how long it is down.  If the Oscillator device is too fast for your application you can use a Timer Device and control the speed in real time.</P>
+
+<P>Behavior:</P>
+
+<P CLASS="noPad">IF the output is 0 THEN</P>
+
+<P CLASS="tabNoPad">IF "Low Cycles" have been executed THEN output is 1
+
+<BR>otherwise output is 0</P>
+
+<P CLASS="noPad">IF the output is 1 THEN</P>
+
+<P CLASS="tabNoPad">IF "High Cycles" have been executed THEN output is 0
+
+<BR>otherwise output is 1</P>
+
+<P>See Also:</P>
+
+<P><A HREF="counter_device.htm">Counter Device</A>
+
+<BR><A HREF="timer_device.htm">Timer Device</A></P>
+
+<P>See Examples:</P>
+
+<P>SPIN.LGI
+
+<BR>OSCILAT.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Cycles Low. (default 1): 1 to n
+
+<BR>Cycles High. (default 1): 1 to n</P>
+
+</BODY>
+</HTML>

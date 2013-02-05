@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Select Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Select Device">
+</OBJECT>
+
+<P><A NAME="select_device"></A><B>Select Device <IMG SRC="../images/bm24.gif" ALT="" BORDER=0></B></P>
+
+<P>The select device is a 16 position rotary switch input device.  It can be used as both an interactive input device or as an alternative to using Ground and Plus devices to hardwire some inputs by setting its initial state.  For example is you wanted to lock the ALU device in compare mode set the Initial state to 4 and connect the Selector device to the ALU device function select lines.</P>
+
+<P>Behavior:</P>
+
+<P>When the user clicks on the select switch while the simulator is running it will:</P>
+
+<P CLASS="tab">IF Output n &lt; F (hex) THEN Output a n+1.
+
+<BR>IF Output n = F (hex) THEN Output a 0.</P>
+
+<P>It will return to its initial state when the simulation is reset.</P>
+
+<P>See Also:</P>
+
+<P><A HREF="switch_device.htm">Switch Device</A>
+
+<BR><A HREF="ground_device.htm">Ground Device</A>
+
+<BR><A HREF="plus_device.htm">Plus Device</A>
+
+<BR><A HREF="keypad_device.htm">Keypad Device</A></P>
+
+<P>See Examples:</P>
+
+<P>SELECT.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Initial State (Default 0): 0 (hex) through F (hex).</P>
+
+</BODY>
+</HTML>

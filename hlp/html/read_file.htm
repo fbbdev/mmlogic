@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Read File</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Read File">
+</OBJECT>
+
+<P><A NAME="read_file"></A><B>Read File Device <IMG SRC="../images/bm43.gif" ALT="" BORDER=0></B></P>
+
+<P>The Read File Device allows you to read in large storage amounts.</P>
+
+<P>Behavior:</P>
+
+<P>When the clock input "C" changes from 0 to 1 a character or ASCII Hex line (depending on format) is read from the file and fired to the outputs.  You can reset the Read File Device at any time with the input "R" set to 1.  Reset means it will start reading from the beginning of the file.  If end of file is reached the output "E" will be driven to 1 until a reset.</P>
+
+<P>See Also:</P>
+
+<P><A HREF="write_file_device.htm">Write File Device</A>
+
+<BR><A HREF="file_formats.htm">File Formats</A></P>
+
+<P>See Examples:</P>
+
+<P>FILECOPY.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>File (Default NUL): Path to Filename.Ext
+
+<BR>Format (Default Binary): Binary or ASCII Hex</P>
+
+</BODY>
+</HTML>

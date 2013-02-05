@@ -1,0 +1,28 @@
+//
+// DRAWCLI.RC2 - resources App Studio does not edit directly
+//
+
+#ifdef APSTUDIO_INVOKED
+	#error this file is not editable by App Studio
+#endif //APSTUDIO_INVOKED
+
+#ifndef RT_MANIFEST
+#ifdef RC_INVOKED
+#define RT_MANIFEST                        24
+#define CREATEPROCESS_MANIFEST_RESOURCE_ID  1
+#else  /* RC_INVOKED */
+#define RT_MANIFEST                        MAKEINTRESOURCE(24)
+#define CREATEPROCESS_MANIFEST_RESOURCE_ID MAKEINTRESOURCE( 1)
+#endif /* RC_INVOKED */
+#endif
+
+#ifndef IDR_MANIFEST
+#define IDR_MANIFEST CREATEPROCESS_MANIFEST_RESOURCE_ID
+#endif
+
+IDR_MANIFEST RT_MANIFEST "res\\mmlogic.manifest"
+
+/////////////////////////////////////////////////////////////////////////////
+// Add additional manually edited resources here...
+
+/////////////////////////////////////////////////////////////////////////////

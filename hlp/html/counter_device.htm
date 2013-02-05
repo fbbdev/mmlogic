@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Counter Device</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Counter Device">
+</OBJECT>
+
+<P><A NAME="counter_device"></A><B>Counter Device <IMG SRC="../images/bm50.gif" ALT="" BORDER=0></B></P>
+
+<P>The Counter Device is a simple 4 or 8 bit counter.  You can gang counters together to build larger counters.</P>
+
+<P>Behavior:</P>
+
+<P>When the clock input changes from 0 to 1 the counter increments by 1. If the counter has reached its limit (15 decimal) it pulses in the Carry Out "C" signal.  The Carry out signal can be used as the Clock to trigger another counter.  So you can gang together as many counters as you like to build larger counters.  The 4 outputs represent the current value of the counter.  You can reset the counter at any time with the "R" set to 1.  The Down "D" signal is used to set the direction of counting. If D is 0 the counter will count up, If D is 1 the counter will count Down.</P>
+
+<P>See also:</P>
+
+<P><A HREF="random_device.htm">Random</A></P>
+
+<P>See Examples:</P>
+
+<P>COUNTER.LGI
+
+<BR>COUNTER2.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Initial Value (Default 0): 0-15 (4-Bit) or 0-256 (8-Bit)
+
+<BR>Size (Default 4-bit): 4-Bit or 8-Bit</P>
+
+</BODY>
+</HTML>

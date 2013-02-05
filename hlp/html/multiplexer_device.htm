@@ -1,0 +1,296 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Multiplexer (Mux) Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Multiplexer (Mux) Device">
+</OBJECT>
+
+<P><A NAME="multiplexer_device"></A><B>Multiplexer (Mux) Device <IMG SRC="../images/bm52.gif" ALT="" BORDER=0></B></P>
+
+<P>The Multiplexer/DeMultiplexer devices are standard control devices.  They allow you to select one of the multiple sources onto a single output (Mux) or select a single source onto one of multiple outputs (DeMux).  The Multiplexer is also referred to as a data selector and the DeMultiplexer is also referred to as a Decoder.</P>
+
+<P>Behavior (as Mux): <IMG SRC="../images/bm52.gif" ALT="" BORDER=0></P>
+
+<P CLASS="tab">IF E is 1 THEN Y is 0 and Y-Bar is 1.
+
+<BR>IF E is 0 THEN Y is Dn and Y-Bar is Not Dn.
+
+<BR>Where n = Select lines.</P>
+
+<TABLE cols=6 width=235 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=13%>E</TD>
+<TD width=15%>S2</TD>
+<TD width=15%>S1</TD>
+<TD width=16%>S0</TD>
+<TD width=15%>Y</TD>
+<TD width=26%>Y-BAR</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>1</TD>
+<TD width=15%>X</TD>
+<TD width=15%>X</TD>
+<TD width=16%>X</TD>
+<TD width=15%>0</TD>
+<TD width=26%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>0</TD>
+<TD width=15%>0</TD>
+<TD width=16%>0</TD>
+<TD width=15%>D0</TD>
+<TD width=26%>Not D0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>0</TD>
+<TD width=15%>0</TD>
+<TD width=16%>1</TD>
+<TD width=15%>D1</TD>
+<TD width=26%>Not D1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>0</TD>
+<TD width=15%>1</TD>
+<TD width=16%>0</TD>
+<TD width=15%>D2</TD>
+<TD width=26%>Not D2</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>0</TD>
+<TD width=15%>1</TD>
+<TD width=16%>1</TD>
+<TD width=15%>D3</TD>
+<TD width=26%>Not D3</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>1</TD>
+<TD width=15%>0</TD>
+<TD width=16%>0</TD>
+<TD width=15%>D4</TD>
+<TD width=26%>Not D4</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>1</TD>
+<TD width=15%>0</TD>
+<TD width=16%>1</TD>
+<TD width=15%>D5</TD>
+<TD width=26%>Not D5</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>1</TD>
+<TD width=15%>1</TD>
+<TD width=16%>0</TD>
+<TD width=15%>D6</TD>
+<TD width=26%>Not D6</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=13%>0</TD>
+<TD width=15%>1</TD>
+<TD width=15%>1</TD>
+<TD width=16%>1</TD>
+<TD width=15%>D7</TD>
+<TD width=26%>Not D7</TD>
+</TR>
+</TABLE><BR>
+
+<P>Behavior (as DeMux): <IMG SRC="../images/bm53.gif" ALT="" BORDER=0></P>
+
+<P CLASS="tab">IF E is 1 THEN D0 - D7 is 1.
+
+<BR>IF E is 0 THEN D0 - D7 is 1 Except Dn is 0.
+
+<BR>Where n = Select lines.</P>
+
+<TABLE cols=12 width=379 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=8%>E</TD>
+<TD width=7%>S2</TD>
+<TD width=9%>S1</TD>
+<TD width=8%>S0</TD>
+<TD width=8%>D7</TD>
+<TD width=9%>D6</TD>
+<TD width=8%>D5</TD>
+<TD width=9%>D4</TD>
+<TD width=8%>D3</TD>
+<TD width=9%>D2</TD>
+<TD width=8%>D1</TD>
+<TD width=9%>D0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>1</TD>
+<TD width=7%>X</TD>
+<TD width=9%>X</TD>
+<TD width=8%>X</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>0</TD>
+<TD width=9%>0</TD>
+<TD width=8%>0</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>0</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>0</TD>
+<TD width=9%>0</TD>
+<TD width=8%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>0</TD>
+<TD width=9%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>0</TD>
+<TD width=9%>1</TD>
+<TD width=8%>0</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>0</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>0</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>0</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>1</TD>
+<TD width=9%>0</TD>
+<TD width=8%>0</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>0</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>1</TD>
+<TD width=9%>0</TD>
+<TD width=8%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>0</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>0</TD>
+<TD width=8%>1</TD>
+<TD width=9%>0</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=8%>0</TD>
+<TD width=7%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=8%>0</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+<TD width=8%>1</TD>
+<TD width=9%>1</TD>
+</TR>
+</TABLE><BR>
+
+<P>See Also:</P>
+
+<P>See Examples:
+
+<P>MUXES8.LGI
+
+<BR>MUXES4.LGI
+
+<BR>MUXES2.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Style (Default 8 to 1 Mux): 8 to 1 Mux ... 2 to 1 DeMux.</P>
+
+</BODY>
+</HTML>

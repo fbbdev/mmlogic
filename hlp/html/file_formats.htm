@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>File Formats</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="File Formats">
+</OBJECT>
+
+<P><A NAME="file_formats"></A><B>File Formats</B></P>
+
+<P>The simulator supports 2 file formats for several devices (e.g. Memory, Read File and Write File).  The 2 formats are Binary mode and ASCII Hex mode.</P>
+
+<P>ASCII Hex mode:</P>
+
+<P>NN<BR>
+
+NN<BR>
+
+NN<BR>
+
+.<BR>
+
+.<BR>
+
+.<BR>
+
+NN</P>
+
+<P>Where NN is 2 Hexadecimal digit’s (presented as ASCII text followed by a &lt;CR&gt;), the file can contain any number of lines (Memory device only reads 256).  Each line represents 8 bits worth of data.  For the memory device the first line will go into address 0, the second line into address 1 and so on.</P>
+
+<P>Example:</P>
+
+<P>FF<BR>
+
+AA<BR>
+
+00<BR>
+
+12</P>
+
+<P>Binary Mode:</P>
+
+<P>In binary mode the files are read or written raw.  Each byte in the file is read "as is" including line control characters such as &lt;CR&gt; and &lt;LF&gt;.  Any file can be read or written in binary mode and is the most efficient with respect to size of the files and speed of reading or writing. Binary files can be edited with a Hex editor such as <A HREF="http://www.chmaas.handshake.de/delphi/freeware/xvi32/xvi32.htm" TARGET="_blank">XVI32</A>.</P>
+
+</BODY>
+</HTML>

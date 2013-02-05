@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>States of a node</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="States of a node">
+</OBJECT>
+
+<P><A NAME="states_of_a_node"></A><B>States of a node</B></P>
+
+<P>The MultiMedia Logic Simulator is a 6 state simulator. A node can be in the following states:</P>
+
+<TABLE cols=2>
+
+<TR VALIGN="top">
+<TD width=6%>0 </TD>
+<TD width=94%>LO (OFF or False)</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=6%>1 </TD>
+<TD width=94%>HI (ON or True)</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=6%>U </TD>
+<TD width=94%>UNKNOWN (Neither True or False)</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=6%> - </TD>
+<TD width=94%>Pulled down, acts like 0 but can be over driven</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=6%>+ </TD>
+<TD width=94%>Pulled up, acts like 1 but can be over driven</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=6%>? </TD>
+<TD width=94%>Floating, acts like U but can be over driven</TD>
+</TR>
+</TABLE><BR>
+
+<P>What is UNKNOWN used for?  In many circuits there are conditions where the simulator cannot determine if the state should be 0 or 1.  You can think of the old saying "Innocent Until Proven Guilty".  A node is UNKNOWN until it is proven to be 1 or 0 by the simulator.  What this does is flush out initialization problems in your circuits.  There are cases where the simulator cannot behave like an imperfect "real world" device and you need to override this behavior.  You can do this by using a Force 0 or Force 1 property on a NODE device.</P>
+
+<P>The +, - and ? are only produced by the Tristate Device and processed by the Bus Device.  You don’t need to understand these until you get to more advanced circuits.</P>
+
+</BODY>
+</HTML>

@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Timer Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Timer Device">
+</OBJECT>
+
+<P><A NAME="timer_device"></A><B>Timer Device <IMG SRC="../images/bm26.gif" ALT="" BORDER=0></B></P>
+
+<P>The timer device is an input device that can be used to present real time events to your circuit.  The timers pulse will not drift, it will fire exactly at n*Delay regardless of machine load or circuit complexity as long as each cycle completes before Delay time has expired.</P>
+
+<P>Behavior:</P>
+
+<P>IF the input "R" (Reset) is 0 THEN</P>
+
+<P CLASS="tab">IF the "DELAY" duration has been expended:</P>
+
+<P CLASS="tab">Output a 1 to the output and reset to the DELAY.
+
+<BR>Otherwise Output a 0 to the output.</P>
+
+<P>IF the input "R" (Reset) is 1 THEN</P>
+
+<P CLASS="tab">Output a 0 to the output and reset to the DELAY.</P>
+
+<P>See Also:</P>
+
+<P><A HREF="oscillator_device.htm">Oscillator Device</A>
+
+<BR><A HREF="clock_device.htm">Clock Device</A></P>
+
+<P>See Examples:</P>
+
+<P>TIMER.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Delay in milliseconds (Default 1000): 1 to n.</P>
+
+</BODY>
+</HTML>

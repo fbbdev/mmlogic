@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>Tapedrive Device</TITLE>
+<LINK REL="stylesheet" Type="text/css" href="mml.css">
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="Tapedrive Device">
+</OBJECT>
+
+<P><A NAME="tapedrive_device"></A><B>Tapedrive Device <IMG SRC="../images/bm60.gif" ALT="" BORDER=0></B></P>
+
+<P>The Tapedrive is Control device.  You can specify how many bytes of data it can store and the position of the tape upon reset.  The Tapedrive can be optionally initialized with data from a file (upon each reset of simulator).  If it is not initialized with a file then it is initialized with all Unknown (U).</P>
+
+<P>Behavior:</P>
+
+<P>When the clock input "C" changes from 0 to 1 the following ocurs:</P>
+
+<P>IF W is 1 THEN data on the inputs "I" are written to the current tape position.
+
+<BR>IF W is 0 THEN data at the current position of the tape is presented to outputs "O".</P>
+
+<P>Depending on input signals "F" (forward) and "B" (backward) the tape move as follows:</P>
+
+<P CLASS="tabNoPad">IF R is 0 THEN</P>
+
+<P CLASS="tabtabNoPad">IF F is 1 AND B is 0 THEN the tape advances forward.
+
+<BR>IF F is 0 AND B is 0 THEN the tape advances backward.
+
+<BR>IF F is 0 AND B is 0 THEN the tape does not advance.
+
+<BR>IF F is 1 AND B is 1 THEN the tape does not advance.</P>
+
+<P CLASS="tabNoPad">IF R is 1 THEN</P>
+
+<P CLASS="tabtabNoPad">The tape resets to start position.</P>
+<BR>
+<TABLE cols=4 width=182 CLASS="tabtab">
+
+<TR VALIGN="top">
+<TD width=16%>R</TD>
+<TD width=17%>F</TD>
+<TD width=17%>B</TD>
+<TD width=50%>ADVANCE</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=16%>0</TD>
+<TD width=17%>1</TD>
+<TD width=17%>0</TD>
+<TD width=50%>Forward</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=16%>0</TD>
+<TD width=17%>0</TD>
+<TD width=17%>1</TD>
+<TD width=50%>Backward</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=16%>0</TD>
+<TD width=17%>0</TD>
+<TD width=17%>0</TD>
+<TD width=50%>Still</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=16%>0</TD>
+<TD width=17%>1</TD>
+<TD width=17%>1</TD>
+<TD width=50%>Still</TD>
+</TR>
+
+<TR VALIGN="top">
+<TD width=16%>1</TD>
+<TD width=17%>X</TD>
+<TD width=17%>X</TD>
+<TD width=50%>Reset</TD>
+</TR>
+</TABLE><BR>
+
+<P>See Also:</P>
+
+<P><A HREF="memory_device.htm">Memory Device</A>
+
+<BR><A HREF="file_formats.htm">File Formats</A></P>
+
+<P>See Examples:</P>
+
+<P>MEMORY.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>Format (Default ASCII Hex): Format of file to load.
+
+<BR>Filename (Default NUL): Path to Filename.Ext
+
+<BR>Start (Default 0): Position to start at when the device is reset.
+
+<BR>Capacity (Default 1024): Size in bytes of tape drive.</P>
+
+</BODY>
+</HTML>

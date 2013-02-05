@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+	<HEAD>
+		<TITLE>Analyze Tool</TITLE>
+		<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+	</HEAD>
+	<BODY BGCOLOR="#ffffff" TEXT="#000000">
+		<OBJECT classid="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e" type="application/x-oleobject">
+			<PARAM NAME="Keyword" VALUE="Analyze Tool">
+		</OBJECT>
+		<P><A NAME="analyze_tool"></A><B>Analyze Tool</B></P>
+		<P>The analyze tool will allow you to examine the circuit for debugging purposes. 
+			It is currently NOT implemented completely and has no function yet.</P>
+		<P>Rules:</P>
+		<UL>
+			<LI>
+			The analyze tool is only used while the simulator is running.
+			<LI style="Z-INDEX: 0">
+				Depending on the eventual implementation, the analyze tool may be used to log 
+				to a file the time-stamped status of a node.</LI>
+		</UL>
+		<P>The analyze may use the same 6 symbols as the probe tool:</P>
+		<TABLE cols="2">
+			<TR VALIGN="top">
+				<TD width="7%">0</TD>
+				<TD width="93%">Analyze sees a 0 state.</TD>
+			</TR>
+			<TR VALIGN="top">
+				<TD width="7%">1</TD>
+				<TD width="93%">Analyze sees a 1 state.</TD>
+			</TR>
+			<TR VALIGN="top">
+				<TD width="7%">U</TD>
+				<TD width="93%">Analyze sees a Unknown state.</TD>
+			</TR>
+			<TR VALIGN="top">
+				<TD width="7%">
+					-</TD>
+				<TD width="93%">Analyze sees a Pull Down state.</TD>
+			</TR>
+			<TR VALIGN="top">
+				<TD width="7%">+</TD>
+				<TD width="93%">Analyze sees a Pull Up state.</TD>
+			</TR>
+			<TR VALIGN="top">
+				<TD width="7%">?</TD>
+				<TD width="93%">Analyze sees a Float state.</TD>
+			</TR>
+		</TABLE>
+		<BR>
+	</BODY>
+</HTML>

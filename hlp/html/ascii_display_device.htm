@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" Content="text/html; charset=Windows-1252">
+<TITLE>ASCII Display Device</TITLE>
+</HEAD>
+
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000">
+
+<OBJECT TYPE="application/x-oleobject" CLASSID="clsid:1e2a7bd0-dab9-11d0-b93a-00c04fc99f9e">
+	<PARAM NAME="Keyword" VALUE="ASCII Display Device">
+</OBJECT>
+
+<P><A NAME="ascii_display_device"></A><B>ASCII Display Device <IMG SRC="../images/bm39.gif" ALT="" BORDER=0></B></P>
+
+<P>The ASCII Display device is an Output device that emulates a simple terminal device. The display will hold 16 characters across of 8 rows down.</P>
+
+<P>Behavior:</P>
+
+<P>IF R is 1 the screen is reset.
+
+<BR>Otherwise the device will perform the following:</P>
+
+<P>When the clock input "C" changes from 0 to 1 the device will perform the following:</P>
+
+<P>IF the inputs evaluate to &lt;CR&gt; (Hex 0D) the cursor is moved to the next line.
+
+<BR>IF the inputs evaluate to &lt;BkSp&gt; (Hex 08) it will erase the previous character.
+
+<BR>Otherwise the character is appended to the current line.
+
+<BR>IF you send more than 16 characters to a line it will return to column 1 and erase the line.</P>
+
+<P>See Also:</P>
+
+<P><A HREF="keyboard_device.htm">Keyboard Device</A></P>
+
+<P>See Examples:</P>
+
+<P>DISPLAY.LGI</P>
+
+<P><A HREF="changing_device_options.htm">Options</A>:</P>
+
+<P>None:</P>
+
+</BODY>
+</HTML>
