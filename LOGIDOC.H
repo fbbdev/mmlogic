@@ -114,6 +114,8 @@ class CLogiDoc : public CDocument
    BOOL m_bSimulating;
    //should we color the wires?
    BOOL m_bColorWires;
+   //does the user want to stop simulation and exit?
+   BOOL	m_bLetMeExitAlready;
 
    BOOL m_bKeepGoing;
    BOOL m_bWasUp;

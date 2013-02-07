@@ -2587,6 +2587,12 @@ void CLogiDoc::OnSimulateRun()
          }
 
       Simulate(ID_SIMULATE_RUN);
+	  //Now that the simulation has been stopped, let's check if the reason was that
+	  //the user requested to stop simulation and exit.
+	  if (m_bLetMeExitAlready)
+	  {
+		  AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
+	  }
       }
    }
 
@@ -2786,15 +2792,10 @@ BOOL CLogiDoc::SaveModified()
             return FALSE;
          case IDOK:
 			AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_SIMULATE_STOP, 0L);
-			Sleep(4000);
-			AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
-			Sleep(2000);
-			AfxGetMainWnd()->PostMessage(WM_CLOSE);
+			m_bLetMeExitAlready = TRUE;
 			return FALSE;
-			//AfxGetMainWnd()->PostMessage(WM_CLOSE);
          }
       }
-
    return CDocument::SaveModified();
    }
 
