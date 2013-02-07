@@ -49,5 +49,11 @@
 #include "TipDlg.h"
 #include "Analyze.h"
 
+#ifndef DWORD_PTR
+#define DWORD_PTR DWORD*
+#endif
+
 #include <htmlhelp.h>
 #pragma comment(lib, "htmlhelp.lib")
+
+

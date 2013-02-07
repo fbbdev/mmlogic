@@ -442,7 +442,7 @@ void CLogiBitmapGate::OnOpen(CLogiView* pView)
             }
          }
 
-      for (int i=0;i<4;i++) Node[i] = pView->GetDocument()->m_pAnodeNULL;
+      for (/*jal int */ i=0;i<4;i++) Node[i] = pView->GetDocument()->m_pAnodeNULL;
       }
 
    m_csFileName = dlg.m_csFileName;

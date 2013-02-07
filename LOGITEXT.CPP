@@ -463,7 +463,7 @@ void CLogiTextGate::OnOpen(CLogiView* pView)
             }
          }
 
-      for (int i=0;i<4;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (/*jal int */  i=0;i<4;i++) Node[i] = m_pDocument->m_pAnodeNULL;
       }
 
    m_pTextText = dlg.m_pTextText;

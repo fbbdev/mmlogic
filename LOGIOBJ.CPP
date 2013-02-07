@@ -2188,7 +2188,7 @@ void CLogiBusGate::OnOpen(CLogiView* pView)
             }
          }
 
-      for (int i=0;i<(Outputs + (2<<dlg.m_iInputs));i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (/*jal int */  i=0;i<(Outputs + (2<<dlg.m_iInputs));i++) Node[i] = m_pDocument->m_pAnodeNULL;
       }
 
    m_iInputs = dlg.m_iInputs;
@@ -3717,7 +3717,7 @@ void CLogiLed7Gate::OnOpen(CLogiView* pView)
             }
          }
 
-      for (int i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (/*jal int */  i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
       }
 
    m_iRed = dlg.m_iRed;
@@ -7015,7 +7015,7 @@ void CLogiFlipflopGate::OnOpen(CLogiView* pView)
 
       // Here, 7 is maximum number of contacts
       ASSERT(Contacts <= 7);
-      for (int i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (/*jal int */  i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
       }
 
    m_iStyle = dlg.m_iStyle;
@@ -7577,7 +7577,7 @@ void CLogiCounterGate::OnOpen(CLogiView* pView)
             }
          }
 
-      for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (/*jal int */  i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
       }
 
    m_iSize = dlg.m_iSize;
@@ -8842,7 +8842,7 @@ void CLogiMemoryGate::OnOpen(CLogiView* pView)
 
       // The + 9 is due to the "W" (write) input and 8-bit data input
 
-      for (int i=Outputs;i<Outputs + iNewAddressBits + 9;i++) 
+      for (/*jal int */  i=Outputs;i<Outputs + iNewAddressBits + 9;i++) 
           {
           Node[Outputs] = m_pDocument->m_pAnodeNULL;
           }

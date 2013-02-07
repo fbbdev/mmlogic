@@ -629,7 +629,7 @@ void CLogiRobotGate::OnOpen(CLogiView* pView)
             }
          }
 
-      for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (/*jal int */  i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
       }
 
    m_csFileName = dlg.m_csFileName;

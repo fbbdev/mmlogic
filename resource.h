@@ -769,3 +769,7 @@
 #define _APS_NEXT_SYMED_VALUE           851
 #endif
 #endif
+
+#ifndef VK_OEM_PLUS
+#define VK_OEM_PLUS 0xBB
+#endif
