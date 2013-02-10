@@ -1,0 +1,28 @@
+41 1 2
+38 1
+22 -386 -254 157 -286 0 \NUL
+Double Click on Text to set the string
+22 -386 -209 129 -241 0 \NUL
+The Font used is Kept in the Project
+22 -385 -165 32 -197 0 \NUL
+And applies to ALL Text Boxes
+22 -127 -88 -47 -120 1 ..\TEXT\Numbers.txt
+Text
+44 -237 -82 -188 -131 0 0
+1 -191 -92 -126 -92
+1 -191 -98 -126 -98
+1 -191 -110 -126 -110
+1 -191 -104 -126 -104
+39 16777215
+47 0
+40 1 6 6
+30
+Courier New
+-24
+700
+255
+0
+3
+2
+1
+49

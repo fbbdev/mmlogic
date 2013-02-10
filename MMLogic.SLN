@@ -1,5 +1,5 @@
 Microsoft Visual Studio Solution File, Format Version 8.00
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestMML", "TestMML.vcproj", "{6F8FE140-C46C-46A1-9E5A-EE8C17516DAA}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MMLogic", "MMLogic.vcproj", "{6F8FE140-C46C-46A1-9E5A-EE8C17516DAA}"
 	ProjectSection(ProjectDependencies) = postProject
 	EndProjectSection
 EndProject

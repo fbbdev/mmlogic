@@ -1,0 +1,17 @@
+/*.ncb
+/MMLogic.plg
+*.swp
+/Release/*.htm
+/Release/*.res
+/Release/*.obj
+/Release/*.pch
+/Release/*.pdb
+/Release/*.idb
+/Debug/*.res
+/Debug/*.htm
+/Debug/*.ilk
+/Debug/*.obj
+/Debug/*.pch
+/Debug/*.pdb
+/Debug/*.sbr
+/Debug/*.idb

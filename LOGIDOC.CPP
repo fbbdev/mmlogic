@@ -63,6 +63,8 @@ ON_COMMAND(ID_ESCAPE, OnEscape)
 //ON_WM_KEYUP()
 
 //}}AFX_MSG_MAP
+//This gets close from the file menu but I wanted closing document any way except 
+//clicking on main window X. ON_COMMAND(ID_FILE_CLOSE, OnFileClose)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -821,6 +823,9 @@ void CLogiDoc::Simulate(UINT iMode)
    AfxGetApp()->m_pMainWnd->SendMessage(WM_COMMAND, ID_DRAW_SELECTOR_INTERNAL, 0L);
 
    m_bKeepGoing = TRUE;
+   m_bForceStopAndExitApp = FALSE;
+   m_bForceStopAndCloseDoc = FALSE;
+   m_bCloseNotExit = FALSE;
 
    // If palette is up shut it down on 1st cycle
 
@@ -2589,10 +2594,17 @@ void CLogiDoc::OnSimulateRun()
       Simulate(ID_SIMULATE_RUN);
 	  //Now that the simulation has been stopped, let's check if the reason was that
 	  //the user requested to stop simulation and exit.
-	  if (m_bLetMeExitAlready)
+	  if (m_bForceStopAndExitApp)
 	  {
-		  AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
+		  ::MessageBox(::GetFocus(),"ExitApp","Error", MB_OK | MB_ICONEXCLAMATION);
+ //        AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
 	  }
+	  if (m_bForceStopAndCloseDoc)
+      {
+		  ::MessageBox(::GetFocus(),"CloseDoc","Error", MB_OK | MB_ICONEXCLAMATION);
+   //      OnCloseDocument(); 
+      }
+
       }
    }
 
@@ -2770,6 +2782,7 @@ void CLogiDoc::OnUpdateSimulateProbe(CCmdUI* pCmdUI)
 
 BOOL CLogiDoc::SaveModified()
    {
+   int msgboxID;
    // This check fixes bug where palette does not
    // reappear if user closes window during pause state.
    // Also necessary to ensure gates get the Initialize(ID_SIMULATE_RESET)
@@ -2785,14 +2798,29 @@ BOOL CLogiDoc::SaveModified()
 
    if (m_bKeepGoing)
       {
-         int msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and exit?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
-	     switch (msgboxID)
+         if(m_bCloseNotExit)
+		 {
+		    msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and close?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
+		 } else
+		 {
+		    msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and exit?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
+	     }
+	  switch (msgboxID)
 	     {
          case IDCANCEL:
+            m_bForceStopAndExitApp = FALSE;
+			m_bForceStopAndCloseDoc = FALSE;
             return FALSE;
          case IDOK:
 			AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_SIMULATE_STOP, 0L);
-			m_bLetMeExitAlready = TRUE;
+			//need to check if we are closing doc or exit app and set appropriate var to TRUE
+         if(m_bCloseNotExit)
+		 {
+			m_bForceStopAndCloseDoc = TRUE;
+		 } else
+		 {
+			m_bForceStopAndExitApp = TRUE;
+	     }
 			return FALSE;
          }
       }
@@ -2949,4 +2977,10 @@ CStringArray *CLogiDoc::GetPageNames()
      m_PageNames.Add("");
 
    return &m_PageNames;
+   }
+
+   void CLogiDoc::OnCloseDocument()
+   {
+      m_bCloseNotExit=TRUE;
+      CDocument::OnCloseDocument();
    }

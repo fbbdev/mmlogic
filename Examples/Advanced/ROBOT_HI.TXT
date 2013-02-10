@@ -1,0 +1,10 @@
+10 ! If (ok) then goto 0 else goto 1
+22 ! goto 2
+43 ! If (ok) then goto 3 else goto 4
+53 ! If (ok) then goto 3 else goto 5
+64 ! If (ok) then goto 4 else goto 6
+77 ! goto 7
+77 ! goto 7
+80 ! If (ok) then goto 0 else goto 8
+98 ! If (ok) then goto 8 else goto 9
+22 ! goto 2

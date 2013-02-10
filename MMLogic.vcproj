@@ -605,13 +605,13 @@
 				RelativePath="Mainfrm.h">
 			</File>
 			<File
+				RelativePath=".\MMLogic.h">
+			</File>
+			<File
 				RelativePath="Network.h">
 			</File>
 			<File
 				RelativePath="Palette.h">
-			</File>
-			<File
-				RelativePath=".\resource.h">
 			</File>
 			<File
 				RelativePath=".\Resource.h">
@@ -620,7 +620,7 @@
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Generating map file for help compiler..."
-						CommandLine="echo // Generated Help Map file.  Used by TestMML.HHP. &gt; &quot;hlp\HTMLDefines.h&quot;
+						CommandLine="echo // Generated Help Map file.  Used by MMLogic.HHP. &gt; &quot;hlp\HTMLDefines.h&quot;
 echo. &gt; &quot;hlp\HTMLDefines.h&quot;
 echo // Commands (ID_* and IDM_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
 makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
@@ -644,7 +644,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &q
 					<Tool
 						Name="VCCustomBuildTool"
 						Description="Generating map file for help compiler..."
-						CommandLine="echo // Generated Help Map file.  Used by TestMML.HHP. &gt; &quot;hlp\HTMLDefines.h&quot;
+						CommandLine="echo // Generated Help Map file.  Used by MMLogic.HHP. &gt; &quot;hlp\HTMLDefines.h&quot;
 echo. &gt; &quot;hlp\HTMLDefines.h&quot;
 echo // Commands (ID_* and IDM_*) &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
 makehm /h ID_,HID_,0x10000 IDM_,HIDM_,0x10000 &quot;$(InputFileName)&quot; &gt;&gt; &quot;hlp\HTMLDefines.h&quot;
@@ -665,6 +665,9 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &q
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath=".\resource.h">
+			</File>
+			<File
 				RelativePath="Robot.h">
 			</File>
 			<File
@@ -678,9 +681,6 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &q
 			</File>
 			<File
 				RelativePath="Stdafx.h">
-			</File>
-			<File
-				RelativePath=".\TestMML.h">
 			</File>
 			<File
 				RelativePath="Tipdlg.h">
@@ -1998,16 +1998,19 @@ echo.
 			</File>
 		</Filter>
 		<File
-			RelativePath=".\Multimedia Logic Pre-Release notes.txt">
+			RelativePath=".\License.txt">
 		</File>
 		<File
-			RelativePath=".\ReadMe.txt">
+			RelativePath=".\res\MMLogic.manifest">
 		</File>
 		<File
-			RelativePath=".\res\TestMML.manifest">
+			RelativePath=".\MMLogic.nsi">
 		</File>
 		<File
-			RelativePath=".\TestMML.reg">
+			RelativePath=".\Release Notes.txt">
+		</File>
+		<File
+			RelativePath=".\Tips.txt">
 		</File>
 	</Files>
 	<Globals>

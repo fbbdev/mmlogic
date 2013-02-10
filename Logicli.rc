@@ -737,22 +737,23 @@ END
 // Dialog
 //
 
-IDD_ABOUTBOX DIALOG  34, 22, 217, 118
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+IDD_ABOUTBOX DIALOGEX 34, 22, 217, 118
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | 
+    WS_SYSMENU
 CAPTION "About Multimedia Logic"
-FONT 8, "MS Shell Dlg"
+FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
-    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,21,20
-    LTEXT           "Multimedia Logic 1.4",IDC_STATIC,40,10,119,8
+    ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
+    LTEXT           "Multimedia Logic 1.6",IDC_STATIC,40,10,119,8
     LTEXT           "Copyright © 1993-2004 Softronics Inc.",IDC_STATIC,40,25,
                     167,8
     LTEXT           "All Rights Reserved.",IDC_STATIC,40,35,167,8
     LTEXT           "web: http://www.softronix.com/",IDC_STATIC,39,50,167,8
     LTEXT           "email: gmills@softronix.com",IDC_STATIC,39,60,167,8
-    LTEXT           "Version 1.4 Modifications",IDC_STATIC,40,80,84,8
-    LTEXT           "Contributed by Jason Kresowaty",IDC_STATIC,40,90,130,8
-    LTEXT           "email: jasonkres@users.sourceforge.net",IDC_STATIC,40,
-                    100,167,8
+    LTEXT           "Copyright © 2013 Multimedia Logic Team",IDC_STATIC,40,
+                    80,132,8
+    LTEXT           "http://sourceforge.net/projects/multimedialogic/",
+                    IDC_STATIC,40,90,156,8
     DEFPUSHBUTTON   "OK",IDOK,176,6,32,14,WS_GROUP
 END
 
@@ -1906,7 +1907,7 @@ END
 
 STRINGTABLE 
 BEGIN
-    IDR_MAINFRAME           "Multimedia Logic --------------------NEW VERSION--------------------"
+    IDR_MAINFRAME           "Multimedia Logic"
     IDR_LOGICLTYPE          "\nLogic\nLogic Project\nLogic Files (*.lgi)\n.lgi\nLogic.Project\nLogic Project"
     IDP_BUSY                "Server is still busy."
     IDP_OLE_INIT_FAILED     "OLE 2.0 initialization failed.  Make sure that the OLE libraries are the correct version."

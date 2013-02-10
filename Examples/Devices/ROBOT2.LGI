@@ -1,0 +1,46 @@
+41 2 0
+38 1
+6 32 305 81 256 1 1
+26 186 207 586 7 0 ..\Bitmaps\Colors.bmp 1
+44 35 252 84 203 0 0
+22 21 196 97 176 0 \NUL
+Direction
+43 143 224 192 126 1 0 0 75 0 25 25 ..\BITMAPS\Car0.bmp
+8 35 93 84 44 1 0
+44 36 170 85 121 0 0
+22 45 43 73 23 0 \NUL
+Pen
+22 38 112 82 92 0 \NUL
+Color
+22 117 257 609 237 0 \NUL
+You can combine multiple robots to increase their capabilties
+22 117 276 537 256 0 \NUL
+Use 4 seeing robots with different initial positions
+22 117 295 385 275 0 \NUL
+Not all robots need to be visable
+1 144 220 78 280
+1 144 130 81 68
+1 144 160 82 160
+1 144 154 82 154
+1 144 148 82 148
+1 144 142 82 142
+1 144 208 81 242
+1 144 202 81 236
+1 81 242 144 190
+1 81 236 144 184
+1 81 230 144 178
+39 16777215
+47 0
+40 0 6 6
+50 800 600
+51 1 100
+30
+Courier New
+-13
+700
+0
+0
+3
+2
+1
+49

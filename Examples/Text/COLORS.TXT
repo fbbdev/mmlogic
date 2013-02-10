@@ -1,0 +1,16 @@
+ 0 Black    
+ 1 Dk Red   
+ 2 Dk Green 
+ 3 Dk Yellow
+ 4 Dk Blue  
+ 5 Dk Purple
+ 6 Dk Teal  
+ 7 Lt Gray  
+ 8 Dk Gray  
+ 9 Lt Red   
+10 Lt Green 
+11 Lt Yellow
+12 Lt Blue  
+13 Lt Purple
+14 Lt Teal  
+15 White    

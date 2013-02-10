@@ -218,7 +218,7 @@ void CLogiView::OnPrint( CDC* pDC, CPrintInfo* pInfo )
    devXppi = pDC->GetDeviceCaps(LOGPIXELSX);
    devYppi = pDC->GetDeviceCaps(LOGPIXELSY);
 
-   // Normalaize the device Size, this allows us to handle devices in which ppi in X and Y differ
+   // Normalize the device Size, this allows us to handle devices in which ppi in X and Y differ
 
    if (devYppi < devXppi)
       {

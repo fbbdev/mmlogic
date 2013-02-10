@@ -468,7 +468,7 @@ void CMainFrame::OnHelpReleasenotes()
    CString csFilePath;
 
    csHelpPath = AfxGetApp()->m_pszHelpFilePath;
-   csFilePath = "Readme.Txt";
+   csFilePath = "Release Notes.Txt";
 
    RelativeToFullPath(csFilePath, csHelpPath, csFullPath);
 

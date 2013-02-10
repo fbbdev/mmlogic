@@ -1,0 +1,32 @@
+41 1 2
+38 1
+37 -303 -229 -254 -278 1000 0
+9 -178 -229 -129 -278 1000 100
+8 -375 -229 -326 -278 1 1
+22 -391 -179 -33 -199 0 \NUL
+Note that this timer will repeatedly fire without skewing
+22 -391 -141 55 -161 0 \NUL
+Just make sure your delay is longer than it takes to process a cycle.
+22 -373 -211 -331 -231 0 \NUL
+Reset
+22 -324 -211 -197 -231 0 \NUL
+Fire once a second
+22 -391 -160 -216 -180 0 \NUL
+Check it with your watch !!!
+22 -191 -211 -33 -231 0 \NUL
+Beep for 1/10 of second
+1 -177 -254 -257 -254
+1 -302 -254 -329 -254
+39 16777215
+47 0
+40 1 6 6
+30
+System
+16
+700
+0
+0
+1
+2
+2
+34

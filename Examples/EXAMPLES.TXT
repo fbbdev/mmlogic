@@ -1,0 +1,105 @@
+Directory of C:\MMLogic\EXAMPLES
+
+ADVANCED - Advanced examples
+MODERATE - Moderate examples
+BASIC    - Basic examples
+DEVICES  - Device examples (shows how an individual devices work)
+BITMAPS  - Common area for Bitmap files used by some examples
+TEXT     - Common area for Text files used by some examples
+WAVE     - Common area for Wave files used by some examples
+
+Directory of C:\MMLogic\EXAMPLES\Advanced
+
+ROBOT3.LGI   - Robot that knows how to follow a black line
+ROBOT_HI.TXT - HI Word of memory that drives the Robot2 "State Machine"
+ROBOT_LO.TXT - LO Word of memory that drives the Robot2 "State Machine"
+
+Directory of C:\MMLogic\EXAMPLES\Moderate
+
+BANDIT.LGI   - One Armed Bandit (slot machine)
+
+Directory of C:\MMLogic\EXAMPLES\Basic
+
+UNKNOWN.LGI  - Shows how "unknown" state is handled
+DLFF.LGI     - DLatch FlipFlop built from common gates
+CLKRSFF.LGI  - Clocked Reset/Set FlipFlop built from common gates
+MSDLFF.LGI   - Master Slave DLatch FlipFlop built from common gates
+MSRSFF.LGI   - Master Slave Reset/Set FlipFlop built from common gates
+RSFF.LGI     - Reset/Set FlipFlop built from common gates
+JKFF.LGI     - J-K FlipFlop built from common gates
+HI.LGI       - Fun with LEDs
+LED8SPIN.LGI - Fun with 8 segment LEDs
+MEMORY2.LGI  - Uses a memory pattern to get LEDs to blink in patterns
+MEMORY.TXT   - Memory pattern for MEMORY2.LGI example
+TEXT2.LGI    - Fun with TEXT devices
+PAUSE2.LGI   - Fun with the PAUSE devices
+PORTLED4.LGI - Expertments with talking over a hardware port
+RANDOM2.LGI  - Looks a little deeper at how the random device can be used
+COUNTER2.LGI - Fun with LEDs and Waves
+
+Directory of C:\MMlogic\EXAMPLES\Bitmaps
+
+SLOT0-15.BMP - A set of 16 bitmaps showing slot machine symbols
+COLORS.BMP   - A single bitmap of colors
+ROAD.BMP     - A road for the Robot car to follow
+CAR0-7.BMP   - A set of 8 bitmaps showing a card in multiple directions
+               (4 with lights off, 4 with lights on).
+
+Directory of C:\MMlogic\EXAMPLES\Devices
+
+Examples with no desription here show how that named device works
+
+ALU.LGI	     -
+AND.LGI      -
+BITMAP.LGI   -
+PAUSE.LGI    -
+BUCKET.LGI   -
+BUZZER.LGI   -
+CLOCK.LGI    -
+COUNTER.LGI  -
+DEVICES.LGI  - Summary of most devices
+DISPLAY.LGI  -
+DUMMYIN.TXT  - Used as data in for FileCopy example
+DUMMYOUT.TXT - Used as data out for FileCopy example
+FILECOPY.LGI - Example of FILEIN and FILEOUT devices
+FLIPFLOP.LGI -
+INVERT.LGI   -
+KEYB.LGI     -
+KEYP.LGI     -
+LED8.LGI     -
+LEDCOLOR.LGI -
+MEMORY.LGI   -
+MUXES2.LGI   -
+MUXES4.LGI   -
+MUXES8.LGI   -
+NETCALL.LGI  -
+NETLISTN.LGI -
+NETWORK.LGI  -
+OR.LGI       -
+OSCILAT.LGI  -
+PORTIN.LGI   -
+PORTOUT.LGI  -
+PULLUP.LGI   -
+RANDOM.LGI   -
+REMEMBER.LGI -
+ROBOT1.LGI   - Seeing Robot
+ROBOT2.LGI   - Drawing Robot
+SELECT.LGI   -
+SIGNAL.LGI   -
+TEXT.LGI     -
+TIMER.LGI    -
+TRISTATE.LGI -
+WIRE.LGI     -
+XOR.LGI      -
+
+Directory of C:\MMlogic\EXAMPLES\Text
+
+COLORS.TXT   - Text table of Color names
+FUNCTION.TXT - Text table of ALU Function names
+NUMBERS.TXT  - Text table of Numbers
+NUMBERS2.TXT - Text table of Numbers (padded with spaces)
+
+Directory of C:\MMlogic\EXAMPLES\Wave
+
+BELL.WAV - A dinner bell
+THUD.WAV - A flip top snapping shut on a plastic sport bottle

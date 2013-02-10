@@ -1,0 +1,20 @@
+41 1 2
+38 1
+9 -114 -172 -65 -221 1000 10
+6 -256 -172 -207 -221 1 1
+22 -388 -269 138 -289 0 \NUL
+Double Click on the Buzzer while simulator is stopped and change the frequency
+1 -210 -197 -113 -197
+39 16777215
+47 0
+40 1 6 6
+30
+System
+16
+700
+0
+0
+1
+2
+2
+34

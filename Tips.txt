@@ -1,0 +1,28 @@
+To change the simulator's speed, click on the "Simulate, Setup..." menu item. In the dialog that appears, specify the "Simulation Rate" in cycles per second (Hz).
+To use a larger workspace, click on the "View, Grid Settings..." menu item. Then, enter a new "Canvas Size" in pixels.
+You can have multiple windows open on the same project. Just goto the Window Menu and Select New Window.
+You can view multiple pages of the same project. Just Double Click the little bar at the end of the scrollers. Then change the page after clicking in the window.
+To have more control over wires you can use a node device. See the Node Device in online help to find out how.
+You can select or unselect an object by holding down the <SHIFT> key when clicking on an object.
+You can perform actions on devices even when the simulator is paused. They will be executed when you restart the simulator.
+You will get much better results printing if you choose Landscape mode in Print Setup.
+For fast printing set the Paper Color to White.
+You can move a group of devices by moving anyone of the selected devices.
+You can clone an object by holding down the <CTRL> key when clicking on the object and drag the new object away.
+When you paste it pastes in the same position it was copied from, drag the pasted item away.
+You can use the probe while the simulation is paused.
+A Signal Sender device can have multiple Signal Receivers, so long as they all share the same name.
+You can print while the simulation is paused to catch it in action.
+When you change pages everything is automatically deselected.
+A lot of error checking is performed when the simulator is reset, you can click the << button anytime to perform the checks.
+The random device produces the same series of numbers when you pulse it's reset line.
+You can connect your simulation to another over the Internet. See the Network Device in online help to find out how.
+You can connect your simulation to real hardware. See the Port devices in online help to find out how.
+The "Force 1/0" and "Pullup/down" attributes of the Node device do not propagate backwards through the network.
+An unconnected Input or Output cannot be probed.
+An unconnected Input is normally Unknown, you can override this behavior. See Simulation Setup in online help to find out how.
+A File device remains open until the simulator is Reset.
+When you click on a node device it selects the wires connected to it, to select the node device you must click next to it.
+You can use the "Edit, Find..." command to locate a Text, Signal Sender, or Signal Receiver device based on the text it contains.
+If you shut off Tip of the Day you can turn it back on from the Help Menu.
+This is the last Tip of the Day.

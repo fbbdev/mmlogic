@@ -114,8 +114,10 @@ class CLogiDoc : public CDocument
    BOOL m_bSimulating;
    //should we color the wires?
    BOOL m_bColorWires;
-   //does the user want to stop simulation and exit?
-   BOOL	m_bLetMeExitAlready;
+   //does the user want to stop simulation and close doc / exit app?
+   BOOL	m_bForceStopAndExitApp;
+   BOOL m_bForceStopAndCloseDoc;
+   BOOL m_bCloseNotExit;
 
    BOOL m_bKeepGoing;
    BOOL m_bWasUp;
@@ -204,7 +206,8 @@ class CLogiDoc : public CDocument
 
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+   afx_msg void OnCloseDocument();
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
