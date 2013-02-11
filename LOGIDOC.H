@@ -207,7 +207,7 @@ public:
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
 public:
-   void UserReqCloseDoc();
+   void OnFileClose();
 }
 ;
 

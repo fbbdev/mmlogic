@@ -34,8 +34,9 @@ o Added Help Topic for Analyze Tool
 --TODO: complete implementation of Analyze Tool
 
 o Changed behavior when simulation is running and user tries to close document or exit program.
-  now it prompts if user wants to stop simulation and close document or exit. Previously user had to close dialog
-  box and manually stop simulation and then re-attempt closing document or exiting program.
+  now it prompts if user wants to stop simulation and close document or exit. Previously user had to
+  close dialog box and manually stop simulation and then re-attempt closing document or exiting
+  program.
 
 o Set default filter for opening memory file to *.TXT and *.BIN
 
@@ -62,8 +63,8 @@ Fix bug where accelerators disabled while running simulation but not while pause
 --TODO: I think it would be good to add option to Find/Replace text for doing case insensitive
         search. This would help user to find non-matching tags.
 
---TODO: Examples, tip file, and Release Notes text files are missing from project.
-        (either include or consider moving their content to the help file)
+--TODO: Consider moving Examples, and Release Notes text files to the help file. Or are
+        they better as separate files?
 --TODO: implement auto-close blank document when opening document.
 --TODO: Add ability to draw lines at any angle.
 --TODO: Fix Ctrl-Drag with FlipFlop with preset/reset. Flip-flop copies perfect with Copy/paste but omits pre/reset

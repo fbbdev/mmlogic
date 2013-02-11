@@ -63,6 +63,7 @@ BEGIN_MESSAGE_MAP(CLogiDoc, CDocument)
    //ON_WM_KEYUP()
 
    //}}AFX_MSG_MAP
+   ON_COMMAND(ID_FILE_CLOSE, OnFileClose)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -2594,13 +2595,12 @@ void CLogiDoc::OnSimulateRun()
       //the user requested to stop simulation and exit.
       if (m_bForceStopAndExitApp)
       {
-         ::MessageBox(::GetFocus(),"ExitApp","Error", MB_OK | MB_ICONEXCLAMATION);
-         //        AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
+         //         ::MessageBox(::GetFocus(),"ExitApp","Error", MB_OK | MB_ICONEXCLAMATION);
+         AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
       }
       if (m_bForceStopAndCloseDoc)
       {
-         ::MessageBox(::GetFocus(),"CloseDoc","Error", MB_OK | MB_ICONEXCLAMATION);
-         //      OnCloseDocument(); 
+         OnCloseDocument(); 
       }
 
    }
@@ -2978,8 +2978,8 @@ CStringArray *CLogiDoc::GetPageNames()
 }
 
 //Seems we needed to catch SC_CLOSE in SPLITFRM.CPP
-void CLogiDoc::UserReqCloseDoc()
+void CLogiDoc::OnFileClose()
 {
    m_bCloseNotExit=TRUE;
-   CDocument::OnCloseDocument();
+   CDocument::OnFileClose();
 }

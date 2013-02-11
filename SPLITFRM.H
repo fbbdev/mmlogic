@@ -31,6 +31,7 @@ public:
 public:
    virtual ~CSplitFrame();
    void CSplitFrame::OnSysCommand(UINT nID, LONG lParam);
+
    // Generated message map functions
    //{{AFX_MSG(CSplitFrame)
    // NOTE - the ClassWizard will add and remove member functions here.

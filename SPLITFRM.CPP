@@ -36,21 +36,29 @@ BEGIN_MESSAGE_MAP(CSplitFrame, CMDIChildWnd)
    //{{AFX_MSG_MAP(CSplitFrame)
    // NOTE - the ClassWizard will add and remove mapping macros here.
    //}}AFX_MSG_MAP
-ON_WM_SYSCOMMAND()
+   ON_WM_SYSCOMMAND()
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CSplitFrame message handlers
 void CSplitFrame::OnSysCommand(UINT nID, LONG lParam)
 {
-	if ( ( nID & 0x0FFF0 ) != SC_CLOSE )
-	{
-      //for now just keep from closing at all
-      //later we will set bool var to let it be known user try to close document
-		CMDIChildWnd::OnSysCommand( nID, lParam );
-	} else
+   if ( ( nID & 0x0FFF0 ) != SC_CLOSE )
    {
-//      CLogiDoc::UserReqCloseDoc();
-      ::MessageBox(::GetFocus(),"This is where we would notify ClogiDoc that the user wants to close the document, not exit the program.", "Error", MB_OK | MB_ICONEXCLAMATION);
+      //Pass through any messages other than SC_CLOSE
+      CMDIChildWnd::OnSysCommand( nID, lParam );
+   } else
+   {
+      //
+      CMDIFrameWnd *pFrame = 
+         (CMDIFrameWnd*)AfxGetApp()->m_pMainWnd;
+
+      // Get the active MDI child window.
+      CMDIChildWnd *pChild = 
+         (CMDIChildWnd *) pFrame->GetActiveFrame();
+
+      // Send ID_FILE_CLOSE to the active MDI child window where CLogiDoc::OnFileClose
+      // will set m_bCloseNotExit=TRUE and let CDocument::OnFileClose take over.
+      pChild->SendMessage(WM_COMMAND,ID_FILE_CLOSE);
    }
 }
