@@ -19,8 +19,8 @@ extern BOOL MyBeep(DWORD dwFreq, DWORD dwDuration);
 extern BOOL IsWindowsNT();
 
 class Anode : public CObject
-   {
-   public:
+{
+public:
 
    int State;
    int NextState;
@@ -35,12 +35,12 @@ class Anode : public CObject
 
    Anode(int state, char *name, int drivestate);
    void Update();
-   }
+}
 ;
 
 class AKeyboardMessage : public CObject
-   {
-   public:
+{
+public:
 
    CLogiGate* pLogiGate;
    CLogiView* pView;
@@ -48,12 +48,12 @@ class AKeyboardMessage : public CObject
    UINT nChar;
 
    AKeyboardMessage(CLogiGate* pLogigate, CLogiView* pView, BOOL bDown, UINT nChar);
-   }
+}
 ;
 
 class ANetworkMessage : public CObject
-   {
-   public:
+{
+public:
 
    CLogiGate* pLogiGate;
    CLogiDoc* pDoc;
@@ -61,12 +61,12 @@ class ANetworkMessage : public CObject
    WPARAM wParam;
 
    ANetworkMessage(CLogiGate* pLogigate, CLogiDoc* pDoc, LPARAM lParam, WPARAM wParam);
-   }
+}
 ;
 
 class AMouseMessage : public CObject
-   {
-   public:
+{
+public:
 
    CLogiGate* pLogiGate;
    CLogiView* pView;
@@ -74,5 +74,5 @@ class AMouseMessage : public CObject
    CPoint aPoint;
 
    AMouseMessage(CLogiGate* pLogigate, CLogiView* pView, BOOL bDown, CPoint &aPoint);
-   }
+}
 ;

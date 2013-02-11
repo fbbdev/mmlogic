@@ -89,6 +89,7 @@
 #define IDD_PROP_TRISTATE               185
 #define IDB_PLUS                        186
 #define IDD_PROP_BUS                    187
+#define VK_OEM_PLUS                     0xBB
 #define IDB_PAGE_IN                     188
 #define IDD_PROP_PAUSE                  189
 #define IDB_FILE_OUT                    190
@@ -758,18 +759,15 @@
 #define ID_DRAW_BISECTWIRE              33111
 #define ID_VIEW_COLORWIRES              33116
 #define ID_ESCAPE                       33118
+#define ON_SYSCOMMAND                   33132
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        508
-#define _APS_NEXT_COMMAND_VALUE         33129
+#define _APS_NEXT_COMMAND_VALUE         33133
 #define _APS_NEXT_CONTROL_VALUE         758
 #define _APS_NEXT_SYMED_VALUE           851
 #endif
-#endif
-
-#ifndef VK_OEM_PLUS
-#define VK_OEM_PLUS 0xBB
 #endif

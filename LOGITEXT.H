@@ -11,12 +11,12 @@ class CLogiGate;
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiTextGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiTextGate);
    CLogiTextGate();
 
-   public:
+public:
    CString Name;
    CString m_pTextText;
    CString m_pTextArray[17];
@@ -36,7 +36,7 @@ class CLogiTextGate : public CLogiGate
    CLogiTextGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iStyle=0, const char *pFileName = "\\NUL", const char *pText="Text");
 
    // Implementation
-   public:
+public:
    virtual ~CLogiTextGate();
    virtual void Serialize(CArchive& ar);
    virtual void Draw(CDC* pDC, CLogiView* pView = NULL);
@@ -54,8 +54,8 @@ class CLogiTextGate : public CLogiGate
 
    void ResizeRect();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;

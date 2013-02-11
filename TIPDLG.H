@@ -4,32 +4,32 @@
 // CTipDlg dialog
 
 class CTipDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CTipDlg(CWnd* pParent = NULL);	 // standard constructor
-   
+
    // Dialog Data
    //{{AFX_DATA(CTipDlg)
    // enum { IDD = IDD_TIP };
    BOOL	m_bStartup;
    CString	m_strTip;
    //}}AFX_DATA
-   
+
    FILE* m_pStream;
-   
+
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CTipDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
-   
+
    // Implementation
-   public:
+public:
    virtual ~CTipDlg();
-   
-   protected:
+
+protected:
    // Generated message map functions
    //{{AFX_MSG(CTipDlg)
    afx_msg void OnNextTip();
@@ -39,8 +39,8 @@ class CTipDlg : public CDialog
    afx_msg void OnPaint();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   
+
    void GetNextTipString(CString& strNext);
-   }
+}
 ;
 

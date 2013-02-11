@@ -21,41 +21,41 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 // CPaletteBar
 
 BEGIN_MESSAGE_MAP(CPaletteBar, CToolBar)
-//{{AFX_MSG_MAP(CPaletteBar)
-ON_WM_CREATE()
-ON_WM_DESTROY()
-//}}AFX_MSG_MAP
+   //{{AFX_MSG_MAP(CPaletteBar)
+   ON_WM_CREATE()
+   ON_WM_DESTROY()
+   //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CPaletteBar construction/destruction
 
 CPaletteBar::CPaletteBar()
-   {
+{
    m_nColumns = 2;
    m_cxLeftBorder = 5;
    m_cyTopBorder = 5;
    m_cxRightBorder = 5;
    m_cyBottomBorder = 5;
-   }
+}
 
 CPaletteBar::~CPaletteBar()
-   {
-   }
+{
+}
 
 /////////////////////////////////////////////////////////////////////////////
 // CPaletteBar diagnostics
 
 #ifdef _DEBUG
 void CPaletteBar::AssertValid() const
-   {
+{
    CToolBar::AssertValid();
-   }
+}
 
 void CPaletteBar::Dump(CDumpContext& dc) const
-   {
+{
    CToolBar::Dump(dc);
-   }
+}
 
 #endif //_DEBUG
 
@@ -63,39 +63,39 @@ void CPaletteBar::Dump(CDumpContext& dc) const
 // CPaletteBar message handlers
 
 void CPaletteBar::SetColumns(UINT nColumns)
-   {
+{
    m_nColumns = nColumns;
    int nCount = GetToolBarCtrl().GetButtonCount();
-   
+
    for (int i = 0; i < nCount; i++)
-      {
+   {
       UINT nStyle = GetButtonStyle(i);
       BOOL bWrap = (((i + 1) % nColumns) == 0);
       if (bWrap)
-      nStyle |= TBBS_WRAPPED;
+         nStyle |= TBBS_WRAPPED;
       else
-      nStyle &= ~TBBS_WRAPPED;
+         nStyle &= ~TBBS_WRAPPED;
       SetButtonStyle(i, nStyle);
-      }
-   
+   }
+
    Invalidate();
    GetParentFrame()->RecalcLayout();
-   }
+}
 
 int CPaletteBar::OnCreate(LPCREATESTRUCT lpCreateStruct)
-   {
+{
    if (CToolBar::OnCreate(lpCreateStruct) == -1)
-   return -1;
-   
+      return -1;
+
    // TODO: Add your specialized creation code here
-   
+
    return 0;
-   }
+}
 
 void CPaletteBar::OnDestroy()
-   {
+{
    CToolBar::OnDestroy();
-   
+
    // TODO: Add your message handler code here
-   
-   }
+
+}

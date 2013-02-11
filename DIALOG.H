@@ -8,9 +8,9 @@
 // CRectDlg dialog
 
 class CRectDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CRectDlg(CWnd* pParent = NULL); // standard constructor
 
    // Dialog Data
@@ -22,19 +22,19 @@ class CRectDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CRectDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CRectDlg)
    virtual BOOL OnInitDialog();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
@@ -42,9 +42,9 @@ class CRectDlg : public CDialog
 // CAndDlg dialog
 
 class CAndDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CAndDlg(CWnd* pParent = NULL);	// standard constructor
    void RecalcBM();
 
@@ -59,12 +59,12 @@ class CAndDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CAndDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CAndDlg)
@@ -76,15 +76,15 @@ class CAndDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CBuzzerDlg dialog
 
 class CBuzzerDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CBuzzerDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -98,12 +98,12 @@ class CBuzzerDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CBuzzerDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CBuzzerDlg)
@@ -112,15 +112,15 @@ class CBuzzerDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CLedDlg dialog
 
 class CLedDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CLedDlg(CWnd* pParent = NULL);	// standard constructor
 
    void RecalcBM();
@@ -136,12 +136,12 @@ class CLedDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CLedDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CLedDlg)
@@ -152,15 +152,15 @@ class CLedDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // COrDlg dialog
 
 class COrDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    COrDlg(CWnd* pParent = NULL);	// standard constructor
 
    void RecalcBM();
@@ -176,12 +176,12 @@ class COrDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(COrDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(COrDlg)
@@ -193,15 +193,15 @@ class COrDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // COscillatorDlg dialog
 
 class COscillatorDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    COscillatorDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -216,12 +216,12 @@ class COscillatorDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(COscillatorDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(COscillatorDlg)
@@ -229,15 +229,15 @@ class COscillatorDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CSwitchDlg dialog
 
 class CSwitchDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CSwitchDlg(CWnd* pParent = NULL);	// standard constructor
 
    void RecalcBM();
@@ -253,12 +253,12 @@ class CSwitchDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CSwitchDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CSwitchDlg)
@@ -270,15 +270,15 @@ class CSwitchDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CLed7Dlg dialog
 
 class CLed7Dlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CLed7Dlg(CWnd* pParent = NULL);	// standard constructor
 
    void RecalcBM();
@@ -294,12 +294,12 @@ class CLed7Dlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CLed7Dlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CLed7Dlg)
@@ -309,15 +309,15 @@ class CLed7Dlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CWireDlg dialog
 
 class CWireDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CWireDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -331,12 +331,12 @@ class CWireDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CAboutDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CWireDlg)
@@ -344,15 +344,15 @@ class CWireDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CInvertDlg dialog
 
 class CInvertDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CInvertDlg(CWnd* pParent = NULL);	// standard constructor
 
    void RecalcBM();
@@ -367,12 +367,12 @@ class CInvertDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CInvertDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CInvertDlg)
@@ -381,35 +381,35 @@ class CInvertDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 // CSetupDlg dialog
 
 class CSetupDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CSetupDlg(CWnd* pParent = NULL);	// standard constructor
 
    // Dialog Data
    //{{AFX_DATA(CSetupDlg)
-	enum { IDD = IDD_SIMULATE_SETUP };
+   enum { IDD = IDD_SIMULATE_SETUP };
    CEdit    m_ceSimRate;
-	int		m_iUnconnected;
+   int		m_iUnconnected;
    int      m_iSimRateType;
    int      m_iSimRate;
-	//}}AFX_DATA
+   //}}AFX_DATA
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CSetupDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CSetupDlg)
@@ -418,15 +418,15 @@ class CSetupDlg : public CDialog
    afx_msg void OnSimulateSpeedUpdate();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CIoinDlg dialog
 
 class CIoinDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CIoinDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -440,12 +440,12 @@ class CIoinDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CIoinDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CIoinDlg)
@@ -453,15 +453,15 @@ class CIoinDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CIooutDlg dialog
 
 class CIooutDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CIooutDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -475,12 +475,12 @@ class CIooutDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CIooutDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CIooutDlg)
@@ -488,15 +488,15 @@ class CIooutDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CNoneDlg dialog
 
 class CNoneDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CNoneDlg(CWnd* pParent = NULL);	// standard constructor
 
    // Dialog Data
@@ -507,12 +507,12 @@ class CNoneDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CNoneDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CNoneDlg)
@@ -520,15 +520,15 @@ class CNoneDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CSoundDlg dialog
 
 class CSoundDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CSoundDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -545,12 +545,12 @@ class CSoundDlg : public CDialog
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CSoundDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CSoundDlg)
@@ -560,15 +560,15 @@ class CSoundDlg : public CDialog
    afx_msg void OnEdit();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CFileinDlg dialog
 
 class CFileinDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CFileinDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -576,19 +576,19 @@ class CFileinDlg : public CDialog
 
    // Dialog Data
    //{{AFX_DATA(CFileinDlg)
-	enum { IDD = IDD_PROP_FILE_IN };
+   enum { IDD = IDD_PROP_FILE_IN };
    CString	m_csFileName;
-	int		m_iFormat;
-	//}}AFX_DATA
+   int		m_iFormat;
+   //}}AFX_DATA
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CFileinDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CFileinDlg)
@@ -598,15 +598,15 @@ class CFileinDlg : public CDialog
    afx_msg void OnEdit();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CFileoutDlg dialog
 
 class CFileoutDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CFileoutDlg(CWnd* pParent = NULL);	// standard constructor
 
    CBitmapButton m_bmBtn;
@@ -614,19 +614,19 @@ class CFileoutDlg : public CDialog
 
    // Dialog Data
    //{{AFX_DATA(CFileoutDlg)
-	enum { IDD = IDD_PROP_FILE_OUT };
+   enum { IDD = IDD_PROP_FILE_OUT };
    CString	m_csFileName;
-	int		m_iFormat;
-	//}}AFX_DATA
+   int		m_iFormat;
+   //}}AFX_DATA
 
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CFileoutDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CFileoutDlg)
@@ -635,15 +635,15 @@ class CFileoutDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CBitmapDlg dialog
 
 class CBitmapDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CBitmapDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
@@ -665,12 +665,12 @@ class CBitmapDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CBitmapDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CBitmapDlg)
@@ -682,15 +682,15 @@ class CBitmapDlg : public CDialog
    afx_msg void OnEdit();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CMemoryDlg dialog
 
 class CMemoryDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CMemoryDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
@@ -699,24 +699,24 @@ class CMemoryDlg : public CDialog
 
    // Dialog Data
    //{{AFX_DATA(CMemoryDlg)
-	enum { IDD = IDD_PROP_MEMORY };
+   enum { IDD = IDD_PROP_MEMORY };
    CButton	m_cbEdit;
    CButton	m_cbBrowse;
-	int		m_iBinaryMode;
- int  m_iAddressMode;
-	CString	m_csFileName;
-	//}}AFX_DATA
+   int		m_iBinaryMode;
+   int  m_iAddressMode;
+   CString	m_csFileName;
+   //}}AFX_DATA
 
 
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CMemoryDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CMemoryDlg)
@@ -728,15 +728,15 @@ class CMemoryDlg : public CDialog
    afx_msg void OnEdit();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CTextDlg dialog
 
 class CTextDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CTextDlg(CWnd* pParent = NULL);   // standard constructor
 
    void RecalcBM();
@@ -759,12 +759,12 @@ class CTextDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CTextDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CTextDlg)
@@ -776,15 +776,15 @@ class CTextDlg : public CDialog
    afx_msg void OnEdit();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CMuxDlg dialog
 
 class CMuxDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CMuxDlg(CWnd* pParent = NULL);   // standard constructor
 
    void RecalcBM();
@@ -802,12 +802,12 @@ class CMuxDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CMuxDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CMuxDlg)
@@ -822,15 +822,15 @@ class CMuxDlg : public CDialog
    afx_msg void OnMuxMux8to1();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CRandomDlg dialog
 
 class CRandomDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CRandomDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
@@ -846,12 +846,12 @@ class CRandomDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CRandomDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CRandomDlg)
@@ -859,15 +859,15 @@ class CRandomDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CXorDlg dialog
 
 class CXorDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CXorDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
@@ -884,12 +884,12 @@ class CXorDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CXorDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CXorDlg)
@@ -901,15 +901,15 @@ class CXorDlg : public CDialog
    afx_msg void OnXorDemorgan();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CClockDlg dialog
 
 class CClockDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CClockDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
@@ -925,12 +925,12 @@ class CClockDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CClockDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CClockDlg)
@@ -938,15 +938,15 @@ class CClockDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CTimerDlg dialog
 
 class CTimerDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CTimerDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
@@ -962,12 +962,12 @@ class CTimerDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CTimerDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CTimerDlg)
@@ -975,15 +975,15 @@ class CTimerDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CSignalreceiverDlg dialog
 
 class CSignalreceiverDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CSignalreceiverDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
@@ -999,12 +999,12 @@ class CSignalreceiverDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CSignalreceiverDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CSignalreceiverDlg)
@@ -1012,15 +1012,15 @@ class CSignalreceiverDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CSignalsenderDlg dialog
 
 class CSignalsenderDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CSignalsenderDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
@@ -1036,12 +1036,12 @@ class CSignalsenderDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CSignalsenderDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CSignalsenderDlg)
@@ -1049,15 +1049,15 @@ class CSignalsenderDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CKeyboardDlg dialog
 
 class CKeyboardDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CKeyboardDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
@@ -1072,12 +1072,12 @@ class CKeyboardDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CKeyboardDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CKeyboardDlg)
@@ -1085,15 +1085,15 @@ class CKeyboardDlg : public CDialog
    virtual BOOL OnInitDialog();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CNetworkDlg dialog
 
 class CNetworkDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CNetworkDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
@@ -1112,12 +1112,12 @@ class CNetworkDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CNetworkDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CNetworkDlg)
@@ -1127,15 +1127,15 @@ class CNetworkDlg : public CDialog
    afx_msg void OnNetworkMake();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CNodeDlg dialog
 
 class CNodeDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CNodeDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
@@ -1143,21 +1143,21 @@ class CNodeDlg : public CDialog
 
    // Dialog Data
    //{{AFX_DATA(CNodeDlg)
-	enum { IDD = IDD_PROP_NODE };
+   enum { IDD = IDD_PROP_NODE };
    int		m_iPass;
-	int		m_iFloat;
-	//}}AFX_DATA
+   int		m_iFloat;
+   //}}AFX_DATA
 
 
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CNodeDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CNodeDlg)
@@ -1166,20 +1166,20 @@ class CNodeDlg : public CDialog
    afx_msg void OnNodePass();
    afx_msg void OnNodePulldown();
    afx_msg void OnNodePullup();
-	afx_msg void OnNodeZero();
-	afx_msg void OnNodeFloat();
-	afx_msg void OnNodeOne();
-	//}}AFX_MSG
+   afx_msg void OnNodeZero();
+   afx_msg void OnNodeFloat();
+   afx_msg void OnNodeOne();
+   //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CFlipflopDlg dialog
 
 class CFlipflopDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CFlipflopDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
@@ -1197,12 +1197,12 @@ class CFlipflopDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CFlipflopDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CFlipflopDlg)
@@ -1218,15 +1218,15 @@ class CFlipflopDlg : public CDialog
    afx_msg void OnFlipflopEdge();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CRobotDlg dialog
 
 class CRobotDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CRobotDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
@@ -1235,11 +1235,11 @@ class CRobotDlg : public CDialog
 
    // Dialog Data
    //{{AFX_DATA(CRobotDlg)
-	enum { IDD = IDD_PROP_ROBOT };
-	CEdit	m_cePositionY;
-	CEdit	m_cePositionX;
-	CEdit	m_ceHotspotY;
-	CEdit	m_ceHotspotX;
+   enum { IDD = IDD_PROP_ROBOT };
+   CEdit	m_cePositionY;
+   CEdit	m_cePositionX;
+   CEdit	m_ceHotspotY;
+   CEdit	m_ceHotspotX;
    CString	m_csFileName;
    int		m_iStyle;
    int		m_iHotspot;
@@ -1248,50 +1248,50 @@ class CRobotDlg : public CDialog
    int		m_iHotspotY;
    int		m_iPositionX;
    int		m_iPositionY;
-	//}}AFX_DATA
+   //}}AFX_DATA
 
 
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CRobotDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CRobotDlg)
    afx_msg void OnBrowse();
    afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnEdit();
-	afx_msg void OnHotspotCenter();
-	afx_msg void OnHotspotCt();
-	afx_msg void OnHotspotLl();
-	afx_msg void OnHotspotLr();
-	afx_msg void OnHotspotUl();
-	afx_msg void OnHotspotUr();
-	afx_msg void OnPositionCenter();
-	afx_msg void OnPositionCt();
-	afx_msg void OnPositionLl();
-	afx_msg void OnPositionLr();
-	afx_msg void OnPositionUl();
-	afx_msg void OnPositionUr();
-	afx_msg void OnStyleDrawing();
-	afx_msg void OnStyleSeeing();
-	//}}AFX_MSG
+   virtual BOOL OnInitDialog();
+   afx_msg void OnEdit();
+   afx_msg void OnHotspotCenter();
+   afx_msg void OnHotspotCt();
+   afx_msg void OnHotspotLl();
+   afx_msg void OnHotspotLr();
+   afx_msg void OnHotspotUl();
+   afx_msg void OnHotspotUr();
+   afx_msg void OnPositionCenter();
+   afx_msg void OnPositionCt();
+   afx_msg void OnPositionLl();
+   afx_msg void OnPositionLr();
+   afx_msg void OnPositionUl();
+   afx_msg void OnPositionUr();
+   afx_msg void OnStyleDrawing();
+   afx_msg void OnStyleSeeing();
+   //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////
 // CSelectDlg dialog
 
 class CSelectDlg : public CDialog
-   {
+{
    // Construction
-   public:
+public:
    CSelectDlg(CWnd* pParent = NULL);   // standard constructor
 
    void RecalcBM();
@@ -1308,12 +1308,12 @@ class CSelectDlg : public CDialog
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CSelectDlg)
-   protected:
+protected:
    virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
    //}}AFX_VIRTUAL
 
    // Implementation
-   protected:
+protected:
 
    // Generated message map functions
    //{{AFX_MSG(CSelectDlg)
@@ -1337,512 +1337,512 @@ class CSelectDlg : public CDialog
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 class CGridDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CGridDlg(CWnd* pParent = NULL);   // standard constructor
+   CGridDlg(CWnd* pParent = NULL);   // standard constructor
 
-// Dialog Data
-	//{{AFX_DATA(CGridDlg)
-	enum { IDD = IDD_GRID };
-	BOOL	m_bEnable;
-	UINT	m_uHeight;
-	UINT	m_uWidth;
+   // Dialog Data
+   //{{AFX_DATA(CGridDlg)
+   enum { IDD = IDD_GRID };
+   BOOL	m_bEnable;
+   UINT	m_uHeight;
+   UINT	m_uWidth;
    UINT  m_uCanvasHeight;
    UINT  m_uCanvasWidth;
-	//}}AFX_DATA
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CGridDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CGridDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CGridDlg)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CGridDlg)
+   // NOTE: the ClassWizard will add member functions here
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CTristateDlg dialog
 
 class CTristateDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CTristateDlg(CWnd* pParent = NULL);   // standard constructor
+   CTristateDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CTristateDlg)
-	enum { IDD = IDD_PROP_TRISTATE };
-	BOOL	m_bAssertLO;
-	BOOL	m_bDemorgan;
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CTristateDlg)
+   enum { IDD = IDD_PROP_TRISTATE };
+   BOOL	m_bAssertLO;
+   BOOL	m_bDemorgan;
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CTristateDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CTristateDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CTristateDlg)
-	afx_msg void OnTristateAssertLo();
-	afx_msg void OnTristateDemorgan();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnHelp();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CTristateDlg)
+   afx_msg void OnTristateAssertLo();
+   afx_msg void OnTristateDemorgan();
+   virtual BOOL OnInitDialog();
+   afx_msg void OnHelp();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CBusDlg dialog
 
 class CBusDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CBusDlg(CWnd* pParent = NULL);   // standard constructor
+   CBusDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CBusDlg)
-	enum { IDD = IDD_PROP_BUS };
-	int		m_iInputs;
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CBusDlg)
+   enum { IDD = IDD_PROP_BUS };
+   int		m_iInputs;
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CBusDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CBusDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CBusDlg)
-	afx_msg void OnBus2inputs();
-	afx_msg void OnBus4inputs();
-	afx_msg void OnBus8inputs();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnHelp();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CBusDlg)
+   afx_msg void OnBus2inputs();
+   afx_msg void OnBus4inputs();
+   afx_msg void OnBus8inputs();
+   virtual BOOL OnInitDialog();
+   afx_msg void OnHelp();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CAluDlg dialog
 
 class CAluDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CAluDlg(CWnd* pParent = NULL);   // standard constructor
+   CAluDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CAluDlg)
-	enum { IDD = IDD_PROP_ALU };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CAluDlg)
+   enum { IDD = IDD_PROP_ALU };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAluDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CAluDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAluDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CAluDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CBitBucketDlg dialog
 
 class CBitBucketDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CBitBucketDlg(CWnd* pParent = NULL);   // standard constructor
+   CBitBucketDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CBitBucketDlg)
-	enum { IDD = IDD_PROP_BITBUCKET };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CBitBucketDlg)
+   enum { IDD = IDD_PROP_BITBUCKET };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CBitBucketDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CBitBucketDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CBitBucketDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CBitBucketDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CPauseDlg dialog
 
 class CPauseDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CPauseDlg(CWnd* pParent = NULL);   // standard constructor
+   CPauseDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CPauseDlg)
-	enum { IDD = IDD_PROP_PAUSE };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CPauseDlg)
+   enum { IDD = IDD_PROP_PAUSE };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPauseDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CPauseDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CPauseDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CPauseDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CDisplayDlg dialog
 
 class CDisplayDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CDisplayDlg(CWnd* pParent = NULL);   // standard constructor
+   CDisplayDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CDisplayDlg)
-	enum { IDD = IDD_PROP_DISPLAY };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CDisplayDlg)
+   enum { IDD = IDD_PROP_DISPLAY };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CDisplayDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CDisplayDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CDisplayDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CDisplayDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CGroundDlg dialog
 
 class CGroundDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CGroundDlg(CWnd* pParent = NULL);   // standard constructor
+   CGroundDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CGroundDlg)
-	enum { IDD = IDD_PROP_GROUND };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CGroundDlg)
+   enum { IDD = IDD_PROP_GROUND };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CGroundDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CGroundDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CGroundDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CGroundDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CKeypadDlg dialog
 
 class CKeypadDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CKeypadDlg(CWnd* pParent = NULL);   // standard constructor
+   CKeypadDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CKeypadDlg)
-	enum { IDD = IDD_PROP_KEYPAD };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CKeypadDlg)
+   enum { IDD = IDD_PROP_KEYPAD };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CKeypadDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CKeypadDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CKeypadDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CKeypadDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CCounterDlg dialog
 
 class CCounterDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CCounterDlg(CWnd* pParent = NULL);   // standard constructor
+   CCounterDlg(CWnd* pParent = NULL);   // standard constructor
    void RecalcBM();
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CCounterDlg)
-	enum { IDD = IDD_PROP_COUNTER };
-	UINT	m_iInit;
-	int		m_iSize;
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CCounterDlg)
+   enum { IDD = IDD_PROP_COUNTER };
+   UINT	m_iInit;
+   int		m_iSize;
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CCounterDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CCounterDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CCounterDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	afx_msg void OnCounter4bit();
-	afx_msg void OnCounter8bit();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CCounterDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   afx_msg void OnCounter4bit();
+   afx_msg void OnCounter8bit();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CPlusDlg dialog
 
 class CPlusDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CPlusDlg(CWnd* pParent = NULL);   // standard constructor
+   CPlusDlg(CWnd* pParent = NULL);   // standard constructor
 
    CBitmapButton m_bmBtn;
 
-// Dialog Data
-	//{{AFX_DATA(CPlusDlg)
-	enum { IDD = IDD_PROP_PLUS };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CPlusDlg)
+   enum { IDD = IDD_PROP_PLUS };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CPlusDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CPlusDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CPlusDlg)
-	afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CPlusDlg)
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 /////////////////////////////////////////////////////////////////////////////
 // CAnalyzeDlg dialog
 
 class CAnalyzeDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CAnalyzeDlg(CWnd* pParent = NULL);   // standard constructor
+   CAnalyzeDlg(CWnd* pParent = NULL);   // standard constructor
 
-// Dialog Data
-	//{{AFX_DATA(CAnalyzeDlg)
-	enum { IDD = IDD_PROP_ANALYZE };
-	CString	m_csSignalName;
-	int		m_iDummy;
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CAnalyzeDlg)
+   enum { IDD = IDD_PROP_ANALYZE };
+   CString	m_csSignalName;
+   int		m_iDummy;
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAnalyzeDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CAnalyzeDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAnalyzeDlg)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CAnalyzeDlg)
+   // NOTE: the ClassWizard will add member functions here
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 public:
-	afx_msg void OnBnClickedHelp();
+   afx_msg void OnBnClickedHelp();
 };
 /////////////////////////////////////////////////////////////////////////////
 // CTapedriveDlg dialog
 
 class CTapedriveDlg : public CDialog
-	{
-	// Construction
-	public:
-		CTapedriveDlg(CWnd* pParent = NULL);   // standard constructor
-		
-		CBitmapButton m_bmBtn;
-		CString m_csPathName;
-		
-		// Dialog Data
-		//{{AFX_DATA(CTapedriveDlg)
-	enum { IDD = IDD_PROP_TAPEDRIVE };
-		CButton	m_cbEdit;
-		CButton	m_cbBrowse;
-		int		m_iFormat;
-		UINT	m_uCapacity;
-		CString	m_csFileName;
-	UINT	m_uStartPosition;
-	//}}AFX_DATA
-		
-		
-		// Overrides
-		// ClassWizard generated virtual function overrides
-		//{{AFX_VIRTUAL(CTapedriveDlg)
-	protected:
-		virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-		//}}AFX_VIRTUAL
-		
-		// Implementation
-	protected:
-		
-		// Generated message map functions
-		//{{AFX_MSG(CTapedriveDlg)
-		afx_msg void OnBrowse();
-		afx_msg void OnEdit();
-		afx_msg void OnHelp();
-	virtual BOOL OnInitDialog();
-	//}}AFX_MSG
-		DECLARE_MESSAGE_MAP()
-	};
+{
+   // Construction
+public:
+   CTapedriveDlg(CWnd* pParent = NULL);   // standard constructor
+
+   CBitmapButton m_bmBtn;
+   CString m_csPathName;
+
+   // Dialog Data
+   //{{AFX_DATA(CTapedriveDlg)
+   enum { IDD = IDD_PROP_TAPEDRIVE };
+   CButton	m_cbEdit;
+   CButton	m_cbBrowse;
+   int		m_iFormat;
+   UINT	m_uCapacity;
+   CString	m_csFileName;
+   UINT	m_uStartPosition;
+   //}}AFX_DATA
+
+
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CTapedriveDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
+
+   // Implementation
+protected:
+
+   // Generated message map functions
+   //{{AFX_MSG(CTapedriveDlg)
+   afx_msg void OnBrowse();
+   afx_msg void OnEdit();
+   afx_msg void OnHelp();
+   virtual BOOL OnInitDialog();
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
+};
 /////////////////////////////////////////////////////////////////////////////
 // CAboutMSDlg dialog
 
 class CAboutMSDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CAboutMSDlg(CWnd* pParent = NULL);   // standard constructor
+   CAboutMSDlg(CWnd* pParent = NULL);   // standard constructor
 
-// Dialog Data
-	//{{AFX_DATA(CAboutMSDlg)
-	enum { IDD = IDD_ABOUTMS };
-		// NOTE: the ClassWizard will add data members here
-	//}}AFX_DATA
+   // Dialog Data
+   //{{AFX_DATA(CAboutMSDlg)
+   enum { IDD = IDD_ABOUTMS };
+   // NOTE: the ClassWizard will add data members here
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CAboutMSDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CAboutMSDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CAboutMSDlg)
-		// NOTE: the ClassWizard will add member functions here
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   // Generated message map functions
+   //{{AFX_MSG(CAboutMSDlg)
+   // NOTE: the ClassWizard will add member functions here
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1850,39 +1850,39 @@ protected:
 
 class CGotoPageDlg : public CDialog
 {
-// Construction
+   // Construction
 public:
-	CGotoPageDlg(CWnd* pParent = NULL);   // standard constructor
+   CGotoPageDlg(CWnd* pParent = NULL);   // standard constructor
 
-// Dialog Data
-	//{{AFX_DATA(CGotoPageDlg)
-	enum { IDD = IDD_GOTOPAGE };
+   // Dialog Data
+   //{{AFX_DATA(CGotoPageDlg)
+   enum { IDD = IDD_GOTOPAGE };
    CEdit    m_cePageNumber;
    CEdit    m_cePageName;
    CListBox m_clPageList;
-	int		m_iPageNumber;
+   int		m_iPageNumber;
    int      m_iPageCount;
    CStringArray *m_pPageNames;
-	//}}AFX_DATA
+   //}}AFX_DATA
 
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CGotoPageDlg)
-	protected:
-	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
-	//}}AFX_VIRTUAL
+   // Overrides
+   // ClassWizard generated virtual function overrides
+   //{{AFX_VIRTUAL(CGotoPageDlg)
+protected:
+   virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV support
+   //}}AFX_VIRTUAL
 
-// Implementation
+   // Implementation
 protected:
 
-	// Generated message map functions
-	//{{AFX_MSG(CGotoPageDlg)
+   // Generated message map functions
+   //{{AFX_MSG(CGotoPageDlg)
    virtual BOOL OnInitDialog();
    afx_msg void OnPageNumberChanged();
    afx_msg void OnPageNameChanged();
    afx_msg void OnPageSelect();
    afx_msg void OnPageDoubleClick();
-	//}}AFX_MSG
-	DECLARE_MESSAGE_MAP()
+   //}}AFX_MSG
+   DECLARE_MESSAGE_MAP()
 };

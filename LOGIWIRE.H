@@ -11,12 +11,12 @@ class CLogiGate;
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiWire : public CLogiObj
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiWire);
    CLogiWire();
 
-   public:
+public:
    CString Name;
    int StartIO;
    int EndIO;
@@ -29,7 +29,7 @@ class CLogiWire : public CLogiObj
    CLogiWire(const CRect& position, char *name, int ipage, CLogiDoc* pdoc);
 
    // Implementation
-   public:
+public:
    virtual ~CLogiWire();
    virtual void CleanupReferences();
    virtual void Serialize(CArchive& ar);
@@ -42,8 +42,8 @@ class CLogiWire : public CLogiObj
    virtual CLogiObj* Clone(CLogiDoc* pDoc);
    virtual void OnOpen(CLogiView* pView);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;

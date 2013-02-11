@@ -1,5 +1,10 @@
 Pre-release notes for Multimedia Logic 1.6
 
+o Changed device properties dialog box tab stop order for:
+    Text , Oscillator, Buzzer, Signal Sender and Signal Receiver.
+   
+Modified Plus device icon on palette to look less like an antenna.
+
 Changed/added keyboard accelerators:
 o Selector is now Escape. Escape still works to cancel editing device options.
 o Switch is S without having to press Shift.

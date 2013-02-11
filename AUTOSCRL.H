@@ -5,50 +5,50 @@
 // CAutoScrollView view
 
 class CAutoScrollView : public CScrollView
-   {
+{
    DECLARE_DYNAMIC(CAutoScrollView)
-   protected:
+protected:
    CAutoScrollView(); // protected constructor used by dynamic creation
-   
+
    // Attributes
-   public:
+public:
    BOOL        m_bAutoScroll;
    BOOL        m_bIsScrolling;
-   
+
    // Operations
-   public:
+public:
    BOOL         IsAutoScrolling()
-      {
+   {
       return m_bIsScrolling;
-      }
+   }
    ;
    void         EnableAutoScrolling (BOOL bMode)
-      {
+   {
       m_bAutoScroll = bMode;
-      }
+   }
    ;
-   protected:
+protected:
    virtual void OnAutoScroll(CPoint point, BOOL bBeforeScroll);
-   
+
    // Operations
-   public:
-   
+public:
+
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CAutoScrollView)
-   public:
+public:
    virtual void OnDraw(CDC* pDC);
-   protected:
+protected:
    //}}AFX_VIRTUAL
-   
+
    // Implementation
-   protected:
+protected:
    void AutoScroll(UINT nRefMessage);
-   
+
    //{{AFX_MSG(CAutoScrollView)
    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 /////////////////////////////////////////////////////////////////////////////

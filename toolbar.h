@@ -4,8 +4,8 @@
 // both the left and right mouse buttons down.
 
 class CToolBarEx : public CToolBar
-   {
-   protected:
+{
+protected:
    LRESULT WindowProc(UINT message, WPARAM wParam, LPARAM lParam);
-   }
+}
 ;

@@ -14,53 +14,53 @@ class CLogiObj;
 class CLogiWire;
 
 class CLogiDoc : public CDocument
-   {
-   protected: // create from serialization only
+{
+protected: // create from serialization only
    CLogiDoc();
    DECLARE_DYNCREATE(CLogiDoc)
 
    // Attributes
-   public:
+public:
 
    CObList* GetObjects()
-      {
+   {
       return &m_objects;
-      }
+   }
 
    const CSize& GetSize() const
-      {
+   {
       return m_size;
-      }
+   }
 
    int GetMapMode() const
-      {
+   {
       return m_nMapMode;
-      }
+   }
 
    COLORREF GetPaperColor() const
-      {
+   {
       return m_paperColor;
-      }
+   }
 
    BOOL GetGridOn() const
-      {
+   {
       return m_bGrid;
-      }
+   }
 
    BOOL GetSnapToGrid() const
-      {
+   {
       return m_bSnapToGrid;
-      }
+   }
 
    CPoint GetGridSizes() const
-      {
+   {
       return CPoint(m_uGridWidth, m_uGridHeight);
-      }
+   }
 
    void ComputePageSize();
 
    // Operations
-   public:
+public:
    int GetZoom(int i);
    CLogiObj* ObjectAt(const CPoint& point, int iPage);
    CLogiObj* ObjectAtContact(const CPoint& point, int* io, int iPage);
@@ -85,15 +85,15 @@ class CLogiDoc : public CDocument
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CLogiDoc)
-   public:
+public:
    virtual void Serialize(CArchive& ar);   // overridden for document i/o
    virtual BOOL OnNewDocument();
-   protected:
+protected:
    virtual BOOL SaveModified();
    //}}AFX_VIRTUAL
 
    // Implementation
-   public:
+public:
    virtual ~CLogiDoc();
 #ifdef _DEBUG
    virtual void AssertValid() const;
@@ -115,7 +115,7 @@ class CLogiDoc : public CDocument
    //should we color the wires?
    BOOL m_bColorWires;
    //does the user want to stop simulation and close doc / exit app?
-   BOOL	m_bForceStopAndExitApp;
+   BOOL  m_bForceStopAndExitApp;
    BOOL m_bForceStopAndCloseDoc;
    BOOL m_bCloseNotExit;
 
@@ -206,7 +206,8 @@ class CLogiDoc : public CDocument
 
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   afx_msg void OnCloseDocument();
+public:
+   void UserReqCloseDoc();
 }
 ;
 

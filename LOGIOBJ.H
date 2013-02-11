@@ -10,18 +10,18 @@ class CLogiGate;
 class Anode;
 
 typedef struct tagBITMAPINFO16
-   {
+{
    BITMAPINFOHEADER bmiHeader;
    RGBQUAD          bmiColors[16];
-   }
+}
 BITMAPINFO16;
 
 typedef struct tagLOGPALETTE16
-   {
+{
    WORD         palVersion;
    WORD         palNumEntries;
    PALETTEENTRY palPalEntry[16];
-   }
+}
 LOGPALETTE16;
 
 extern CObList NodeList;
@@ -31,13 +31,13 @@ extern CObList EventQueue;
 // CLogiObj - base class for all 'Logiable objects'
 
 class CLogiObj : public CObject
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiObj);
    CLogiObj();
 
    // Constructors
-   public:
+public:
    CLogiObj(const CRect& position, LogiShape shape, int ipage, CLogiDoc* pdoc);
 
    // Attributes
@@ -46,7 +46,7 @@ class CLogiObj : public CObject
    CLogiDoc* m_pDocument;
    LogiShape m_Logishape;
    int m_iPage;
-	  int m_iUndo; // not used
+   int m_iUndo; // not used
 
    virtual int GetHandleCount();
    virtual CPoint GetHandle(int nHandle);
@@ -56,9 +56,9 @@ class CLogiObj : public CObject
    // Operations
    virtual void Draw(CDC* pDC, CLogiView* pView = NULL);
    enum TrackerState
-      {
+   {
       normal, selected, active
-      }
+   }
    ;
    virtual void DrawTracker(CDC* pDC, TrackerState state);
    virtual void MoveTo(const CRect& positon, CLogiView* pView = NULL);
@@ -71,14 +71,14 @@ class CLogiObj : public CObject
    virtual void SetText(LPCTSTR text);
 
    virtual void OnOpen(CLogiView* /*pView*/)
-      {
-      }
+   {
+   }
    ;
    void Invalidate();
    void Remove();
 
    // Implementation
-   public:
+public:
    virtual ~CLogiObj();
    virtual void Serialize(CArchive& ar);
 #ifdef _DEBUG
@@ -86,19 +86,19 @@ class CLogiObj : public CObject
 #endif
 
    // implementation data
-   protected:
-   }
+protected:
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiGate : public CLogiObj
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiGate);
    CLogiGate();
 
-   public:
+public:
    CString Name;
    Anode* Node[48];
    CObList Wire[48];
@@ -133,7 +133,7 @@ class CLogiGate : public CLogiObj
    void Connect(int io, Anode* pAnode);
 
    // Implementation
-   public:
+public:
    virtual ~CLogiGate();
    virtual void Serialize(CArchive& ar);
    virtual void Draw(CDC* pDC, CLogiView* pView = NULL);
@@ -144,17 +144,17 @@ class CLogiGate : public CLogiObj
    virtual CLogiObj* Clone(CLogiDoc* pDoc); // should be = 0
    virtual void MoveTo(const CRect& position, CLogiView* pView = NULL);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiANDGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiANDGate);
    CLogiANDGate();
 
@@ -162,7 +162,7 @@ class CLogiANDGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iInputs;
    BOOL m_bDemorgan;
 
@@ -173,17 +173,17 @@ class CLogiANDGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiXORGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiXORGate);
    CLogiXORGate();
 
@@ -191,7 +191,7 @@ class CLogiXORGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iInputs;
    BOOL m_bDemorgan;
 
@@ -202,17 +202,17 @@ class CLogiXORGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiORGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiORGate);
    CLogiORGate();
 
@@ -220,7 +220,7 @@ class CLogiORGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iInputs;
    BOOL m_bDemorgan;
 
@@ -231,17 +231,17 @@ class CLogiORGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiINVERTGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiINVERTGate);
    CLogiINVERTGate();
 
@@ -249,7 +249,7 @@ class CLogiINVERTGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    BOOL m_bDemorgan;
 
    virtual void Serialize(CArchive& ar);
@@ -259,17 +259,17 @@ class CLogiINVERTGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiTristateGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiTristateGate);
    CLogiTristateGate();
 
@@ -277,7 +277,7 @@ class CLogiTristateGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    BOOL m_bDemorgan;
    BOOL m_bAssertLO;
 
@@ -288,17 +288,17 @@ class CLogiTristateGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiBusGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiBusGate);
    CLogiBusGate();
 
@@ -307,7 +307,7 @@ class CLogiBusGate : public CLogiGate
    BOOL PostSimulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iInputs;
    BOOL m_bDummy2;
 
@@ -318,17 +318,17 @@ class CLogiBusGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiOscillatorGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiOscillatorGate);
    CLogiOscillatorGate();
 
@@ -336,7 +336,7 @@ class CLogiOscillatorGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_Fire;
    int m_iCountHI;
    int m_iCountLO;
@@ -349,17 +349,17 @@ class CLogiOscillatorGate : public CLogiGate
    virtual void SetContacts();
    virtual void OnOpen(CLogiView* pView);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiClockGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiClockGate);
    CLogiClockGate();
 
@@ -367,7 +367,7 @@ class CLogiClockGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    UINT m_uTemp;
    int m_iSeconds;
    int m_bSpare;
@@ -380,17 +380,17 @@ class CLogiClockGate : public CLogiGate
    virtual void SetContacts();
    virtual void OnOpen(CLogiView* pView);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiTimerGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiTimerGate);
    CLogiTimerGate();
 
@@ -398,7 +398,7 @@ class CLogiTimerGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    clock_t m_tFire;
    UINT m_uDelay;
    BOOL m_bSpare;
@@ -411,17 +411,17 @@ class CLogiTimerGate : public CLogiGate
    virtual void SetContacts();
    virtual void OnOpen(CLogiView* pView);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiLedGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiLedGate);
    CLogiLedGate();
 
@@ -431,7 +431,7 @@ class CLogiLedGate : public CLogiGate
    virtual void Initialize(CLogiView* pView, UINT iMode);
 
    // Implementation
-   public:
+public:
    int m_iRed;
    int m_iBlink;
 
@@ -442,18 +442,18 @@ class CLogiLedGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiSwitchGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiSwitchGate);
    CLogiSwitchGate();
 
@@ -464,7 +464,7 @@ class CLogiSwitchGate : public CLogiGate
    virtual void Initialize(CLogiView* pView, UINT iMode);
 
    // Implementation
-   public:
+public:
    int m_iOn;
    int m_iToggle;
 
@@ -475,17 +475,17 @@ class CLogiSwitchGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiSelectGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiSelectGate);
    CLogiSelectGate();
 
@@ -496,7 +496,7 @@ class CLogiSelectGate : public CLogiGate
    virtual void Initialize(CLogiView* pView, UINT iMode);
 
    // Implementation
-   public:
+public:
    UINT m_uTemp;
    int m_iInitial;
    int m_iDummy;
@@ -508,17 +508,17 @@ class CLogiSelectGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiBuzzerGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiBuzzerGate);
    CLogiBuzzerGate();
 
@@ -528,7 +528,7 @@ class CLogiBuzzerGate : public CLogiGate
    virtual void Initialize(CLogiView* pView, UINT iMode);
 
    // Implementation
-   public:
+public:
    int m_iFreq;
    int m_iDuration;
 
@@ -539,18 +539,18 @@ class CLogiBuzzerGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiNULLGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiNULLGate);
    CLogiNULLGate();
 
@@ -559,7 +559,7 @@ class CLogiNULLGate : public CLogiGate
    BOOL PostSimulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iPass;
    int m_iFloat;
    BOOL m_bDemorgan;
@@ -571,17 +571,17 @@ class CLogiNULLGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiLed7Gate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiLed7Gate);
    CLogiLed7Gate();
 
@@ -592,7 +592,7 @@ class CLogiLed7Gate : public CLogiGate
    virtual void Initialize(CLogiView* pView, UINT iMode);
 
    // Implementation
-   public:
+public:
    int m_iRed;
    int m_iInputs;
 
@@ -603,17 +603,17 @@ class CLogiLed7Gate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiAsciidisplayGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiAsciidisplayGate);
    CLogiAsciidisplayGate();
 
@@ -624,7 +624,7 @@ class CLogiAsciidisplayGate : public CLogiGate
    virtual void Initialize(CLogiView* pView, UINT iMode);
 
    // Implementation
-   public:
+public:
    char m_cText[16][16];
    int m_iCol[16];
    int m_iRow;
@@ -642,17 +642,17 @@ class CLogiAsciidisplayGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiAsciikeyboardGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiAsciikeyboardGate);
    CLogiAsciikeyboardGate();
 
@@ -664,7 +664,7 @@ class CLogiAsciikeyboardGate : public CLogiGate
    void Message(CLogiView* pView, UINT nChar, BOOL bDown);
 
    // Implementation
-   public:
+public:
    int m_iSpare;
    BOOL m_bAscii;
    UINT m_nChar;
@@ -676,17 +676,17 @@ class CLogiAsciikeyboardGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiGroundGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiGroundGate);
    CLogiGroundGate();
 
@@ -694,7 +694,7 @@ class CLogiGroundGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    virtual void Serialize(CArchive& ar);
    virtual CLogiObj* Clone(CLogiDoc* pDoc);
    virtual void OnOpen(CLogiView* pView);
@@ -702,17 +702,17 @@ class CLogiGroundGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiPlusGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiPlusGate);
    CLogiPlusGate();
 
@@ -720,7 +720,7 @@ class CLogiPlusGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    virtual void Serialize(CArchive& ar);
    virtual CLogiObj* Clone(CLogiDoc* pDoc);
    virtual void OnOpen(CLogiView* pView);
@@ -728,17 +728,17 @@ class CLogiPlusGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiPortinGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiPortinGate);
    CLogiPortinGate();
 
@@ -747,7 +747,7 @@ class CLogiPortinGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    UINT m_uTemp;
    UINT m_iAddress;
    UINT m_iInitial;
@@ -760,17 +760,17 @@ class CLogiPortinGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiPortoutGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiPortoutGate);
    CLogiPortoutGate();
 
@@ -778,7 +778,7 @@ class CLogiPortoutGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    UINT m_iAddress;
    UINT m_iInitial;
    int m_iLastState;
@@ -790,17 +790,17 @@ class CLogiPortoutGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiReadfileGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiReadfileGate);
    CLogiReadfileGate();
 
@@ -809,7 +809,7 @@ class CLogiReadfileGate : public CLogiGate
    void Animate(CLogiView* pView);
 
    // Implementation
-   public:
+public:
    CString m_csFileName;
    int m_iFormat;
    FILE *m_pFile;
@@ -823,17 +823,17 @@ class CLogiReadfileGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiSignalreceiverGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiSignalreceiverGate);
    CLogiSignalreceiverGate();
 
@@ -842,7 +842,7 @@ class CLogiSignalreceiverGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    CString m_csSignalName;
    int m_iDummy;
    CLogiGate* m_Mate;
@@ -862,17 +862,17 @@ class CLogiSignalreceiverGate : public CLogiGate
    virtual CString GetText();
    virtual void SetText(LPCTSTR text);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiSignalsenderGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiSignalsenderGate);
    CLogiSignalsenderGate();
 
@@ -882,7 +882,7 @@ class CLogiSignalsenderGate : public CLogiGate
    BOOL PostSimulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    CString m_csSignalName;
    int m_iDummy;
    //CLogiGate* m_Mate;
@@ -903,17 +903,17 @@ class CLogiSignalsenderGate : public CLogiGate
    virtual CString GetText();
    virtual void SetText(LPCTSTR text);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiAnalyzeGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiAnalyzeGate);
    CLogiAnalyzeGate();
 
@@ -922,7 +922,7 @@ class CLogiAnalyzeGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    CString m_csSignalName;
    int m_iDummy;
    CLogiGate* m_Mate;
@@ -943,17 +943,17 @@ class CLogiAnalyzeGate : public CLogiGate
    virtual CString GetText();
    virtual void SetText(LPCTSTR text);
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiSoundwaveGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiSoundwaveGate);
    CLogiSoundwaveGate();
 
@@ -961,7 +961,7 @@ class CLogiSoundwaveGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    CString m_csFileName;
    BOOL m_bWait;
    int m_iLastState;
@@ -974,17 +974,17 @@ class CLogiSoundwaveGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiWritefileGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiWritefileGate);
    CLogiWritefileGate();
 
@@ -993,7 +993,7 @@ class CLogiWritefileGate : public CLogiGate
    void Animate(CLogiView* pView);
 
    // Implementation
-   public:
+public:
    CString m_csFileName;
    BOOL m_iFormat;
    FILE *m_pFile;
@@ -1007,17 +1007,17 @@ class CLogiWritefileGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiFlipflopGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiFlipflopGate);
    CLogiFlipflopGate();
 
@@ -1025,7 +1025,7 @@ class CLogiFlipflopGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iState;
    int m_iMasterState;
    int m_iStyle;
@@ -1044,17 +1044,17 @@ class CLogiFlipflopGate : public CLogiGate
    virtual void SetContacts();
    virtual void ResizeRect();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiKeypadGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiKeypadGate);
    CLogiKeypadGate();
 
@@ -1065,7 +1065,7 @@ class CLogiKeypadGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    WORD m_nKey;
    BOOL m_bDown;
 
@@ -1076,17 +1076,17 @@ class CLogiKeypadGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiCounterGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiCounterGate);
    CLogiCounterGate();
 
@@ -1094,7 +1094,7 @@ class CLogiCounterGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iLastState;
    UINT m_uTemp;
    int m_iSize;
@@ -1108,17 +1108,17 @@ class CLogiCounterGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiRandomGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiRandomGate);
    CLogiRandomGate();
 
@@ -1126,7 +1126,7 @@ class CLogiRandomGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iLastState;
    UINT m_uTemp;
    int m_iSpare;
@@ -1141,17 +1141,17 @@ class CLogiRandomGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiBreakGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiBreakGate);
    CLogiBreakGate();
 
@@ -1161,7 +1161,7 @@ class CLogiBreakGate : public CLogiGate
    virtual void Initialize(CLogiView* pView, UINT iMode);
 
    // Implementation
-   public:
+public:
    int m_iLastState;
    UINT m_uTemp;
 
@@ -1172,17 +1172,17 @@ class CLogiBreakGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiBitbucketGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiBitbucketGate);
    CLogiBitbucketGate();
 
@@ -1190,7 +1190,7 @@ class CLogiBitbucketGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iLastState;
    UINT m_uTemp;
 
@@ -1202,17 +1202,17 @@ class CLogiBitbucketGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiNetworkGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiNetworkGate);
    CLogiNetworkGate();
    ~CLogiNetworkGate();
@@ -1223,7 +1223,7 @@ class CLogiNetworkGate : public CLogiGate
    void Message(CLogiDoc* pDoc, LPARAM lParam, WPARAM wParam);
 
    // Implementation
-   public:
+public:
    int m_iDirection;
    int m_uPort;
    CString m_csName;
@@ -1243,17 +1243,17 @@ class CLogiNetworkGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiMemoryGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiMemoryGate);
    CLogiMemoryGate();
 
@@ -1261,7 +1261,7 @@ class CLogiMemoryGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    CString m_csFileName;
    int m_iFormat;
    int m_iAddressBits;
@@ -1278,15 +1278,15 @@ class CLogiMemoryGate : public CLogiGate
    virtual void SetContacts();
    virtual void ResizeRect();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 class CLogiTapedriveGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiTapedriveGate);
    CLogiTapedriveGate();
 
@@ -1294,7 +1294,7 @@ class CLogiTapedriveGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    CString m_csFileName;
    int m_iLastState;
    int m_iFormat;
@@ -1311,17 +1311,17 @@ class CLogiTapedriveGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiMuxGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiMuxGate);
    CLogiMuxGate();
 
@@ -1329,7 +1329,7 @@ class CLogiMuxGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iStyle;
    BOOL m_bDeMux;
    int m_iState;
@@ -1342,17 +1342,17 @@ class CLogiMuxGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiAluGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiAluGate);
    CLogiAluGate();
 
@@ -1360,7 +1360,7 @@ class CLogiAluGate : public CLogiGate
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
-   public:
+public:
    int m_iInputs;
    BOOL m_bDeAlu;
 
@@ -1371,8 +1371,8 @@ class CLogiAluGate : public CLogiGate
    virtual void SetGateID();
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;

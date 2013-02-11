@@ -14,8 +14,8 @@
 
 CUndoStack::CUndoStack()
 {
-	m_iCurrentState = NotInProgress;
-	m_iTransactionCookie = 0;
+   m_iCurrentState = NotInProgress;
+   m_iTransactionCookie = 0;
 }
 
 ///////////////////////////////////////////////////////
@@ -34,15 +34,15 @@ CUndoStack::CUndoStack()
 
 int CUndoStack::BeginTransaction(LPCTSTR description)
 {
-	m_iTransactionCookie++;
+   m_iTransactionCookie++;
 
-	CUndoElement *pUndo = new CUndoElement();
-	pUndo->m_iTransactionCookie = m_iTransactionCookie;
-	pUndo->m_iAction = CUndoElement::StartOfTransaction;
-	pUndo->m_str = description;
+   CUndoElement *pUndo = new CUndoElement();
+   pUndo->m_iTransactionCookie = m_iTransactionCookie;
+   pUndo->m_iAction = CUndoElement::StartOfTransaction;
+   pUndo->m_str = description;
 
-	InternalPush(pUndo);
-	return 0;
+   InternalPush(pUndo);
+   return 0;
 }
 
 /////////////////////////////////////////////////////
@@ -55,14 +55,14 @@ int CUndoStack::BeginTransaction(LPCTSTR description)
 
 void CUndoStack::EndTransaction(LPCTSTR description)
 {  
-	CUndoElement *pUndo = new CUndoElement();
-	pUndo->m_iTransactionCookie = m_iTransactionCookie;
-	pUndo->m_iAction = CUndoElement::EndOfTransaction;
-	pUndo->m_str = description;
+   CUndoElement *pUndo = new CUndoElement();
+   pUndo->m_iTransactionCookie = m_iTransactionCookie;
+   pUndo->m_iAction = CUndoElement::EndOfTransaction;
+   pUndo->m_str = description;
 
-	InternalPush(pUndo);
+   InternalPush(pUndo);
 
-	m_iTransactionCookie--;
+   m_iTransactionCookie--;
 }
 
 ///////////////////////////////////////////////////////
@@ -79,12 +79,12 @@ void CUndoStack::EndTransaction(LPCTSTR description)
 
 void CUndoStack::Push(CLogiObj* pLogiObj, int iActionType, LPCTSTR str)
 {
-	CUndoElement *pUndo = new CUndoElement();
-	pUndo->m_pLogiObj = pLogiObj;
-	pUndo->m_iAction = iActionType;
-	pUndo->m_str = str;
+   CUndoElement *pUndo = new CUndoElement();
+   pUndo->m_pLogiObj = pLogiObj;
+   pUndo->m_iAction = iActionType;
+   pUndo->m_str = str;
 
-	InternalPush(pUndo);
+   InternalPush(pUndo);
 }
 
 ///////////////////////////////////////////////////////
@@ -97,12 +97,12 @@ void CUndoStack::Push(CLogiObj* pLogiObj, int iActionType, LPCTSTR str)
 
 void CUndoStack::PushMove(CLogiObj* pLogiObj, CRect &rect)
 {
-	CUndoElement *pUndo = new CUndoElement();
-	pUndo->m_pLogiObj = pLogiObj;
-	pUndo->m_iAction = CUndoElement::Move;
-	pUndo->m_rect = rect;
+   CUndoElement *pUndo = new CUndoElement();
+   pUndo->m_pLogiObj = pLogiObj;
+   pUndo->m_iAction = CUndoElement::Move;
+   pUndo->m_rect = rect;
 
-	InternalPush(pUndo);
+   InternalPush(pUndo);
 }
 
 ///////////////////////////////////////////////////////
@@ -115,22 +115,22 @@ void CUndoStack::PushMove(CLogiObj* pLogiObj, CRect &rect)
 
 void CUndoStack::PushEdit(CLogiObj* pLogiObj)
 {
-	CUndoElement *pUndo = new CUndoElement();
-	pUndo->m_pLogiObj = pLogiObj;
-	pUndo->m_iAction = CUndoElement::Edit;
+   CUndoElement *pUndo = new CUndoElement();
+   pUndo->m_pLogiObj = pLogiObj;
+   pUndo->m_iAction = CUndoElement::Edit;
 
-	CMemFile memFile(4);   
-	CArchive ar(&memFile, CArchive::store);
+   CMemFile memFile(4);   
+   CArchive ar(&memFile, CArchive::store);
 
-	ASSERT(pLogiObj->m_pDocument != NULL);
-	ar.m_pDocument = pLogiObj->m_pDocument;
-	pLogiObj->Serialize(ar);
-	ar.Close();
+   ASSERT(pLogiObj->m_pDocument != NULL);
+   ar.m_pDocument = pLogiObj->m_pDocument;
+   pLogiObj->Serialize(ar);
+   ar.Close();
 
-	pUndo->m_dwLen = (DWORD) memFile.GetLength();
-	pUndo->m_pVar = memFile.Detach();
+   pUndo->m_dwLen = (DWORD) memFile.GetLength();
+   pUndo->m_pVar = memFile.Detach();
 
-	InternalPush(pUndo);
+   InternalPush(pUndo);
 }
 
 ////////////////////////////////////////////////////////
@@ -145,17 +145,17 @@ void CUndoStack::PushEdit(CLogiObj* pLogiObj)
 
 void CUndoStack::InternalPush(CUndoElement *pUndo)
 {
-	pUndo->Init();
+   pUndo->Init();
 
-	if (m_iCurrentState == NotInProgress)
-	InternalReset(&m_redo);
+   if (m_iCurrentState == NotInProgress)
+      InternalReset(&m_redo);
 
-	if (m_iCurrentState == UndoInProgress)
-	m_redo.AddHead(pUndo);
-	else
-	{
-		m_undo.AddHead(pUndo);
-	}
+   if (m_iCurrentState == UndoInProgress)
+      m_redo.AddHead(pUndo);
+   else
+   {
+      m_undo.AddHead(pUndo);
+   }
 }
 
 ///////////////////////////////////////////
@@ -166,9 +166,9 @@ void CUndoStack::InternalPush(CUndoElement *pUndo)
 
 void CUndoStack::Undo(CLogiDoc* pDoc)
 {
-	m_iCurrentState = UndoInProgress;
-	InternalUndo(pDoc, &m_undo);
-	m_iCurrentState = NotInProgress;
+   m_iCurrentState = UndoInProgress;
+   InternalUndo(pDoc, &m_undo);
+   m_iCurrentState = NotInProgress;
 }
 
 ///////////////////////////////////////////
@@ -179,9 +179,9 @@ void CUndoStack::Undo(CLogiDoc* pDoc)
 
 void CUndoStack::Redo(CLogiDoc* pDoc)
 {
-	m_iCurrentState = RedoInProgress;
-	InternalUndo(pDoc, &m_redo);
-	m_iCurrentState = NotInProgress;
+   m_iCurrentState = RedoInProgress;
+   InternalUndo(pDoc, &m_redo);
+   m_iCurrentState = NotInProgress;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -196,43 +196,43 @@ void CUndoStack::Redo(CLogiDoc* pDoc)
 
 void CUndoStack::InternalUndo(CLogiDoc* pDoc, CObList *pUndoList)
 {
-	CUndoElement* pUndo;
-	int i_WhichTransaction = -1;
+   CUndoElement* pUndo;
+   int i_WhichTransaction = -1;
 
-	if (pUndoList->IsEmpty()) return;
+   if (pUndoList->IsEmpty()) return;
 
-	BOOL bKeepGoing = FALSE;
+   BOOL bKeepGoing = FALSE;
 
-	do
-	{
+   do
+   {
 
-		pUndo = (CUndoElement*) pUndoList->RemoveHead();
-		if (i_WhichTransaction == -1)
-		{
-			if (pUndo->m_iAction == CUndoElement::EndOfTransaction)
-			{
-				i_WhichTransaction = pUndo->m_iTransactionCookie;
-				BeginTransaction(pUndo->m_str);
-				bKeepGoing = TRUE;
-			}
-		}
-		else if (pUndo->m_iAction == CUndoElement::StartOfTransaction)
-		{
-			if (i_WhichTransaction == pUndo->m_iTransactionCookie)
-			{
-				EndTransaction(pUndo->m_str);
-				bKeepGoing = FALSE;
-			}
-		}
+      pUndo = (CUndoElement*) pUndoList->RemoveHead();
+      if (i_WhichTransaction == -1)
+      {
+         if (pUndo->m_iAction == CUndoElement::EndOfTransaction)
+         {
+            i_WhichTransaction = pUndo->m_iTransactionCookie;
+            BeginTransaction(pUndo->m_str);
+            bKeepGoing = TRUE;
+         }
+      }
+      else if (pUndo->m_iAction == CUndoElement::StartOfTransaction)
+      {
+         if (i_WhichTransaction == pUndo->m_iTransactionCookie)
+         {
+            EndTransaction(pUndo->m_str);
+            bKeepGoing = FALSE;
+         }
+      }
 
-		pUndo->Undo(pDoc);
+      pUndo->Undo(pDoc);
 
-		delete pUndo;
-		pUndo = NULL;
-	}
-	while (bKeepGoing);
+      delete pUndo;
+      pUndo = NULL;
+   }
+   while (bKeepGoing);
 
-	pDoc->UpdateAllViews(NULL);
+   pDoc->UpdateAllViews(NULL);
 }
 
 ////////////////////////////////////////
@@ -240,8 +240,8 @@ void CUndoStack::InternalUndo(CLogiDoc* pDoc, CObList *pUndoList)
 
 void CUndoStack::Reset()
 {
-	InternalReset(&m_redo);
-	InternalReset(&m_undo);
+   InternalReset(&m_redo);
+   InternalReset(&m_undo);
 }
 
 //////////////////////////////////////////////////
@@ -252,30 +252,30 @@ void CUndoStack::Reset()
 
 void CUndoStack::InternalReset(CObList *pList)
 {
-	POSITION pos;
-	CUndoElement *und;
-	int pass;
+   POSITION pos;
+   CUndoElement *und;
+   int pass;
 
-	// Two passes. Delete wires first, other objects second.
+   // Two passes. Delete wires first, other objects second.
 
-	for (pass=0; pass<=1; pass++)
-	{
-		//TEDO: this seems like an odd for loop, would a while be better?
-		for (pos = pList->GetHeadPosition(); pos != NULL; )
-		{
-			und = (CUndoElement *) pList->GetNext(pos);
-			und->Cleanup(pass);
+   for (pass=0; pass<=1; pass++)
+   {
+      //TEDO: this seems like an odd for loop, would a while be better?
+      for (pos = pList->GetHeadPosition(); pos != NULL; )
+      {
+         und = (CUndoElement *) pList->GetNext(pos);
+         und->Cleanup(pass);
 
-			// On last pass, delete CUndoElement too
-			if (pass == 1)
-			{
-				delete und;
-				und = NULL;
-			}
-		}
-	}
+         // On last pass, delete CUndoElement too
+         if (pass == 1)
+         {
+            delete und;
+            und = NULL;
+         }
+      }
+   }
 
-	pList->RemoveAll();
+   pList->RemoveAll();
 }
 
 /////////////////////////////////////////
@@ -283,7 +283,7 @@ void CUndoStack::InternalReset(CObList *pList)
 
 BOOL CUndoStack::CanUndo()
 {
-	return !m_undo.IsEmpty();
+   return !m_undo.IsEmpty();
 }
 
 /////////////////////////////////////////
@@ -291,7 +291,7 @@ BOOL CUndoStack::CanUndo()
 
 BOOL CUndoStack::CanRedo()
 {
-	return !m_redo.IsEmpty();
+   return !m_redo.IsEmpty();
 }
 
 ////////////////////////////////////////////////
@@ -300,10 +300,10 @@ BOOL CUndoStack::CanRedo()
 
 CString CUndoStack::GetUndoDescription()
 {
-	if (m_undo.IsEmpty())
-		return "";
+   if (m_undo.IsEmpty())
+      return "";
 
-	return ((CUndoElement *) m_undo.GetHead())->GetUndoDescription();
+   return ((CUndoElement *) m_undo.GetHead())->GetUndoDescription();
 }
 
 ////////////////////////////////////////////////
@@ -312,10 +312,10 @@ CString CUndoStack::GetUndoDescription()
 
 CString CUndoStack::GetRedoDescription()
 {
-	if (m_redo.IsEmpty())
-		return "";
+   if (m_redo.IsEmpty())
+      return "";
 
-	return ((CUndoElement *) m_redo.GetHead())->GetRedoDescription();
+   return ((CUndoElement *) m_redo.GetHead())->GetRedoDescription();
 }
 
 //////////////////////////
@@ -323,7 +323,7 @@ CString CUndoStack::GetRedoDescription()
 
 CUndoStack::~CUndoStack()
 {
-	Reset();
+   Reset();
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -338,25 +338,25 @@ CUndoStack::~CUndoStack()
 
 CString CUndoElement::GetUndoDescription()
 {
-	switch (m_iAction)
-	{
-		case CUndoElement::StartOfTransaction:
-		case CUndoElement::EndOfTransaction:
-			return m_str;
-		case CUndoElement::Delete:
-			return "Delete";
-		case CUndoElement::Add:
-			return "Add";
-		case CUndoElement::Move:
-			return "Move";
-		case CUndoElement::Rename:
-			return "Rename";
-		case CUndoElement::Edit:
-			return "Edit";
-		default:
-			ASSERT(FALSE);
-			return "";
-	}
+   switch (m_iAction)
+   {
+   case CUndoElement::StartOfTransaction:
+   case CUndoElement::EndOfTransaction:
+      return m_str;
+   case CUndoElement::Delete:
+      return "Delete";
+   case CUndoElement::Add:
+      return "Add";
+   case CUndoElement::Move:
+      return "Move";
+   case CUndoElement::Rename:
+      return "Rename";
+   case CUndoElement::Edit:
+      return "Edit";
+   default:
+      ASSERT(FALSE);
+      return "";
+   }
 }
 
 /////////////////////////////////////////
@@ -369,25 +369,25 @@ CString CUndoElement::GetUndoDescription()
 
 CString CUndoElement::GetRedoDescription()
 {
-	switch (m_iAction)
-	{
-		case CUndoElement::StartOfTransaction:
-		case CUndoElement::EndOfTransaction:
-			return m_str;
-		case CUndoElement::Delete:
-			return "Add";
-		case CUndoElement::Add:
-			return "Delete";
-		case CUndoElement::Move:
-			return "Move";
-		case CUndoElement::Rename:
-			return "Rename";
-		case CUndoElement::Edit:
-			return "Edit";
-		default:
-			ASSERT(FALSE);
-			return "";
-	}
+   switch (m_iAction)
+   {
+   case CUndoElement::StartOfTransaction:
+   case CUndoElement::EndOfTransaction:
+      return m_str;
+   case CUndoElement::Delete:
+      return "Add";
+   case CUndoElement::Add:
+      return "Delete";
+   case CUndoElement::Move:
+      return "Move";
+   case CUndoElement::Rename:
+      return "Rename";
+   case CUndoElement::Edit:
+      return "Edit";
+   default:
+      ASSERT(FALSE);
+      return "";
+   }
 }
 
 ////////////////////////////////////////////////
@@ -395,15 +395,15 @@ CString CUndoElement::GetRedoDescription()
 
 void CUndoElement::Init()
 {
-	switch (m_iAction)
-	{
-		case CUndoElement::Delete:
-			if (m_pLogiObj->IsKindOf(RUNTIME_CLASS(CLogiWire)))
-				((CLogiWire *) m_pLogiObj)->CleanupReferences();
-			else
-				((CLogiGate *) m_pLogiObj)->CleanupReferences();
-		break;
-	}
+   switch (m_iAction)
+   {
+   case CUndoElement::Delete:
+      if (m_pLogiObj->IsKindOf(RUNTIME_CLASS(CLogiWire)))
+         ((CLogiWire *) m_pLogiObj)->CleanupReferences();
+      else
+         ((CLogiGate *) m_pLogiObj)->CleanupReferences();
+      break;
+   }
 }
 
 ///////////////////////////////////////
@@ -412,35 +412,35 @@ void CUndoElement::Init()
 
 void CUndoElement::Undo(CLogiDoc* pDoc)
 {
-	switch (m_iAction)
-	{
-		case CUndoElement::Delete:
-			pDoc->Add(m_pLogiObj);
-			if (m_pLogiObj->IsKindOf(RUNTIME_CLASS(CLogiWire)))
-				pDoc->ReWire(m_pLogiObj->m_position, (CLogiWire*) m_pLogiObj, m_pLogiObj->m_iPage);
-			break;
-		case CUndoElement::Add:
-			pDoc->Remove(m_pLogiObj);
-			break;
-		case CUndoElement::Move:
-			pDoc->Move(m_pLogiObj, m_rect);
-			break;
-		case CUndoElement::Rename:
-			pDoc->Rename(m_pLogiObj, m_str);
-			break;
-		case CUndoElement::Edit:
-			CMemFile memFile((BYTE *) m_pVar, m_dwLen, 0);
-			CArchive ar(&memFile, CArchive::load);
-			ASSERT(m_pLogiObj->m_pDocument != NULL);
-			ar.m_pDocument = m_pLogiObj->m_pDocument;
-			pDoc->Edit(m_pLogiObj, ar);
-			ar.Close();
-			memFile.Close();
-			delete m_pVar;
-			m_pVar = NULL;
+   switch (m_iAction)
+   {
+   case CUndoElement::Delete:
+      pDoc->Add(m_pLogiObj);
+      if (m_pLogiObj->IsKindOf(RUNTIME_CLASS(CLogiWire)))
+         pDoc->ReWire(m_pLogiObj->m_position, (CLogiWire*) m_pLogiObj, m_pLogiObj->m_iPage);
+      break;
+   case CUndoElement::Add:
+      pDoc->Remove(m_pLogiObj);
+      break;
+   case CUndoElement::Move:
+      pDoc->Move(m_pLogiObj, m_rect);
+      break;
+   case CUndoElement::Rename:
+      pDoc->Rename(m_pLogiObj, m_str);
+      break;
+   case CUndoElement::Edit:
+      CMemFile memFile((BYTE *) m_pVar, m_dwLen, 0);
+      CArchive ar(&memFile, CArchive::load);
+      ASSERT(m_pLogiObj->m_pDocument != NULL);
+      ar.m_pDocument = m_pLogiObj->m_pDocument;
+      pDoc->Edit(m_pLogiObj, ar);
+      ar.Close();
+      memFile.Close();
+      delete m_pVar;
+      m_pVar = NULL;
 
-			break;
-	}
+      break;
+   }
 }
 
 ////////////////////////////////////////////////
@@ -456,35 +456,35 @@ void CUndoElement::Undo(CLogiDoc* pDoc)
 
 void CUndoElement::Cleanup(int pass)
 {
-	if (pass == 0)
-	{
-		// Delete wires on first pass
-		if (m_iAction == CUndoElement::Delete)
-		{
-			if (m_pLogiObj->IsKindOf(RUNTIME_CLASS(CLogiWire)))
-			{
-				delete m_pLogiObj;
-				m_pLogiObj = NULL;
-			}
-		}
-		else if (m_iAction == CUndoElement::Edit)
-		{
-			delete m_pVar;
-			m_pVar = NULL;
-		}
-	}
-	else if (pass == 1)
-	{
-		// Delete everything else on second pass
-		if (m_iAction == CUndoElement::Delete)
-		{
-			if (m_pLogiObj != NULL)
-			{
-				delete m_pLogiObj;
-				m_pLogiObj = NULL;
-			}
-		}
-	}
+   if (pass == 0)
+   {
+      // Delete wires on first pass
+      if (m_iAction == CUndoElement::Delete)
+      {
+         if (m_pLogiObj->IsKindOf(RUNTIME_CLASS(CLogiWire)))
+         {
+            delete m_pLogiObj;
+            m_pLogiObj = NULL;
+         }
+      }
+      else if (m_iAction == CUndoElement::Edit)
+      {
+         delete m_pVar;
+         m_pVar = NULL;
+      }
+   }
+   else if (pass == 1)
+   {
+      // Delete everything else on second pass
+      if (m_iAction == CUndoElement::Delete)
+      {
+         if (m_pLogiObj != NULL)
+         {
+            delete m_pLogiObj;
+            m_pLogiObj = NULL;
+         }
+      }
+   }
 }
 
 /////////////////////////////////////////////////////////////////////////////

@@ -14,35 +14,35 @@
 //
 
 class CLogiApp : public CWinApp
-   {
-   public:
+{
+public:
    CLogiApp();
    BOOL m_bReadOnly;
 
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CLogiApp)
-   public:
+public:
    virtual BOOL InitInstance();
    //}}AFX_VIRTUAL
    // Overrides
 
    // Implementation
-   protected:
+protected:
    //{{AFX_MSG(CLogiApp)
    afx_msg void OnAppAbout();
-	afx_msg void OnHelpAboutms();
-	//}}AFX_MSG
+   afx_msg void OnHelpAboutms();
+   //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   private:
+private:
    void ShowTipAtStartup(void);
-   private:
+private:
    void ShowTipOfTheDay(void);
-   }
+}
 ;
 
 enum LogiShape
-   {
+{
    selector,
    wire,
    ole,
@@ -96,7 +96,7 @@ enum LogiShape
    canvassize,
    simrate,
    pagename
-   }
+}
 ;
 
 #define XVIEWSIZE 100

@@ -7,20 +7,20 @@
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiRobotGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiRobotGate);
    CLogiRobotGate();
 
    CLogiRobotGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc,
-   int iStyle = 0,
-   int iPosition = 0,
-   int iPositionX = 0,
-   int iPositionY = 0,
-   int iHotspot = 0,
-   int iHotspotX = 0,
-   int iHotspotY = 0,
-   const char *pFileName="\\NUL");
+      int iStyle = 0,
+      int iPosition = 0,
+      int iPositionX = 0,
+      int iPositionY = 0,
+      int iHotspot = 0,
+      int iHotspotX = 0,
+      int iHotspotY = 0,
+      const char *pFileName="\\NUL");
    void Simulate(CLogiDoc* pDoc);
    void Draw(CDC* pDC, CLogiView* pView);
    void DrawRobot(CDC* pDC, CLogiView* pView);
@@ -28,7 +28,7 @@ class CLogiRobotGate : public CLogiGate
    void Action(CLogiView* pView, BOOL bDown, const CPoint& point);
 
    // Implementation
-   public:
+public:
    int m_iLastState;
    UINT m_uTemp;
    CString m_csFileName;
@@ -64,9 +64,9 @@ class CLogiRobotGate : public CLogiGate
    virtual void MoveTo(const CRect& position, CLogiView* pView = NULL);
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;
 

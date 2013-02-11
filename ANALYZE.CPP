@@ -13,18 +13,18 @@ static char THIS_FILE[] = __FILE__;
 // CAnalyzeWnd
 
 CAnalyzeWnd::CAnalyzeWnd()
-   {
-   }
+{
+}
 
 CAnalyzeWnd::~CAnalyzeWnd()
-   {
-   }
+{
+}
 
 
 BEGIN_MESSAGE_MAP(CAnalyzeWnd, CWnd)
-//{{AFX_MSG_MAP(CAnalyzeWnd)
-// NOTE - the ClassWizard will add and remove mapping macros here.
-//}}AFX_MSG_MAP
+   //{{AFX_MSG_MAP(CAnalyzeWnd)
+   // NOTE - the ClassWizard will add and remove mapping macros here.
+   //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 

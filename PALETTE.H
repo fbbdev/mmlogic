@@ -11,47 +11,47 @@
 // Microsoft Foundation Classes product.
 
 class CPaletteBar : public CToolBarEx
-   {
+{
    // Constructor
-   public:
+public:
    CPaletteBar();
    void SetColumns(UINT nColumns);
    UINT GetColumns()
-      {
+   {
       return m_nColumns;
-      }
+   }
    ;
-   
+
    // Attributes
-   public:
-   
+public:
+
    // Operations
-   public:
-   
+public:
+
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CPaletteBar)
    //}}AFX_VIRTUAL
-   
+
    // Implementation
-   public:
+public:
    virtual ~CPaletteBar();
 #ifdef _DEBUG
    virtual void AssertValid() const;
    virtual void Dump(CDumpContext& dc) const;
 #endif
-   
-   protected:
+
+protected:
    UINT m_nColumns;
-   
+
    // Generated message map functions
-   protected:
+protected:
    //{{AFX_MSG(CPaletteBar)
    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
    afx_msg void OnDestroy();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////

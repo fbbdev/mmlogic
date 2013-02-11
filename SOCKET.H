@@ -8,18 +8,18 @@ class CLogiNetworkGate;
 class CLogiDoc;
 
 class CSocketWnd : public CWnd
-   {
-   protected: // create from serialization only
+{
+protected: // create from serialization only
 
-   public:
+public:
    CSocketWnd();
    DECLARE_DYNCREATE(CSocketWnd)
 
    // Attributes
-   public:
+public:
 
    // Operations
-   public:
+public:
 
    int iSocket;    // Current Handle Send Socket
    int iPort;    // Current requested send Port
@@ -34,7 +34,7 @@ class CSocketWnd : public CWnd
    CLogiDoc *pDoc;
    CLogiNetworkGate *pObj;
 
-   public:
+public:
 
    BOOL ConnectOn(int isocket, const char *networkaddress, CLogiDoc* pDoc, CLogiNetworkGate *pObj);
    void ConnectOff(void);
@@ -42,25 +42,25 @@ class CSocketWnd : public CWnd
    BOOL SendData(char *Data);
 
    // Implementation
-   public:
+public:
    virtual ~CSocketWnd();
 
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CSocketWnd)
-   public:
+public:
    //}}AFX_VIRTUAL
 
-   public:
+public:
    // Generated message map functions
-   protected:
+protected:
    //{{AFX_MSG(CSocketWnd)
    afx_msg LONG OnNetAcceptfinish(UINT wParam, LONG lParam);
    afx_msg LONG OnNetConnectack(UINT wParam, LONG lParam);
    afx_msg LONG OnNetConnectfinish(UINT wParam, LONG lParam);
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////

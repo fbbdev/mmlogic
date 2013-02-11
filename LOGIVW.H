@@ -15,22 +15,22 @@
 class CLogiObj;
 
 class CLogiView : public CAutoScrollView
-   {
-   protected: // create from serialization only
+{
+protected: // create from serialization only
    CLogiView();
    DECLARE_DYNCREATE(CLogiView)
 
    // Attributes
-   public:
+public:
    CLogiDoc* GetDocument()
-      {
+   {
       return (CLogiDoc*)m_pDocument;
-      }
+   }
    void SetPageSize(CSize size);
    CRect GetInitialPosition();
 
    // Operations
-   public:
+public:
    void DocToClient(CRect& rect);
    void DocToClient(CPoint& point);
    void ClientToDoc(CPoint& point);
@@ -45,12 +45,12 @@ class CLogiView : public CAutoScrollView
    void PasteNative(COleDataObject& dataObject);
    void SetPage(int iPage);
 
-   protected:
+protected:
    void DisplayFindReplace(BOOL bFind);
    void RemoveFromFindReplace(CLogiObj* pObj);
 
    // Implementation
-   public:
+public:
    virtual ~CLogiView();
 
 #ifdef _DEBUG
@@ -61,7 +61,7 @@ class CLogiView : public CAutoScrollView
    // Overrides
    // ClassWizard generated virtual function overrides
    //{{AFX_VIRTUAL(CLogiView)
-   public:
+public:
    virtual void OnPrint( CDC* pDC, CPrintInfo* pInfo );
    virtual void OnDraw(CDC* pDC);  // overridden to Logi this view
    virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
@@ -70,15 +70,15 @@ class CLogiView : public CAutoScrollView
    virtual void OnActivateView(BOOL bActivate, CView* pActiveView, CView* pDeactiveView);
    virtual BOOL OnScrollBy(CSize sizeScroll, BOOL bDoScroll);
    virtual BOOL IsSelected(const CObject* pDocItem) const;
-   protected:
+protected:
    virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
    virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
    virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
    virtual void OnInitialUpdate(); // called first time after construct
-//   virtual BOOL PreTranslateMessage(MSG* pMsg); 
+   //   virtual BOOL PreTranslateMessage(MSG* pMsg); 
    //}}AFX_VIRTUAL
 
-   public:
+public:
    void DrawGrid(CDC* pDC);
    virtual void OnAutoScroll(CPoint point, BOOL bBefore);
 
@@ -101,7 +101,7 @@ class CLogiView : public CAutoScrollView
    CObList m_frObjects; // find/replace selection
 
    // Generated message map functions
-   protected:
+protected:
    //{{AFX_MSG(CLogiView)
    afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
    afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
@@ -221,13 +221,13 @@ class CLogiView : public CAutoScrollView
    afx_msg void OnUpdateDrawBus(CCmdUI* pCmdUI);
    afx_msg void OnDrawAnalyze();
    afx_msg void OnUpdateDrawAnalyze(CCmdUI* pCmdUI);
-	afx_msg void OnDrawTapedrive();
-	afx_msg void OnUpdateDrawTapedrive(CCmdUI* pCmdUI);
-	afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
-	afx_msg void OnEditUndo();
-	afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
-	afx_msg void OnEditRedo();
-	afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
+   afx_msg void OnDrawTapedrive();
+   afx_msg void OnUpdateDrawTapedrive(CCmdUI* pCmdUI);
+   afx_msg void OnRButtonDown(UINT nFlags, CPoint point);
+   afx_msg void OnEditUndo();
+   afx_msg void OnUpdateEditUndo(CCmdUI* pCmdUI);
+   afx_msg void OnEditRedo();
+   afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
    afx_msg void OnViewGotoPage();
    afx_msg void OnUpdateGotoPage(CCmdUI* pCmdUI);
    afx_msg LONG OnFindReplace(WPARAM wParam, LPARAM lParam);
@@ -235,12 +235,12 @@ class CLogiView : public CAutoScrollView
    afx_msg void OnEditReplace();
    afx_msg void OnDrawBisectwire();
    afx_msg void OnUpdateDrawBisectwire(CCmdUI* pCmdUI);
-	//}}AFX_MSG
+   //}}AFX_MSG
    afx_msg void OnUpdateIndicatorCycle(CCmdUI* pCmdUI);
    afx_msg void OnUpdateIndicatorPage(CCmdUI* pCmdUI);
    afx_msg void OnEscape();
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////

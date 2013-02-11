@@ -12,8 +12,8 @@ class CLogiRobotGate;
 /////////////////////////////////////////////////////////////////////////////
 
 class CLogiBitmapGate : public CLogiGate
-   {
-   protected:
+{
+protected:
    DECLARE_SERIAL(CLogiBitmapGate);
    CLogiBitmapGate();
 
@@ -26,7 +26,7 @@ class CLogiBitmapGate : public CLogiGate
    void LoadBase();
 
    // Implementation
-   public:
+public:
    CString m_csFileName;
    UINT m_uIndex;
    int m_iStyle;
@@ -42,8 +42,8 @@ class CLogiBitmapGate : public CLogiGate
    virtual void MoveTo(const CRect& position, CLogiView* pView = NULL);
    virtual void SetContacts();
 
-   protected:
+protected:
 
    friend class CRectTool;
-   }
+}
 ;

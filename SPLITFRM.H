@@ -8,18 +8,18 @@
 // CSplitFrame frame with splitter
 
 class CSplitFrame : public CMDIChildWnd
-   {
+{
    DECLARE_DYNCREATE(CSplitFrame)
-   protected:
+protected:
    CSplitFrame();          // protected constructor used by dynamic creation
 
    // Attributes
-   protected:
+protected:
    CSplitterWnd    m_wndSplitter;
-   public:
+public:
 
    // Operations
-   public:
+public:
 
    // Overrides
    // ClassWizard generated virtual function overrides
@@ -28,15 +28,15 @@ class CSplitFrame : public CMDIChildWnd
    //}}AFX_VIRTUAL
 
    // Implementation
-   public:
+public:
    virtual ~CSplitFrame();
-
+   void CSplitFrame::OnSysCommand(UINT nID, LONG lParam);
    // Generated message map functions
    //{{AFX_MSG(CSplitFrame)
    // NOTE - the ClassWizard will add and remove member functions here.
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   }
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////

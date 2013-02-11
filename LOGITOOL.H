@@ -7,9 +7,9 @@
 class CLogiView;
 
 class CLogiTool
-   {
+{
    // Constructors
-   public:
+public:
    CLogiTool(LogiShape nLogiShape);
 
    // Overridables
@@ -34,13 +34,13 @@ class CLogiTool
    static CPoint c_last;
    //   static CPoint c_lastt;
    static LogiShape c_LogiShape;
-   }
+}
 ;
 
 class CSelectTool : public CLogiTool
-   {
+{
    // Constructors
-   public:
+public:
    CSelectTool();
 
    // Implementation
@@ -55,13 +55,13 @@ class CSelectTool : public CLogiTool
    // Attributes
    CObList m_prevPositions; // original positions of moved objects
    BOOL m_bUserMove; // previous positions should be stored
-   }
+}
 ;
 
 class CGateTool : public CLogiTool
-   {
+{
    // Constructors
-   public:
+public:
    CGateTool(LogiShape nLogiShape);
 
    // Implementation
@@ -70,453 +70,453 @@ class CGateTool : public CLogiTool
    virtual void OnRButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
    virtual void OnMouseMove(CLogiView* pView, UINT nFlags, const CPoint& point);
    virtual BOOL OnSetCursor(CLogiView* pView, CWnd* pWnd, UINT nHitTest, UINT message);
-   }
+}
 ;
 
 class CANDGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CANDGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CXORGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CXORGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CORGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CORGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CINVERTGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CINVERTGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CTristateGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CTristateGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CBusGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CBusGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class COscillatorGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    COscillatorGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CClockGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CClockGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CTimerGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CTimerGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CLedGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CLedGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CSwitchGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CSwitchGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CSelectGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CSelectGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CBuzzerGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CBuzzerGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CNULLGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CNULLGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CLed7GateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CLed7GateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CAsciidisplayGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CAsciidisplayGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CAsciikeyboardGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CAsciikeyboardGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CGroundGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CGroundGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CPlusGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CPlusGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CPortinGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CPortinGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CPortoutGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CPortoutGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CReadfileGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CReadfileGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CSignalreceiverGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CSignalreceiverGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CSignalsenderGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CSignalsenderGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CAnalyzeGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CAnalyzeGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CSoundwaveGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CSoundwaveGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CWritefileGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CWritefileGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CFlipflopGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CFlipflopGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CKeypadGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CKeypadGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CBitmapGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CBitmapGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CCounterGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CCounterGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CRandomGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CRandomGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CBreakGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CBreakGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CBitbucketGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CBitbucketGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CNetworkGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CNetworkGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CRobotGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CRobotGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CMemoryGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CMemoryGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CTapedriveGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CTapedriveGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CMuxGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CMuxGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CAluGateTool : public CGateTool
-   {
+{
    // Constructors
-   public:
+public:
    CAluGateTool();
 
    // Implementation
    virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CWireTool : public CLogiTool
-   {
+{
    // Constructors
-   public:
+public:
    Anode* pStartAnode;
    Anode* pEndAnode;
    CLogiWire* m_pObj;
@@ -534,13 +534,13 @@ class CWireTool : public CLogiTool
    virtual void OnRButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
    virtual void OnMouseMove(CLogiView* pView, UINT nFlags, const CPoint& point);
    virtual BOOL OnSetCursor(CLogiView* pView, CWnd* pWnd, UINT nHitTest, UINT message);
-   }
+}
 ;
 
 class CTextTool : public CLogiTool
-   {
+{
    // Constructors
-   public:
+public:
    //   Anode* pStartAnode;
    //   Anode* pEndAnode;
    CLogiTextGate* m_pObj;
@@ -556,18 +556,18 @@ class CTextTool : public CLogiTool
    virtual void OnLButtonUp(CLogiView* pView, UINT nFlags, const CPoint& point);
    virtual void OnRButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
    virtual void OnMouseMove(CLogiView* pView, UINT nFlags, const CPoint& point);
-   }
+}
 ;
 
 class CPreviousPosition : public CObject
-   {
-   public:
+{
+public:
    CPreviousPosition(CLogiObj *pLogiObj, CRect &rect)
       : m_pLogiObj(pLogiObj), m_rect(rect) {};
 
    CLogiObj *m_pLogiObj;
    CRect m_rect;
-   }
+}
 ;
 
 ////////////////////////////////////////////////////////////////////////////

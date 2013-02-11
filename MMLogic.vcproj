@@ -86,7 +86,7 @@
 				RuntimeLibrary="2"
 				TreatWChar_tAsBuiltInType="TRUE"
 				UsePrecompiledHeader="3"
-				WarningLevel="4"
+				WarningLevel="0"
 				Detect64BitPortabilityProblems="FALSE"
 				DebugInformationFormat="3"/>
 			<Tool
@@ -605,9 +605,6 @@
 				RelativePath="Mainfrm.h">
 			</File>
 			<File
-				RelativePath=".\MMLogic.h">
-			</File>
-			<File
 				RelativePath="Network.h">
 			</File>
 			<File
@@ -665,9 +662,6 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &q
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath=".\resource.h">
-			</File>
-			<File
 				RelativePath="Robot.h">
 			</File>
 			<File
@@ -677,16 +671,13 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &q
 				RelativePath="Splitfrm.h">
 			</File>
 			<File
-				RelativePath=".\stdafx.h">
-			</File>
-			<File
 				RelativePath="Stdafx.h">
 			</File>
 			<File
 				RelativePath="Tipdlg.h">
 			</File>
 			<File
-				RelativePath="toolbar.h">
+				RelativePath=".\Toolbar.h">
 			</File>
 			<File
 				RelativePath="Undo.h">

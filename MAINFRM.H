@@ -5,16 +5,16 @@
 //
 
 class CMainFrame : public CMDIFrameWnd
-   {
+{
    DECLARE_DYNAMIC(CMainFrame)
-   public:
+public:
    CMainFrame();
 
    // Attributes
-   public:
+public:
 
    // Operations
-   public:
+public:
 
    // Overrides
    // ClassWizard generated virtual function overrides
@@ -23,7 +23,7 @@ class CMainFrame : public CMDIFrameWnd
    //}}AFX_VIRTUAL
 
    // Implementation
-   public:
+public:
    virtual ~CMainFrame();
 #ifdef _DEBUG
    virtual void AssertValid() const;
@@ -35,14 +35,14 @@ class CMainFrame : public CMDIFrameWnd
    //   CRobotWnd foo;
    CMDIChildWnd *bar;
 
-   protected:
+protected:
    afx_msg void OnInitMenu(CMenu* pMenu);
    // control bar embedded members
    CStatusBar m_wndStatusBar;
    CToolBarEx m_wndToolBar;
 
    // Generated message map functions
-   protected:
+protected:
    //{{AFX_MSG(CMainFrame)
    afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
    afx_msg void OnHelpTutorial();
@@ -50,12 +50,12 @@ class CMainFrame : public CMDIFrameWnd
    afx_msg void OnHelpReleasenotes();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
-   public:
-	   afx_msg void OnHelpIndex();
-	   afx_msg void OnHelp();
-	   afx_msg void OnContextHelp();
-	   afx_msg void OnHelpFinder();
-   }
+public:
+   afx_msg void OnHelpIndex();
+   afx_msg void OnHelp();
+   afx_msg void OnContextHelp();
+   afx_msg void OnHelpFinder();
+}
 ;
 
 /////////////////////////////////////////////////////////////////////////////
