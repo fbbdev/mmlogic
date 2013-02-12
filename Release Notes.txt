@@ -67,8 +67,7 @@ Fix bug where accelerators disabled while running simulation but not while pause
         they better as separate files?
 --TODO: implement auto-close blank document when opening document.
 --TODO: Add ability to draw lines at any angle.
---TODO: Fix Ctrl-Drag with FlipFlop with preset/reset. Flip-flop copies perfect with Copy/paste but omits pre/reset
-        with Ctrl-Drag
+o Fixed Ctrl-Drag on a FlipFlop with preset/reset so it now clones properly.
 
 ===================
 Need documentation:

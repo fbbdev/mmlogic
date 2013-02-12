@@ -6978,7 +6978,7 @@ CLogiObj* CLogiFlipflopGate::Clone(CLogiDoc* pDoc)
 {
    ASSERT_VALID(this);
 
-   CLogiFlipflopGate* pClone = new CLogiFlipflopGate(m_position, Name, m_iPage, pDoc, m_iStyle, m_bEdge);
+   CLogiFlipflopGate* pClone = new CLogiFlipflopGate(m_position, Name, m_iPage, pDoc, m_iStyle, m_bEdge, m_bPresetClear);
 
    ASSERT_VALID(pClone);
 
