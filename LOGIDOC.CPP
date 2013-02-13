@@ -2600,7 +2600,7 @@ void CLogiDoc::OnSimulateRun()
       }
       if (m_bForceStopAndCloseDoc)
       {
-         OnCloseDocument(); 
+         AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_FILE_CLOSE, 0L);
       }
 
    }
@@ -2810,7 +2810,7 @@ BOOL CLogiDoc::SaveModified()
          m_bForceStopAndCloseDoc = FALSE;
          return FALSE;
       case IDOK:
-         AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_SIMULATE_STOP, 0L);
+         CLogiDoc::OnSimulateStop();
          //need to check if we are closing doc or exit app and set appropriate var to TRUE
          if(m_bCloseNotExit)
          {
