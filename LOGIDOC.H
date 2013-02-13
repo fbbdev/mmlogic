@@ -119,6 +119,9 @@ public:
    BOOL m_bForceStopAndCloseDoc;
    BOOL m_bCloseNotExit;
 
+   //does the user want to stop simulation to run another?
+   BOOL m_bForceStopSim;
+
    BOOL m_bKeepGoing;
    BOOL m_bWasUp;
    BOOL m_bPause;
@@ -199,15 +202,11 @@ public:
    afx_msg void OnUpdateViewColorWires(CCmdUI* pCmdUI);
    afx_msg void OnEscape();
 
-   //afx_msg void CView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags);
-   //afx_msg void CLogiDoc::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
-   //afx_msg void CLogiDoc::OnKeyUp(UINT nChar, UINT nRepCnt, UINT nFlags);
-
-
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
 public:
    void OnFileClose();
+   void OnSimulateRealRun();
 }
 ;
 
