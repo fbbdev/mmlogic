@@ -745,7 +745,7 @@ CAPTION "About Multimedia Logic"
 FONT 8, "MS Shell Dlg", 0, 0, 0x0
 BEGIN
     ICON            IDR_MAINFRAME,IDC_STATIC,11,17,20,20
-    LTEXT           "Multimedia Logic 1.6",IDC_STATIC,40,10,119,8
+    LTEXT           "Multimedia Logic 1.6.1",IDC_STATIC,40,10,119,8
     LTEXT           "Copyright © 1993-2004 Softronics Inc.",IDC_STATIC,40,25,
                     167,8
     LTEXT           "All Rights Reserved.",IDC_STATIC,40,35,167,8

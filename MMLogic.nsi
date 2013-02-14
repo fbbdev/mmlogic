@@ -1,11 +1,11 @@
-;MultiMedia Logic 1.6
+;Multimedia Logic 1.6
 ;
 
 ;--------------------------------
 ;Defines
 
-  !define APPLICATION_NAME "MultiMedia Logic"
-  !define APPLICATION_VERSION "1.6"
+  !define APPLICATION_NAME "Multimedia Logic"
+  !define APPLICATION_VERSION "1.6.1"
   !define APPLICATION_PUBLISHER ""
   !define APPLICATION_WEB_SITE "http://sourceforge.net/projects/multimedialogic/"
   !define INSTALL_LICENSE "LICENSE.TXT"
@@ -14,7 +14,7 @@
 
   !define APPLICATION_VERSION_MAJOR 1
   !define APPLICATION_VERSION_MINOR 6
-  !define APPLICATION_VERSION_REVISION 0
+  !define APPLICATION_VERSION_REVISION 1
 ;--------------------------------
 ;Include Modern UI
 
@@ -34,12 +34,12 @@
   ;Get install folder from registry if available
   InstallDirRegKey HKCU "Software\${APPLICATION_PUBLISHER}\${APPLICATION_NAME}" ""
 
-  VIProductVersion "1.6.0.0"
+  VIProductVersion "1.6.1.0"
   VIAddVersionKey "FileDescription" "${APPLICATION_NAME} Installer"
-  VIAddVersionKey "CompanyName" "${APPLICATION_PUBLISHER}"
+;  VIAddVersionKey "CompanyName" "${APPLICATION_PUBLISHER}"
   VIAddVersionKey "ProductName" "${APPLICATION_NAME} Installer"
   VIAddVersionKey "Comments" "${APPLICATION_NAME} Installer"
-  VIAddVersionKey "LegalCopyright" "${APPLICATION_PUBLISHER}"
+;  VIAddVersionKey "LegalCopyright" "${APPLICATION_PUBLISHER}"
   VIAddVersionKey "FileVersion" "${APPLICATION_VERSION}"
 
 ;--------------------------------
@@ -118,8 +118,8 @@ Section "Install"
 
   ;Shortcuts
   CreateDirectory "$SMPROGRAMS\$STARTMENU_FOLDER"
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\MultiMedia Logic.lnk" "$INSTDIR\MMLogic.exe"
-  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\MultiMedia Logic Examples.lnk" "$INSTDIR\Examples"
+  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Multimedia Logic.lnk" "$INSTDIR\MMLogic.exe"
+  CreateShortCut "$SMPROGRAMS\$STARTMENU_FOLDER\Multimedia Logic Examples.lnk" "$INSTDIR\Examples"
 
   ;File association
   WriteRegStr HKCR ".lgi" "" "MMLogic.File"
@@ -156,7 +156,7 @@ Section "Uninstall"
   RMDir /r "$INSTDIR\Examples"
   Delete "$INSTDIR\LICENSE.TXT"
   Delete "$INSTDIR\Multimedia Logic Pre-Release notes.txt"
-  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\MulitMedia Logic.lnk"
+  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Mulitmedia Logic.lnk"
   Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall ${APPLICATION_NAME}.lnk"
   RMDir "$SMPROGRAMS\$STARTMENU_FOLDER\"
   Delete "$INSTDIR\Uninstall.exe"
@@ -185,12 +185,12 @@ Function .onInit
 checkOtherVersions:
   ;Check if any version as early as Pre1.6 or newer is installed
   ReadRegStr $R0 HKLM \
-  "Software\Microsoft\Windows\CurrentVersion\Uninstall\MultiMedia Logic" \
+  "Software\Microsoft\Windows\CurrentVersion\Uninstall\Multimedia Logic" \
   "UninstallString"
   StrCmp $R0 "" done
 
   ReadRegStr $R1 HKLM \
-  "Software\Microsoft\Windows\CurrentVersion\Uninstall\MultiMedia Logic" \
+  "Software\Microsoft\Windows\CurrentVersion\Uninstall\Multimedia Logic" \
   "DisplayVersion"
 
   MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
