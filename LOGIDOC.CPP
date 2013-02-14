@@ -822,7 +822,7 @@ void CLogiDoc::Simulate(UINT iMode)
    m_bForceStopAndExitApp = FALSE;
    m_bForceStopAndCloseDoc = FALSE;
    m_bCloseNotExit = FALSE;
- //  m_bForceStopSim = FALSE;
+   m_bForceStopAndChangeDoc = FALSE;
 
    // If palette is up shut it down on 1st cycle
 
@@ -2548,35 +2548,20 @@ void CLogiDoc::OnSimulateRun()
    POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition();
    CDocTemplate* pTemplate = AfxGetApp()->GetNextDocTemplate( pos );
 
-   // If any other document is running the Simulator then tell user
-   // INPROGRESS_TODO: put up dialog box getting OK from user to stop other Simulator
-
+   // If any other document is simulating we'll give the user option to stop it to start another
    POSITION pos2 = pTemplate->GetFirstDocPosition();
 
    while (pos2)
    {
       pDocument = (CLogiDoc*)pTemplate->GetNextDoc(pos2);
 
-      if ((pDocument != NULL) && (pDocument != this))
-      {
-         if (pDocument->m_bKeepGoing)
-         {
-            //::MessageBox(::GetFocus(),"You must PAUSE or STOP your other simulation before starting this one","Error", MB_OK | MB_ICONEXCLAMATION);
-            //TODO: Ask user if they want to stop other simulation and run this one.
-            msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and start this one?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
-
-            switch (msgboxID)
-            {
-            case IDCANCEL:
-               return;
-            case IDOK:
-               m_bForceStopSim = TRUE;
-               pDocument->OnSimulateStop();
-               //::MessageBox(::GetFocus(),"You must PAUSE or STOP your other simulation before starting this one","Error", MB_OK | MB_ICONEXCLAMATION);
-            }
-            // if I return then the previously running simulation stops but the new one does not start running.
-            return;
+      if (pDocument != NULL && pDocument != this && pDocument->m_bKeepGoing) {
+         msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and run this one?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
+         if (msgboxID == IDOK) {
+            pDocument->m_bForceStopAndChangeDoc = TRUE;
+            pDocument->OnSimulateStop();
          }
+         return;
       }
    }
 
@@ -2613,8 +2598,13 @@ void CLogiDoc::OnSimulateRun()
       {
          AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_FILE_CLOSE, 0L);
       }
+      if (m_bForceStopAndChangeDoc) {
+         AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_SIMULATE_RUN, 0L);
+      }
+
    }
 }
+
 
 void CLogiDoc::OnUpdateSimulateRun(CCmdUI* pCmdUI)
 {
@@ -2634,13 +2624,6 @@ void CLogiDoc::OnSimulateStop()
    // call update for each view, to draw the wires black
    POSITION vpos = GetFirstViewPosition();
    while (vpos != NULL)  ((CLogiView*)GetNextView(vpos))->OnUpdate(NULL, HINT_UPDATE_WINDOW, NULL);
-   if (m_bForceStopSim)
-   {
-      //This may be the right place to put this.
-      ::MessageBox(::GetFocus(),"ForceStopToRun","Error", MB_OK | MB_ICONEXCLAMATION);
-      m_bForceStopSim = FALSE;
-      AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_SIMULATE_RUN, 0L);
-   }
 }
 
 void CLogiDoc::OnUpdateSimulateStop(CCmdUI* pCmdUI)

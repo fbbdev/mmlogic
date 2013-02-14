@@ -120,7 +120,7 @@ public:
    BOOL m_bCloseNotExit;
 
    //does the user want to stop simulation to run another?
-   BOOL m_bForceStopSim;
+   BOOL m_bForceStopAndChangeDoc;
 
    BOOL m_bKeepGoing;
    BOOL m_bWasUp;
