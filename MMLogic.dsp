@@ -2885,7 +2885,7 @@ SOURCE=.\MMLogic.nsi
 # End Source File
 # Begin Source File
 
-SOURCE=".\Release Notes.txt"
+SOURCE=".\README.TXT"
 # End Source File
 # Begin Source File
 

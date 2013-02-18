@@ -206,7 +206,6 @@ public:
    DECLARE_MESSAGE_MAP()
 public:
    void OnFileClose();
-   void OnSimulateRealRun();
 }
 ;
 

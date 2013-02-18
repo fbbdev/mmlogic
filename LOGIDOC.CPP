@@ -890,7 +890,7 @@ void CLogiDoc::Simulate(UINT iMode)
       }
 
       // If any keyboard events then process just one
-
+//TODO: Look here for hotkeys while simulating?
       if (!KeyboardMessageQueue.IsEmpty())
       {
 
@@ -2548,13 +2548,14 @@ void CLogiDoc::OnSimulateRun()
    POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition();
    CDocTemplate* pTemplate = AfxGetApp()->GetNextDocTemplate( pos );
 
-   // If any other document is simulating we'll give the user option to stop it to start another
+   // Look to see if a document is already running. If it is, then it must be
+   // stopped before another can be started. So, ask the user if they want to
+   // stop the running doc and start this one.
+
    POSITION pos2 = pTemplate->GetFirstDocPosition();
 
-   while (pos2)
-   {
+   while (pos2) {
       pDocument = (CLogiDoc*)pTemplate->GetNextDoc(pos2);
-
       if (pDocument != NULL && pDocument != this && pDocument->m_bKeepGoing) {
          msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and run this one?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
          if (msgboxID == IDOK) {
@@ -2568,41 +2569,34 @@ void CLogiDoc::OnSimulateRun()
    //I'm not entirely sure where to put this:
    m_bSimulating = TRUE;
 
-   if (!m_bKeepGoing)
-   {
-      //OnFileSave();
+   if (m_bKeepGoing)
+      return;
 
-      if (m_bPause)
-      {
-         m_bPause = 0;
-      }
-      else
-      {
-         if (!Reset(ID_SIMULATE_RUN))
-         {
-            // Return simulation to RESET mode.
-            Reset(ID_SIMULATE_RESET);
-            return;
-         }
-      }
-
-      Simulate(ID_SIMULATE_RUN);
-      //Now that the simulation has been stopped, let's check if the reason was that
-      //the user requested to stop simulation and exit.
-      if (m_bForceStopAndExitApp)
-      {
-         //         ::MessageBox(::GetFocus(),"ExitApp","Error", MB_OK | MB_ICONEXCLAMATION);
-         AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
-      }
-      if (m_bForceStopAndCloseDoc)
-      {
-         AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_FILE_CLOSE, 0L);
-      }
-      if (m_bForceStopAndChangeDoc) {
-         AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_SIMULATE_RUN, 0L);
-      }
-
+   if (m_bPause) {
+      m_bPause = 0;
    }
+   else if (!Reset(ID_SIMULATE_RUN))
+   {
+      // Return simulation to RESET mode.
+      Reset(ID_SIMULATE_RESET);
+      return;
+   }
+
+
+   Simulate(ID_SIMULATE_RUN);
+   // Now that the simulation has been stopped, let's check to see what
+   // the user wanted to happen next, if anything...
+
+   if (m_bForceStopAndExitApp) {
+      AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_APP_EXIT, 0L);
+   }
+   if (m_bForceStopAndCloseDoc) {
+      AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_FILE_CLOSE, 0L);
+   }
+   if (m_bForceStopAndChangeDoc) {
+      AfxGetApp()->m_pMainWnd->PostMessage(WM_COMMAND, ID_SIMULATE_RUN, 0L);
+   }
+
 }
 
 
@@ -2781,6 +2775,7 @@ void CLogiDoc::OnUpdateSimulateProbe(CCmdUI* pCmdUI)
 BOOL CLogiDoc::SaveModified()
 {
    int msgboxID;
+   CLogiDoc *pDocument;
    // This check fixes bug where palette does not
    // reappear if user closes window during pause state.
    // Also necessary to ensure gates get the Initialize(ID_SIMULATE_RESET)
@@ -2788,40 +2783,56 @@ BOOL CLogiDoc::SaveModified()
    if (m_bPause)
       Reset(ID_SIMULATE_RESET);
 
-   // If m_bKeepGoing is set, then execution is currently in the Simulate()
-   // method and we got here by the Simulate() message loop. It is thus
-   // not safe to close, because Simulate() would still be running
-   // when this method returns. So, prompt the user to choose to stop the simulation
-   // and exit or to continue the simulation.
+   // Clear flags used to indicate what to do after simulation stops.
+   m_bForceStopAndExitApp = FALSE;
+   m_bForceStopAndCloseDoc = FALSE;
 
-   if (m_bKeepGoing)
+
+   POSITION pos = AfxGetApp()->GetFirstDocTemplatePosition();
+   CDocTemplate* pTemplate = AfxGetApp()->GetNextDocTemplate( pos );
+
+   // For any document where m_bKeepGoing is set, then the app is currently in the Simulate()
+   // method and we got here by the Simulate() message loop. It is thus
+   // not safe to just close, because Simulate() would still be running
+   // when this method returns. So, prompt the user to choose to stop the simulation
+   // or continue the simulation, and set a flag variable
+   // to indicate what to do after falling out of the Simulate() message loop.
+
+   // If user is closing app, find if there is a running document,
+   // in which case we ask if the user wants to stop the simulation,
+   // and exit. If they do, stop the running document, and check
+   // for unsaved modified docs. User will have many chances to abort
+   // the exit before the splash down.
+
+   POSITION pos2 = pTemplate->GetFirstDocPosition();
+
+   while (pos2)
    {
-      if(m_bCloseNotExit)
-      {
-         msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and close?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
-      } else
-      {
+      pDocument = (CLogiDoc*)pTemplate->GetNextDoc(pos2);
+
+      if (pDocument != NULL && pDocument->m_bKeepGoing && !pDocument->m_bCloseNotExit) {
          msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and exit?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
-      }
-      switch (msgboxID)
-      {
-      case IDCANCEL:
-         m_bForceStopAndExitApp = FALSE;
-         m_bForceStopAndCloseDoc = FALSE;
-         return FALSE;
-      case IDOK:
-         CLogiDoc::OnSimulateStop();
-         //need to check if we are closing doc or exit app and set appropriate var to TRUE
-         if(m_bCloseNotExit)
-         {
-            m_bForceStopAndCloseDoc = TRUE;
-         } else
-         {
-            m_bForceStopAndExitApp = TRUE;
+         if (msgboxID == IDOK) {
+            pDocument->m_bForceStopAndExitApp = TRUE;
+            pDocument->OnSimulateStop();
          }
          return FALSE;
       }
    }
+
+   // Handle the case where the user chose to close a window while it was running
+   // in simulation mode.
+
+   if (m_bKeepGoing && m_bCloseNotExit) {
+      msgboxID = ::MessageBox(::GetFocus(),"Stop the running simulation and close?","Multimedia Logic", MB_OKCANCEL | MB_ICONQUESTION);
+      if (msgboxID == IDOK) {
+         OnSimulateStop();
+         m_bForceStopAndCloseDoc = TRUE;
+      }
+      return FALSE;
+   }
+
+   // We get here only if a running document has been stopped.
    return CDocument::SaveModified();
 }
 
@@ -2939,12 +2950,17 @@ void CLogiDoc::OnUpdateViewColorWires(CCmdUI* pCmdUI)
       pCmdUI->SetCheck(0);
 }
 
-
 //OnEscape is intended to Stop or Reset the Simulator if it is Running or Paused
 //In draw mode it is intended to make the Selector the active tool
 //TODO: Get this working properly
 void CLogiDoc::OnEscape()
 {
+::MessageBox(::GetFocus(),"Who hit escape?","Error", MB_OK | MB_ICONEXCLAMATION);
+/* When accel keys in simulation mode is fixed, this will be a problem.
+   Processing escape as described below may interfere with the keyboard device.
+   Must not use any normal ASCII (code < 127) key characters as accel keys when a
+   keyboard device has the focus.
+
    if (m_bKeepGoing)
    {
       // || m_bPause
@@ -2955,9 +2971,8 @@ void CLogiDoc::OnEscape()
    else
       //CLogiView::OnDrawSelector();
       return;
+*/
 }
-
-
 
 // Returns modifiable list of page names.
 

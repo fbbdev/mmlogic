@@ -113,7 +113,7 @@ Section "Install"
   File "Release\mmlogic.chm"
   File /r "Examples"
   File "LICENSE.TXT"
-  File "Release Notes.txt"
+  File "README.TXT"
   File "TIPS.TXT"
 
   ;Shortcuts
@@ -155,8 +155,10 @@ Section "Uninstall"
   Delete "$INSTDIR\mmlogic.chm"
   RMDir /r "$INSTDIR\Examples"
   Delete "$INSTDIR\LICENSE.TXT"
+  Delete "$INSTDIR\README.TXT"
   Delete "$INSTDIR\Multimedia Logic Pre-Release notes.txt"
-  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Mulitmedia Logic.lnk"
+  Delete "$INSTDIR\Release Notes.txt"
+  Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Multimedia Logic.lnk"
   Delete "$SMPROGRAMS\$STARTMENU_FOLDER\Uninstall ${APPLICATION_NAME}.lnk"
   RMDir "$SMPROGRAMS\$STARTMENU_FOLDER\"
   Delete "$INSTDIR\Uninstall.exe"
@@ -174,7 +176,7 @@ Function .onInit
   ReadRegStr $R0 HKLM \
   "Software\Microsoft\Windows\CurrentVersion\Uninstall\{1F9A5CFA-BF15-46E7-A723-A654EA29D6F7}" \
   "UninstallString"
-  StrCmp $R0 "" checkOtherVersions
+  StrCmp $R0 "" checkPre1_6
  
   MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
   "${APPLICATION_NAME} 1.4 is currently installed. $\n$\nClick `OK` to remove the \
@@ -182,8 +184,25 @@ Function .onInit
   IDOK uninstV1.4
   Abort
  
+checkPre1_6:
+  ;Check if Pre1.6 is installed
+  ReadRegStr $R0 HKLM \
+  "Software\Microsoft\Windows\CurrentVersion\Uninstall\MultiMedia Logic" \
+  "UninstallString"
+  StrCmp $R0 "" done
+
+  ReadRegStr $R1 HKLM \
+  "Software\Microsoft\Windows\CurrentVersion\Uninstall\MultiMedia Logic" \
+  "DisplayVersion"
+
+  MessageBox MB_OKCANCEL|MB_ICONEXCLAMATION \
+  "${APPLICATION_NAME} $R1 is currently installed. $\n$\nClick `OK` to remove the \
+  previous version or `Cancel` to cancel this upgrade." \
+  IDOK uninst
+  Abort
+
 checkOtherVersions:
-  ;Check if any version as early as Pre1.6 or newer is installed
+  ;Check if any version as early as 1.6.1 or newer is installed
   ReadRegStr $R0 HKLM \
   "Software\Microsoft\Windows\CurrentVersion\Uninstall\Multimedia Logic" \
   "UninstallString"

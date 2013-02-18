@@ -33,7 +33,7 @@
 				ProgramDataBaseFileName="Debug/"
 				BrowseInformation="1"
 				BrowseInformationFile="Debug/"
-				WarningLevel="4"
+				WarningLevel="0"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"/>
 			<Tool
@@ -1998,7 +1998,7 @@ echo.
 			RelativePath=".\MMLogic.nsi">
 		</File>
 		<File
-			RelativePath=".\Release Notes.txt">
+			RelativePath=".\Readme.txt">
 		</File>
 		<File
 			RelativePath=".\Tips.txt">

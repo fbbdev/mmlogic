@@ -101,7 +101,46 @@ void CLogiBitmapGate::ResizeRect()
    {
       if (m_iStyle == 1)
       {
-         m_size = CSize(BITX,BITY);
+         //m_size = CSize(BITX,BITY);
+         //The previous line just gets the size of the BMP device icon. The code added below opens our BMP
+         //and get the actual size.
+
+         CString csTemp;
+         CFile cf;
+         UINT m_uIndex = 0;
+
+         CString csCheck = m_csFileName.Right(5);
+         csCheck.MakeUpper();
+
+         if (csCheck != "0.BMP") return;
+
+         CString csFullPath;
+         CString csPathName = m_pDocument->GetPathName();
+
+         RelativeToFullPath(m_csFileName, csPathName, csFullPath);
+
+         csTemp.Format("%s%d.BMP",csFullPath.Left(csFullPath.GetLength()-5),m_uIndex);
+
+         if (!cf.Open(csTemp, CFile::modeRead | CFile::shareDenyWrite))
+         {
+            ::MessageBox(::GetFocus(), csTemp, "Could not open File", MB_OK | MB_ICONEXCLAMATION);
+            //            pDoc->Halt();
+            //            pDoc->m_bKeepGoing = FALSE;
+            return;
+         }
+
+         if (!m_cdPictures[m_uIndex].Read(&cf))
+         {
+            ::MessageBox(::GetFocus(), csTemp, "Could not load File", MB_OK | MB_ICONEXCLAMATION);
+            //            pDoc->Halt();
+            //            pDoc->m_bKeepGoing = FALSE;
+            return;
+         }
+
+         cf.Close();
+
+         m_bLoaded = TRUE;
+         m_size = m_cdPictures[m_uIndex].GetDimensions();
       }
       else
       {
