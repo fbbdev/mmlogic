@@ -2542,6 +2542,8 @@ void CLogiDoc::OnSimulateRun()
 {
    CLogiDoc *pDocument;
    int msgboxID;
+   //Load accelerator table
+   //m_haccel = LoadAccelerators(AfxGetInstanceHandle() ,MAKEINTRESOURCE(IDR_LOGICLTYPE_CNTR_IP));
 
    // Get pointer to our one and only CDocTemplate
 

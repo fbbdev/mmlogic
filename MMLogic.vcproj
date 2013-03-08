@@ -724,6 +724,9 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &q
 				RelativePath="Res\BITMAP1.BMP">
 			</File>
 			<File
+				RelativePath=".\Res\bitmap2.bmp">
+			</File>
+			<File
 				RelativePath="RES\BMP.BMP">
 			</File>
 			<File

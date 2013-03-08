@@ -32,6 +32,7 @@ END_MESSAGE_MAP()
 
 CLogiApp::CLogiApp()
 {
+   	EnableHtmlHelp();
    // TODO: add construction code here,
    // Place all significant initialization in InitInstance
 }
@@ -90,7 +91,7 @@ BOOL CLogiApp::InitInstance()
    // enable file manager drag/drop and DDE Execute open
    m_pMainWnd->DragAcceptFiles();
    EnableShellOpen();
-   RegisterShellFileTypes();
+   RegisterShellFileTypes(TRUE);
 
    // simple command line parsing
    if (m_lpCmdLine[0] == '\0')

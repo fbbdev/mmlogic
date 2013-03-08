@@ -1,11 +1,11 @@
-;Multimedia Logic 1.6
+;Multimedia Logic 1.6.2
 ;
 
 ;--------------------------------
 ;Defines
 
   !define APPLICATION_NAME "Multimedia Logic"
-  !define APPLICATION_VERSION "1.6.1"
+  !define APPLICATION_VERSION "1.6.2"
   !define APPLICATION_PUBLISHER ""
   !define APPLICATION_WEB_SITE "http://sourceforge.net/projects/multimedialogic/"
   !define INSTALL_LICENSE "LICENSE.TXT"
@@ -14,7 +14,7 @@
 
   !define APPLICATION_VERSION_MAJOR 1
   !define APPLICATION_VERSION_MINOR 6
-  !define APPLICATION_VERSION_REVISION 1
+  !define APPLICATION_VERSION_REVISION 2
 ;--------------------------------
 ;Include Modern UI
 
@@ -34,7 +34,7 @@
   ;Get install folder from registry if available
   InstallDirRegKey HKCU "Software\${APPLICATION_PUBLISHER}\${APPLICATION_NAME}" ""
 
-  VIProductVersion "1.6.1.0"
+  VIProductVersion "1.6.2.0"
   VIAddVersionKey "FileDescription" "${APPLICATION_NAME} Installer"
 ;  VIAddVersionKey "CompanyName" "${APPLICATION_PUBLISHER}"
   VIAddVersionKey "ProductName" "${APPLICATION_NAME} Installer"

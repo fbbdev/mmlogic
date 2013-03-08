@@ -51,10 +51,12 @@ protected:
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
 public:
-   afx_msg void OnHelpIndex();
+//   afx_msg void OnHelpIndex();
    afx_msg void OnHelp();
    afx_msg void OnContextHelp();
-   afx_msg void OnHelpFinder();
+//   afx_msg void OnHelpFinder();
+   afx_msg void OnDDECommand();
+   afx_msg void OnSyscommand();
 }
 ;
 

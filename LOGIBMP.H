@@ -31,7 +31,7 @@ public:
    UINT m_uIndex;
    int m_iStyle;
    BOOL m_bPlayground;
-   CDib m_cdPictures[16];
+   CDib m_cdPictures[256];
    CDib m_cdPicture;
    BOOL m_bLoaded;
    CLogiRobotGate* m_Robot[16];

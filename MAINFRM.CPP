@@ -45,6 +45,7 @@ BEGIN_MESSAGE_MAP(CMainFrame, CMDIFrameWnd)
    ON_COMMAND(ID_DEFAULT_HELP, CMainFrame::OnHelpIndex)
    ON_COMMAND(ID_HELP_FINDER, CMainFrame::OnHelpFinder)
 
+   ON_COMMAND(ON_SYSCOMMAND, OnSyscommand)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -326,7 +327,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
    m_wndPaletteBar.GetParentFrame()->GetWindowRect(&rect);
    crect = rect;
 
-   // Get palette position from .INI and width from actual hiden window
+   // Get palette position from .INI and width from actual hidden window
 
    x = pWinApp->GetProfileInt("Palette", "X", 0);
    y = pWinApp->GetProfileInt("Palette", "Y", 0);
@@ -337,7 +338,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
    CheckWindow(&x, &y, &w, &h);
 
-   // now move palette to validated site hiden or not
+   // now move palette to validated site hidden or not
 
    m_wndPaletteBar.GetParentFrame()->SetWindowPos(NULL, x, y, 0, 0, SWP_NOSIZE);
 
@@ -444,7 +445,7 @@ void CMainFrame::OnInitMenu(CMenu* pMenu)
 
 void CMainFrame::OnHelpTutorial()
 {
-   ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\tutorial.htm");
+   ::HtmlHelp(::GetDesktopWindow(), "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\tutorial.htm");
 }
 
 void CMainFrame::OnHelpExamples()
@@ -473,6 +474,11 @@ void CMainFrame::OnHelpReleasenotes()
    RelativeToFullPath(csFilePath, csHelpPath, csFullPath);
 
    LaunchFile(csFullPath);
+}
+
+void CMainFrame::OnDDECommand()
+{
+   ::MessageBox(::GetFocus(),"Who opened an LGI file?","Error", MB_OK | MB_ICONEXCLAMATION);
 }
 
 /*void WinHelp(DWORD dwData, UINT nCmd) 
@@ -555,10 +561,12 @@ static HRESULT GetComCtlVersion(LPDWORD pdwMajor, LPDWORD pdwMinor)
 
    return E_FAIL;
 }
-void CMainFrame::OnHelpIndex()
-{
-   ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_INDEX, 0);
-}
+//void CMainFrame::OnHelpIndex()
+//{
+//HWND hWnd = ::GetWindow(AfxGetApp()->m_pMainWnd->m_hWnd, GW_HWNDFIRST);
+//
+//   ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_INDEX, 0);
+//}
 
 void CMainFrame::OnHelp()
 {
@@ -570,8 +578,15 @@ void CMainFrame::OnContextHelp()
    ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_INDEX, 0);
 }
 
-void CMainFrame::OnHelpFinder()
-{
-   ::HtmlHelp(NULL, "mmlogic.chm", HH_HELP_FINDER, NULL);
-}
+//void CMainFrame::OnHelpFinder()
+//{
+//   ::HtmlHelp(NULL, "mmlogic.chm", HH_HELP_FINDER, NULL);
+//}
 
+
+void CMainFrame::OnSyscommand()
+{
+CMDIFrameWnd::OnHelpFinder();
+//CWinApp::OnHelpFinder();
+//CWnd::OnHelpFinder();
+}

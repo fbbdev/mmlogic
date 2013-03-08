@@ -26,6 +26,7 @@ CSplitFrame::~CSplitFrame()
 
 BOOL CSplitFrame::OnCreateClient(LPCREATESTRUCT /*lpcs*/, CCreateContext* pContext)
 {
+   m_haccel = LoadAccelerators(AfxGetInstanceHandle() ,MAKEINTRESOURCE(IDR_LOGICLTYPE_CNTR_IP));
    return m_wndSplitter.Create(this,
       2, 2,       // TODO: adjust the number of rows, columns
       CSize(10, 10),  // TODO: adjust the minimum pane size

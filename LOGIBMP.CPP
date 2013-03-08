@@ -19,7 +19,7 @@ CLogiBitmapGate::CLogiBitmapGate()
    for (int i=0;i<16;i++) m_Robot[i] = NULL;
 }
 
-CLogiBitmapGate::CLogiBitmapGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iStyle, BOOL bPlayground, const char *pFileName) : CLogiGate(position, name, ipage, pdoc, 0, 4, IDB_TEXT, bitmapgate)
+CLogiBitmapGate::CLogiBitmapGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iStyle, BOOL bPlayground, const char *pFileName) : CLogiGate(position, name, ipage, pdoc, 0, 8, IDB_BITMAP2, bitmapgate)
 {
 
    m_csFileName = pFileName;
@@ -31,7 +31,7 @@ CLogiBitmapGate::CLogiBitmapGate(const CRect& position, const char *name, int ip
 
    if (m_iStyle == 1)
    {
-      Inputs = 4;
+      Inputs = 8;
    }
    else
    {
@@ -101,46 +101,57 @@ void CLogiBitmapGate::ResizeRect()
    {
       if (m_iStyle == 1)
       {
-         //m_size = CSize(BITX,BITY);
-         //The previous line just gets the size of the BMP device icon. The code added below opens our BMP
-         //and get the actual size.
-
-         CString csTemp;
-         CFile cf;
-         UINT m_uIndex = 0;
-
-         CString csCheck = m_csFileName.Right(5);
-         csCheck.MakeUpper();
-
-         if (csCheck != "0.BMP") return;
-
-         CString csFullPath;
-         CString csPathName = m_pDocument->GetPathName();
-
-         RelativeToFullPath(m_csFileName, csPathName, csFullPath);
-
-         csTemp.Format("%s%d.BMP",csFullPath.Left(csFullPath.GetLength()-5),m_uIndex);
-
-         if (!cf.Open(csTemp, CFile::modeRead | CFile::shareDenyWrite))
+         if (m_pDocument->m_bSimulating)
          {
-            ::MessageBox(::GetFocus(), csTemp, "Could not open File", MB_OK | MB_ICONEXCLAMATION);
-            //            pDoc->Halt();
-            //            pDoc->m_bKeepGoing = FALSE;
-            return;
+            //The code added below opens the BMP to get the actual size.
+            //start of new code to get m_size
+            m_cdPicture.Empty();
+            if (m_cdPictures[m_uIndex].IsEmpty())
+            {
+               CString csTemp;
+               CFile cf;
+               UINT m_uIndex = 0;
+
+               CString csCheck = m_csFileName.Right(5);
+               csCheck.MakeUpper();
+
+               if (csCheck != "0.BMP") return;
+
+               CString csFullPath;
+               CString csPathName = m_pDocument->GetPathName();
+
+               RelativeToFullPath(m_csFileName, csPathName, csFullPath);
+
+               csTemp.Format("%s%d.BMP",csFullPath.Left(csFullPath.GetLength()-5),m_uIndex);
+
+               if (!cf.Open(csTemp, CFile::modeRead | CFile::shareDenyWrite))
+               {
+                  ::MessageBox(::GetFocus(), csTemp, "Could not open File", MB_OK | MB_ICONEXCLAMATION);
+                  //            pDoc->Halt();
+                  //            pDoc->m_bKeepGoing = FALSE;
+                  return;
+               }
+
+               if (!m_cdPictures[m_uIndex].Read(&cf))
+               {
+                  ::MessageBox(::GetFocus(), csTemp, "Could not load File", MB_OK | MB_ICONEXCLAMATION);
+                  //            pDoc->Halt();
+                  //            pDoc->m_bKeepGoing = FALSE;
+                  return;
+               }
+
+               cf.Close();
+            }
+            m_bLoaded = TRUE;
+            m_size = m_cdPictures[m_uIndex].GetDimensions();
+            //end of new code to get m_size
+
+         } else
+         {
+            //Gets the size of the BMP device icon.
+            m_size = CSize(BITX,BITY);
          }
 
-         if (!m_cdPictures[m_uIndex].Read(&cf))
-         {
-            ::MessageBox(::GetFocus(), csTemp, "Could not load File", MB_OK | MB_ICONEXCLAMATION);
-            //            pDoc->Halt();
-            //            pDoc->m_bKeepGoing = FALSE;
-            return;
-         }
-
-         cf.Close();
-
-         m_bLoaded = TRUE;
-         m_size = m_cdPictures[m_uIndex].GetDimensions();
       }
       else
       {
@@ -157,8 +168,8 @@ void CLogiBitmapGate::ResizeRect()
 
    if (m_iStyle == 1)
    {
-      m_size += CSize((BITX_TXT-1),0);
-      if (m_size.cy < BITY_TXT) m_size.cy = BITY_TXT;
+      m_size += CSize((BITX_BITMAP2-1),0);
+      if (m_size.cy < BITY_BITMAP2) m_size.cy = BITY_BITMAP2;
    }
 
    m_position.right = m_position.left + m_size.cx;
@@ -196,14 +207,15 @@ void CLogiBitmapGate::Draw(CDC* pDC, CLogiView* pView )
    ASSERT_VALID(this);
 
    // Draw the Bitmap Portion
-
    if (m_iStyle == 1)
    {
+      //Must ResizeRect or BMP may draw in wrong place when simulation started from other page than BMP is on.
+      ResizeRect();
       CRect crBackup = m_position;
       CSize csBackup = m_size;
 
-      m_position = CRect(m_position.TopLeft(), CSize(BITX_TXT, -BITY_TXT));
-      m_size = CSize(BITX_TXT, BITY_TXT);
+      m_position = CRect(m_position.TopLeft(), CSize(BITX_BITMAP2, -BITY_BITMAP2));
+      m_size = CSize(BITX_BITMAP2, BITY_BITMAP2);
 
       CLogiGate::Draw(pDC, pView);
 
@@ -218,12 +230,12 @@ void CLogiBitmapGate::Draw(CDC* pDC, CLogiView* pView )
          CRect crBackup = m_position;
          CSize csBackup = m_size;
 
-         m_position = CRect(CPoint(m_position.left+BITX_TXT-1, m_position.top), CSize(BITX, -BITY));
+         m_position = CRect(CPoint(m_position.left+BITX_BITMAP2-1, m_position.top), CSize(BITX, -BITY));
          m_size = CSize(BITX, BITY);
 
          GateID = IDB_BMP;
          CLogiGate::Draw(pDC, pView);
-         GateID = IDB_TEXT;
+         GateID = IDB_BITMAP2;
 
          m_position = crBackup;
          m_size     = csBackup;
@@ -232,9 +244,8 @@ void CLogiBitmapGate::Draw(CDC* pDC, CLogiView* pView )
       {
          //         CSize size = m_cdPictures[m_uIndex].GetDimensions();
 
-         //         m_cdPictures[m_uIndex].Draw(pDC, CPoint(m_position.left+BITX_TXT-1, m_position.bottom), size);
-
-         m_cdPictures[m_uIndex].Draw(pDC, CPoint(m_position.left+BITX_TXT-1, m_position.bottom));
+         //         m_cdPictures[m_uIndex].Draw(pDC, CPoint(m_position.left+BITX_BITMAP2-1, m_position.bottom), size);
+         m_cdPictures[m_uIndex].Draw(pDC, CPoint(m_position.left+BITX_BITMAP2-1, m_position.bottom));
       }
    }
    else
@@ -244,12 +255,12 @@ void CLogiBitmapGate::Draw(CDC* pDC, CLogiView* pView )
          CRect crBackup = m_position;
          CSize csBackup = m_size;
 
-         m_position = CRect(CPoint(m_position.left+BITX_TXT-1, m_position.top), CSize(BITX, -BITY));
+         m_position = CRect(CPoint(m_position.left+BITX_BITMAP2-1, m_position.top), CSize(BITX, -BITY));
          m_size = CSize(BITX, BITY);
 
          GateID = IDB_BMP;
          CLogiGate::Draw(pDC, pView);
-         GateID = IDB_TEXT;
+         GateID = IDB_BITMAP2;
 
          m_position = crBackup;
          m_size     = csBackup;
@@ -266,7 +277,7 @@ void CLogiBitmapGate::Draw(CDC* pDC, CLogiView* pView )
 
             GateID = IDB_BMP;
             CLogiGate::Draw(pDC, pView);
-            GateID = IDB_TEXT;
+            GateID = IDB_BITMAP2;
 
             m_position = crBackup;
             m_size     = csBackup;
@@ -331,7 +342,7 @@ void CLogiBitmapGate::Initialize(CLogiView* pView, UINT iMode)
       ResizeRect();
       pView->InvalObj(this);
 
-      for (int i=0;i<16;i++)
+      for (int i=0;i<256;i++)
       {
          if (!m_cdPictures[i].IsEmpty())
          {
@@ -351,14 +362,13 @@ void CLogiBitmapGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiBitmapGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    if (m_iStyle == 1)
    {
       UINT uTemp = 0;
 
-      for (i=0;i<4;i++)
+      for (i=0;i<8;i++)
       {
          if ((Node[i])->State == HI) uTemp |= 1<<i;
       }
@@ -425,6 +435,14 @@ void CLogiBitmapGate::SetContacts(void)
    Contact[2].y -= CONTACT_Y_3;
    Contact[3].x += CONTACT_X_IN;
    Contact[3].y -= CONTACT_Y_4;
+   Contact[4].x += CONTACT_X_IN;
+   Contact[4].y -= CONTACT_Y_5;
+   Contact[5].x += CONTACT_X_IN;
+   Contact[5].y -= CONTACT_Y_6;
+   Contact[6].x += CONTACT_X_IN;
+   Contact[6].y -= CONTACT_Y_7;
+   Contact[7].x += CONTACT_X_IN;
+   Contact[7].y -= CONTACT_Y_8;
 }
 
 // position must be in logical coordinates
@@ -435,7 +453,6 @@ void CLogiBitmapGate::MoveTo(const CRect& position, CLogiView* pView)
 
    SetContacts();
    ResizeRect();
-
    CLogiGate::MoveTo(position, pView);
 
 }
@@ -490,7 +507,7 @@ void CLogiBitmapGate::OnOpen(CLogiView* pView)
    if (m_iStyle == 1)
    {
       m_bPlayground = FALSE;
-      Inputs = 4;
+      Inputs = 8;
    }
    else
    {

@@ -99,6 +99,7 @@ UINT CDib::UsePalette(CDC* pDC, BOOL bBackground /* = FALSE */)
 
 BOOL CDib::IsEmpty()
 {
+//getting "Unhandled exception at 0x00454436 in Mmlogic.exe: 0xC0000005: Access violation reading location 0xe59f98f8."
    if (m_lpBMIH == NULL) return TRUE;
 
    return FALSE;
