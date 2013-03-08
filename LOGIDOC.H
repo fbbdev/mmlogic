@@ -109,6 +109,7 @@ public:
    CObList UpdateNodeQueue;
    CObList UpdateNodeQueue2;
    CObList CallPostQueue;
+   HACCEL m_haccel;
 
    //are we in the middle of simulation?
    BOOL m_bSimulating;

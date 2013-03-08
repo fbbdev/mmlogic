@@ -33,7 +33,7 @@
 				ProgramDataBaseFileName="Debug/"
 				BrowseInformation="1"
 				BrowseInformationFile="Debug/"
-				WarningLevel="0"
+				WarningLevel="4"
 				Detect64BitPortabilityProblems="TRUE"
 				DebugInformationFormat="4"/>
 			<Tool
@@ -722,6 +722,9 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 &quot;$(InputFileName)&quot; &gt;&gt; &q
 			</File>
 			<File
 				RelativePath="Res\BITMAP1.BMP">
+			</File>
+			<File
+				RelativePath=".\Res\bitmap2.bmp">
 			</File>
 			<File
 				RelativePath="RES\BMP.BMP">

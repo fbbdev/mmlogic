@@ -108,6 +108,8 @@ enum LogiShape
 
 #define BITX 49
 #define BITY 49
+#define BITX_BITMAP2 14
+#define BITY_BITMAP2 49
 #define BITX_TXT 14
 #define BITY_TXT 25
 #define BITX_LED 27

@@ -31,6 +31,7 @@ public:
 public:
    virtual ~CSplitFrame();
    void CSplitFrame::OnSysCommand(UINT nID, LONG lParam);
+   HACCEL m_haccel;
 
    // Generated message map functions
    //{{AFX_MSG(CSplitFrame)

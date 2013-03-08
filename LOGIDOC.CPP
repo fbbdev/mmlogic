@@ -890,7 +890,7 @@ void CLogiDoc::Simulate(UINT iMode)
       }
 
       // If any keyboard events then process just one
-//TODO: Look here for hotkeys while simulating?
+      //TODO: Look here for hotkeys while simulating?
       if (!KeyboardMessageQueue.IsEmpty())
       {
 
@@ -2542,6 +2542,8 @@ void CLogiDoc::OnSimulateRun()
 {
    CLogiDoc *pDocument;
    int msgboxID;
+   //Load accelerator table
+   //m_haccel = LoadAccelerators(AfxGetInstanceHandle() ,MAKEINTRESOURCE(IDR_LOGICLTYPE_CNTR_IP));
 
    // Get pointer to our one and only CDocTemplate
 
@@ -2955,23 +2957,23 @@ void CLogiDoc::OnUpdateViewColorWires(CCmdUI* pCmdUI)
 //TODO: Get this working properly
 void CLogiDoc::OnEscape()
 {
-::MessageBox(::GetFocus(),"Who hit escape?","Error", MB_OK | MB_ICONEXCLAMATION);
-/* When accel keys in simulation mode is fixed, this will be a problem.
+   ::MessageBox(::GetFocus(),"Who hit escape?","Error", MB_OK | MB_ICONEXCLAMATION);
+   /* When accel keys in simulation mode is fixed, this will be a problem.
    Processing escape as described below may interfere with the keyboard device.
    Must not use any normal ASCII (code < 127) key characters as accel keys when a
    keyboard device has the focus.
 
    if (m_bKeepGoing)
    {
-      // || m_bPause
-      OnSimulateStop();
-      ::MessageBox(::GetFocus(),"The simulator should have stopped","Error", MB_OK | MB_ICONEXCLAMATION);
-      return;
+   // || m_bPause
+   OnSimulateStop();
+   ::MessageBox(::GetFocus(),"The simulator should have stopped","Error", MB_OK | MB_ICONEXCLAMATION);
+   return;
    }
    else
-      //CLogiView::OnDrawSelector();
-      return;
-*/
+   //CLogiView::OnDrawSelector();
+   return;
+   */
 }
 
 // Returns modifiable list of page names.

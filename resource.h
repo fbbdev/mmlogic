@@ -417,6 +417,7 @@
 #define IDC_SIMULATE_HELP               507
 #define IDB_FF_MSRSE_PCB                507
 #define IDC_SIMULATE_NUMBER_CYCLES      508
+#define IDB_BITMAP2                     508
 #define IDC_SIMULATE_DELAY              509
 #define IDC_SIMULATE_DELAYED_CYCLES     510
 #define IDC_AND_2INPUTS                 511
@@ -765,7 +766,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        508
+#define _APS_NEXT_RESOURCE_VALUE        509
 #define _APS_NEXT_COMMAND_VALUE         33133
 #define _APS_NEXT_CONTROL_VALUE         758
 #define _APS_NEXT_SYMED_VALUE           851

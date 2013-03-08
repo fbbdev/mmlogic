@@ -1538,8 +1538,7 @@ void CLogiView::OnChar(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
    CView::OnChar(nChar, nRepCnt, nFlags);
 
-   // If simulator is running and a keyboard exists the queue a down and up event
-
+   // If simulator is running and a keyboard exists then queue a down and up event
    if (((GetDocument()->m_bKeepGoing) || (GetDocument()->m_bPause)) && (GetDocument()->KeyBoardObj))
    {
       if (((CLogiAsciikeyboardGate*) GetDocument()->KeyBoardObj)->m_bAscii)
@@ -1564,6 +1563,9 @@ void CLogiView::OnUpdateDrawMemoryGate(CCmdUI* pCmdUI)
 void CLogiView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
    CView::OnKeyDown(nChar, nRepCnt, nFlags);
+
+   // If simulator is running and a keyboard exists the queue a down event
+
    if (((GetDocument()->m_bKeepGoing) || (GetDocument()->m_bPause)) && (GetDocument()->KeyBoardObj))
    {
       if (!((CLogiAsciikeyboardGate*) GetDocument()->KeyBoardObj)->m_bAscii)
