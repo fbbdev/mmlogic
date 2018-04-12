@@ -168,7 +168,7 @@ BOOL CDib::DrawTransparent(CDC* pDC, CPoint origin, CSize size)
 
    // Now modify color table to properly overlay the image
 
-   for (i=0;i<16;i++)
+   for (int i=0;i<16;i++)
    {
       if (*(DWORD *) &((LPBITMAPINFO) m_lpBMIH2)->bmiColors[i] == *(DWORD *) &rgbWhite)
       {

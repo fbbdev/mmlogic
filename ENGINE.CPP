@@ -209,7 +209,7 @@ BOOL MyBeep(DWORD dwFreq, DWORD dwDuration)
 
    _asm
    {
-      mov al, 0xB6
+         mov al, 0xB6
          out 0x43, al
          mov al, count_lo
          out 0x42, al

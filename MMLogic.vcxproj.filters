@@ -1,0 +1,1396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+    <Filter Include="HTML Help Files">
+      <UniqueIdentifier>{f83be811-ba7e-4487-aee8-ae63eadb3a7b}</UniqueIdentifier>
+      <Extensions>hhp;hhc;hhk;gif;jpg</Extensions>
+    </Filter>
+    <Filter Include="HTML Help Topics">
+      <UniqueIdentifier>{92ec6eed-0ea3-4008-803d-105d2b8a2363}</UniqueIdentifier>
+      <Extensions>htm;html</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Analyze.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Autoscrl.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Cdib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DIALOG.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ENGINE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logibmp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGICLI.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGIDOC.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGIOBJ.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="logitext.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGITOOL.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGIVW.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LOGIWIRE.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MAINFRM.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="network.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="palette.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="robot.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="socket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SPLITFRM.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="STDAFX.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TipDlg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="toolbar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Undo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="LOGICLI.RC">
+      <Filter>Source Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Analyze.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Autoscrl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cdib.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Dialog.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logibmp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logicli.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logidoc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logiobj.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logitext.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logitool.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logivw.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Logiwire.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mainfrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Network.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Palette.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Robot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Socket.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Splitfrm.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tipdlg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Toolbar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Undo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="RES\ALU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ALUB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ANALYZE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\AND2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\AND2B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\AND3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\AND3B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\AND4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\AND4B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BITBUCK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BITBUCKB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\BITMAP1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BMP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BMPB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BMPSB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BREAK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BREAKB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BREAKON.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUFFER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUFFERB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUS_2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUS_2B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUS_4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUS_4B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUS_8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUS_8B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUZZER_F.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUZZER_O.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\BUZZERFB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\CLOCK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\CLOCKB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Count4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Count4b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Count8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Count8b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\COUNTER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Counter8.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\COUNTERB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DEMUX12.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DEMUX12B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DEMUX24.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DEMUX24B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DEMUX38.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DEMUX38B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DISPLAY.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\DISPLAYB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_CRS.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_CRS_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_CRS_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_CRSB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_CRSE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_CRSE_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_CRSE_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_CRSEB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_DL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_DL_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_DL_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_DLB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_DLE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_DLE_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_DLE_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_DLEB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_JK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_JK_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_JK_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_JKB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_JKE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_JKE_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_JKE_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_JKEB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_MSDL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSDL_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSDL_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_MSDLB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_MSDLE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSDLE_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSDLE_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_MSRS.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSRS_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSRS_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_MSRSB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_MSRSE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSRSE_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_MSRSE_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_RS.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_RS_PC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\FF_RS_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FF_RSB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FFMSDLEB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FFMSRSEB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FILE_IN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FILE_INB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FILE_OUT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FILEO_IN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FILEO_OU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\FILEOUTB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\GROUND.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\GROUNDB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\HELP.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\INVERT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\INVERTB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\IO_IN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\IO_INB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\IO_OUT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\IO_OUTB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\JK_PCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYBRDF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYBRDFB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYBRDO.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_0.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_5.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_6.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_7.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_9.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_A.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_C.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_D.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_E.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPAD_F.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\KEYPADB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_OFF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON0.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON5.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON6.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON7.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ON9.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ONA.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ONB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ONC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_OND.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ONE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ONF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4_ONU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4OFFB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON0.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON5.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON6.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON7.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PON9.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PONA.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PONB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PONC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4POND.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PONE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PONF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED4PONU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF0.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF5.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF6.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OF7.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_OFF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON0.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON5.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON6.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED7_ON7.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\led7offb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_OFF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_ONG.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_ONGB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_ONR.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_ONRB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_ONY.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_ONYB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LED_UNKN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\litebulb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\LOGICLI.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\LOGIDOC.ICO">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MEMORY.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\MEMORY16.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\MEMORY16B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\memoryb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MOUSE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MUX2TO1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MUX2TO1B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MUX4TO1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MUX4TO1B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MUX8TO1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\MUX8TO1B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NAND2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nand2b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NAND3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nand3b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NAND4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nand4b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NETCALL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NETCALLB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\netwait.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NETWAITB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NETWORK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NETWORKB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NOR2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nor2b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NOR3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nor3b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NOR4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nor4b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NULL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_0b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_1b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NULL_PD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_pd0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_pd1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NULL_PDB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NULL_PU.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_pu0.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\null_pu1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\NULL_PUB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nullb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nullpd0b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nullpd1b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nullpu0b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\nullpu1b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\OR2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\or2b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\OR3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\or3b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\OR4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\or4b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\OSC.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\OSCB.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\PAGE_IN.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\page_inb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\PAGE_OUT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\PAGEOUTB.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\PALETTE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\PLUS.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\plusb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\random.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\RANDOMB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ROBOT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ROBOTB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ROBOTD.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\ROBOTDB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT0B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT1B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT2B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT3B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT4B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT5B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT6B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT7B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT8B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT9B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_0.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_1.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_5.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_6.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_7.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_9.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_A.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_C.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_D.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_E.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECT_F.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECTAB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECTBB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECTCB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECTDB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECTEB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SELECTFB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\STACK.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SWITCH_F.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SWITCH_O.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SWITCH_S.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SWITCHFB.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SWITCHMF.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SWITCHMO.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\SWITCHOB.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SWTCHMFB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\SWTCHMOB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Tape.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\Tapeb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TEXT.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TEXTMB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TEXTSB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TIMER.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TIMERB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\TOOLBAR.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIBUFH.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIBUFHB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIBUFL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIBUFLB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIINVH.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIINVHB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIINVL.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TRIINVLB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TURING.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\TURTLE.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\WAV.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\wavb.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\WAVPLAY.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="RES\WIREB.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xnor2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xnor2b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xnor3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xnor3b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xnor4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xnor4b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xor2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xor2b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xor3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xor3b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xor4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\xor4b.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\LOGICLI.RC2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PENCIL.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PROBE_FL.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PROBE_MI.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PROBE_NU.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PROBE_OF.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PROBE_ON.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PROBE_PL.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="RES\PROBE_UN.CUR">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="hlp\MMLOGIC.hhk">
+      <Filter>HTML Help Files</Filter>
+    </None>
+    <None Include="hlp\Table of Contents.hhc">
+      <Filter>HTML Help Files</Filter>
+    </None>
+    <None Include="hlp\html\alu_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\Html\analyze_tool.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\and_gate.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\ascii_display_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\bit_bucket_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\bitmap_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\bus_tool.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\buzzer_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\changing_device_options.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\clock_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\counter_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\file_formats.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\flipflop_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\ground_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\introduction.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\inverter_gate.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\keyboard_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\keypad_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\led_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\managing_pages.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\memory_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\modes_of_operation.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\multiplexer_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\network_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\networking_setup_basics.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\node_tool.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\or_gate.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\oscillator_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\pause_simulator_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\plus_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\pointer_tool.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\port_in_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\port_out_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\probe_tool.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\random_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\read_file.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\robot_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\select_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\signal_receiver_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\signal_sender_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\simulation_setup.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\sound_wave_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\states_of_a_node.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\switch_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\tapedrive_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\text.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\timer_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\tristate_gate.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\tutorial.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\what_is_a_multimedia_logic_simulator.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\wiring_tool.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\write_file_device.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="hlp\html\xor_gate.htm">
+      <Filter>HTML Help Topics</Filter>
+    </None>
+    <None Include="MMLogic.nsi" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="License.txt" />
+    <Text Include="Readme.txt" />
+    <Text Include="Tips.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="res\MMLogic.manifest" />
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="hlp\mmlogic.hhp">
+      <Filter>HTML Help Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+</Project>

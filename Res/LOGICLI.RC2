@@ -20,7 +20,7 @@
 #define IDR_MANIFEST CREATEPROCESS_MANIFEST_RESOURCE_ID
 #endif
 
-IDR_MANIFEST RT_MANIFEST "res\\mmlogic.manifest"
+// IDR_MANIFEST RT_MANIFEST "res\\mmlogic.manifest"
 
 /////////////////////////////////////////////////////////////////////////////
 // Add additional manually edited resources here...

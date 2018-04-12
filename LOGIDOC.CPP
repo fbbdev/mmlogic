@@ -1929,7 +1929,7 @@ void CLogiDoc::Serialize(CArchive& ar)
             }
          case readfilegate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
                Add(new CLogiReadfileGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "READFILE", iPage, this, tmp1, buf1));
                break;
             }
@@ -1956,32 +1956,32 @@ void CLogiDoc::Serialize(CArchive& ar)
             }
          case soundwavegate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
                Add(new CLogiSoundwaveGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "SOUNDWAVE", iPage, this, tmp1, buf1));
                break;
             }
          case memorygate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
                Add(new CLogiMemoryGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "MEMORY", iPage, this, tmp1, buf1));
                break;
             }
          case tapedrivegate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&tmp2,&tmp3,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&tmp2,&tmp3,&buf1);
                Add(new CLogiTapedriveGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "TAPEDRIVE", iPage, this, tmp1, tmp2, tmp3, buf1));
                break;
             }
          case textgate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
                ar.ReadString(Buffer,1024-1);
                Add(new CLogiTextGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "TEXT", iPage, this, tmp1, buf1, Buffer));
                break;
             }
          case writefilegate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
                Add(new CLogiWritefileGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "WRITEFILE", iPage, this, tmp1, buf1));
                break;
             }
@@ -2012,7 +2012,7 @@ void CLogiDoc::Serialize(CArchive& ar)
             }
          case bitmapgate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
                // This gets a little interesting because the serialize code was not
                // aware that the filename could contain spaces. Thus we find the
                // last integer parameter after the last space in the line.
@@ -2052,13 +2052,13 @@ void CLogiDoc::Serialize(CArchive& ar)
             }
          case networkgate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1, &tmp2, &buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1, &tmp2, &buf1);
                Add(new CLogiNetworkGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "NETWORK", iPage, this, tmp1, tmp2, buf1));
                break;
             }
          case robotgate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %d %d %d %d %d %d %[^\0]",&x1,&y1,&x2,&y2,&tmp1,&tmp2,&tmp3,&tmp4,&tmp5,&tmp6,&tmp7,&buf1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&tmp2,&tmp3,&tmp4,&tmp5,&tmp6,&tmp7,&buf1);
                Add(new CLogiRobotGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "ROBOT", iPage, this, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6, tmp7, buf1));
                break;
             }

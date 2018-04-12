@@ -4651,7 +4651,7 @@ void CLogiPortinGate::Simulate(CLogiDoc* pDoc)
    {
       UINT uTemp;
 
-      uTemp = _inp((unsigned short) m_iAddress);
+      uTemp = 0; // No longer supported: _inp((unsigned short) m_iAddress);
 
       for (i=0;i<8;i++)
       {
@@ -4805,7 +4805,7 @@ void CLogiPortoutGate::Simulate(CLogiDoc* /*pDoc*/)
          if ((Node[i])->State == HI) uTemp |= 1<<i;
       }
 
-      _outp((unsigned short) m_iAddress, uTemp);
+      // No longer supported: _outp((unsigned short) m_iAddress, uTemp);
 
    }
 

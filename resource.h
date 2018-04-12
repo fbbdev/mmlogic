@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // Microsoft Visual C++ generated include file.
-// Used by Logicli.rc
+// Used by LOGICLI.RC
 //
 #define IDR_MANIFEST                    1
 #define IDR_MAINFRAME                   101
@@ -766,7 +766,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        509
+#define _APS_NEXT_RESOURCE_VALUE        510
 #define _APS_NEXT_COMMAND_VALUE         33133
 #define _APS_NEXT_CONTROL_VALUE         758
 #define _APS_NEXT_SYMED_VALUE           851
