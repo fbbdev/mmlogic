@@ -8419,10 +8419,14 @@ CLogiMemoryGate::CLogiMemoryGate(const CRect& position, const char *name, int ip
    // m_iFormat flags:
    //  Bit 0: (0) ASCII hex (1) binary
    //  Bit 1: (0) 8-bit address (1) 16-bit address
+   //  Bit 2: (0) Not shared (1) Shared
    // This format gives backwards compatibility for 8-bit.
 
    m_iFormat = iFormat;
    m_csFileName = pFileName;
+
+   m_cMemory = NULL;
+   m_hSharedMemory = NULL;
 
    SetGateID();
    SetContacts();
@@ -8460,17 +8464,60 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
 
    if ((iMode == ID_SIMULATE_RUN) || (iMode == ID_SIMULATE_STEP))
    {
-      m_cMemory.SetSize(m_iMemorySize);
+      CString csFullPath = m_csFileName;
+      if (m_csFileName != "\\NUL")
+      {
+         CString csPathName = m_pDocument->GetPathName();
+         RelativeToFullPath(m_csFileName, csPathName, csFullPath);
+      }
+
+      if ((m_iFormat & 4) == 0) // If not shared, allocate memory
+      {
+         m_cMemory = new unsigned short[m_iMemorySize];
+         m_hSharedMemory = NULL;
+      }
+      else // If shared, open shared memory object
+      {
+         CString csSharedMemoryName = csFullPath;
+         csSharedMemoryName.Replace('\\', '_');
+
+         m_hSharedMemory = CreateFileMapping(
+            INVALID_HANDLE_VALUE,
+            NULL,
+            PAGE_READWRITE,
+            0,
+            m_iMemorySize*sizeof(unsigned short),
+            csSharedMemoryName);
+
+         if (m_hSharedMemory == NULL)
+         {
+            ::MessageBox(::GetFocus(), csSharedMemoryName, "Could not open shared memory object", MB_OK | MB_ICONEXCLAMATION);
+            m_pDocument->Halt();
+            m_cMemory = NULL;
+            return;
+         }
+
+         m_cMemory = (unsigned short*) MapViewOfFile(
+            m_hSharedMemory,
+            FILE_MAP_ALL_ACCESS,
+            0,
+            0,
+            m_iMemorySize*sizeof(unsigned short));
+
+         if (m_cMemory == NULL)
+         {
+            ::MessageBox(::GetFocus(), csSharedMemoryName, "Could not map shared memory object", MB_OK | MB_ICONEXCLAMATION);
+            m_pDocument->Halt();
+            CloseHandle(m_hSharedMemory);
+            m_hSharedMemory = NULL;
+            return;
+         }
+      }
 
       for (i=0;i<m_iMemorySize;i++) m_cMemory[i] = 0xAAAA;
 
       if (m_csFileName != "\\NUL")
       {
-         CString csFullPath;
-         CString csPathName = m_pDocument->GetPathName();
-
-         RelativeToFullPath(m_csFileName, csPathName, csFullPath);
-
          if ((m_iFormat & 1) == 0)
             pFile = fopen(csFullPath, "rb");
          else
@@ -8481,8 +8528,19 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
             ::MessageBox(::GetFocus(), csFullPath, "Could not open File", MB_OK | MB_ICONEXCLAMATION);
             m_pDocument->Halt();
             //            m_pDocument->m_bKeepGoing = FALSE;
-            m_cMemory.RemoveAll();
-            m_cMemory.FreeExtra();
+            if ((m_iFormat & 4) == 0)
+            {
+               delete[] m_cMemory;
+               m_cMemory = NULL;
+               m_hSharedMemory = NULL;
+            }
+            else
+            {
+               UnmapViewOfFile(m_cMemory);
+               CloseHandle(m_hSharedMemory);
+               m_cMemory = NULL;
+               m_hSharedMemory = NULL;
+            }
             return;
          }
 
@@ -8517,8 +8575,19 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
                   m_pDocument->Halt();
                   //            m_pDocument->m_bKeepGoing = FALSE;
                   fclose(pFile);
-                  m_cMemory.RemoveAll();
-                  m_cMemory.FreeExtra();
+                  if ((m_iFormat & 4) == 0)
+                  {
+                     delete[] m_cMemory;
+                     m_cMemory = NULL;
+                     m_hSharedMemory = NULL;
+                  }
+                  else
+                  {
+                     UnmapViewOfFile(m_cMemory);
+                     CloseHandle(m_hSharedMemory);
+                     m_cMemory = NULL;
+                     m_hSharedMemory = NULL;
+                  }
                   return;
                }
 
@@ -8543,8 +8612,25 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
    }
    else // simulation RESET
    {
-      m_cMemory.RemoveAll();
-      m_cMemory.FreeExtra();
+      if ((m_iFormat & 4) == 0)
+      {
+         if (m_cMemory != NULL)
+            delete[] m_cMemory;
+
+         m_cMemory = NULL;
+         m_hSharedMemory = NULL;
+      }
+      else
+      {
+         if (m_cMemory != NULL)
+            UnmapViewOfFile(m_cMemory);
+
+         if (m_hSharedMemory != NULL)
+            CloseHandle(m_hSharedMemory);
+
+         m_cMemory = NULL;
+         m_hSharedMemory = NULL;
+      }
    }
 
    SetGateID();
@@ -8602,28 +8688,24 @@ void CLogiMemoryGate::Simulate(CLogiDoc* pDoc)
       }
    }
 
-   // assume read
-
+   // Always read (write-through)
+   if (uAddr == 0xFFFFFFFF)
+   {
+      uTemp = 0xAAAA;
+   }
    else
    {
-      if (uAddr == 0xFFFFFFFF)
-      {
-         uTemp = 0xAAAA;
-      }
-      else
-      {
-         uTemp = m_cMemory[uAddr];
-      }
-
-      for (i=0;i<8;i++)
-      {
-         (Node[i])->NextState = ((uTemp>>(i*2)) & 3);
-      }
-
-      // Call base class to Queue Events for Driven Devices
-
-      CLogiGate::Simulate(pDoc);
+      uTemp = m_cMemory[uAddr];
    }
+
+   for (i=0;i<8;i++)
+   {
+      (Node[i])->NextState = ((uTemp>>(i*2)) & 3);
+   }
+
+   // Call base class to Queue Events for Driven Devices
+
+   CLogiGate::Simulate(pDoc);
 
 }
 
@@ -8823,6 +8905,7 @@ void CLogiMemoryGate::OnOpen(CLogiView* pView)
    dlg.m_csFileName = m_csFileName;
    dlg.m_iBinaryMode = m_iFormat & 1;
    dlg.m_iAddressMode = (m_iFormat & 2) >> 1;
+   dlg.m_bShared = (m_iFormat & 4) != 0;
    dlg.m_csPathName = pView->GetDocument()->GetPathName();
 
    if (dlg.DoModal() != IDOK) return;
@@ -8851,7 +8934,7 @@ void CLogiMemoryGate::OnOpen(CLogiView* pView)
    pView->GetDocument()->BeginManualEdit(this); // for undo system
 
    m_csFileName = dlg.m_csFileName;
-   m_iFormat = dlg.m_iBinaryMode | (dlg.m_iAddressMode << 1);
+   m_iFormat = dlg.m_iBinaryMode | (dlg.m_iAddressMode << 1) | ((dlg.m_bShared ? 1 : 0) << 2);
 
    SetGateID();
 

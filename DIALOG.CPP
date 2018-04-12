@@ -990,6 +990,7 @@ CMemoryDlg::CMemoryDlg(CWnd* pParent /*=NULL*/)
    //{{AFX_DATA_INIT(CMemoryDlg)
    m_iBinaryMode= -1;
    m_iAddressMode = -1;
+   m_bShared = FALSE;
    m_csFileName = _T("");
    //}}AFX_DATA_INIT
 }
@@ -1003,6 +1004,7 @@ void CMemoryDlg::DoDataExchange(CDataExchange* pDX)
    DDX_Control(pDX, ID_BROWSE, m_cbBrowse);
    DDX_Radio(pDX, IDC_MEMORY_BINARY, m_iBinaryMode);
    DDX_Radio(pDX, IDC_MEMORY_8BITS, m_iAddressMode);
+   DDX_Check(pDX, IDC_MEMORY_SHARED, m_bShared);
    DDX_Text(pDX, IDC_MEMORY_FILENAME, m_csFileName);
    //}}AFX_DATA_MAP
 }

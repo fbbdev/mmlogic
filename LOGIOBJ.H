@@ -1267,7 +1267,8 @@ public:
    int m_iAddressBits;
    int m_iMemorySize;
    int m_iWriteNodeNumber;
-   CArray< unsigned short, unsigned short > m_cMemory; // type must be at least 16 bits
+   unsigned short* m_cMemory;
+   HANDLE m_hSharedMemory;
 
    virtual void Serialize(CArchive& ar);
    virtual void Initialize(CLogiView* pView, UINT iMode);

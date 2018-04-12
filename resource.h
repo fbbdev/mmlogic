@@ -662,6 +662,7 @@
 #define IDC_MEMORY_8BITS                755
 #define IDC_MEMORY_16BITS               756
 #define IDC_FLIPFLOP_PC                 757
+#define IDC_MEMORY_SHARED               758
 #define ID_BROWSE                       33000
 #define ID_EDIT                         33001
 #define ID_INDICATOR_CYCLE              33002
@@ -768,7 +769,7 @@
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_NEXT_RESOURCE_VALUE        510
 #define _APS_NEXT_COMMAND_VALUE         33133
-#define _APS_NEXT_CONTROL_VALUE         758
+#define _APS_NEXT_CONTROL_VALUE         759
 #define _APS_NEXT_SYMED_VALUE           851
 #endif
 #endif

@@ -704,6 +704,7 @@ public:
    CButton	m_cbBrowse;
    int		m_iBinaryMode;
    int  m_iAddressMode;
+   BOOL m_bShared;
    CString	m_csFileName;
    //}}AFX_DATA
 
