@@ -409,10 +409,6 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(Filename)%(Extension)" &gt;&gt; "hlp\
     <Image Include="RES\HELP.BMP" />
     <Image Include="RES\INVERT.BMP" />
     <Image Include="RES\INVERTB.BMP" />
-    <Image Include="RES\IO_IN.BMP" />
-    <Image Include="RES\IO_INB.BMP" />
-    <Image Include="RES\IO_OUT.BMP" />
-    <Image Include="RES\IO_OUTB.BMP" />
     <Image Include="Res\JK_PCB.BMP" />
     <Image Include="RES\KEYBRDF.BMP" />
     <Image Include="RES\KEYBRDFB.BMP" />
@@ -737,12 +733,6 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(Filename)%(Extension)" &gt;&gt; "hlp\
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\html\pointer_tool.htm">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="hlp\html\port_in_device.htm">
-      <DeploymentContent>true</DeploymentContent>
-    </None>
-    <None Include="hlp\html\port_out_device.htm">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="hlp\html\probe_tool.htm">

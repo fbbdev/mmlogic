@@ -33,8 +33,6 @@ static CAsciidisplayGateTool asciidisplaygateTool;
 static CAsciikeyboardGateTool asciikeyboardgateTool;
 static CGroundGateTool groundgateTool;
 static CPlusGateTool plusgateTool;
-static CPortinGateTool portingateTool;
-static CPortoutGateTool portoutgateTool;
 static CReadfileGateTool readfilegateTool;
 static CSignalreceiverGateTool signalreceivergateTool;
 static CSignalsenderGateTool signalsendergateTool;
@@ -1170,66 +1168,6 @@ void CPlusGateTool::OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& p
    pView->ClientToDoc(local);
 
    CLogiGate* pObj = new CLogiPlusGate(CRect(local, CSize(BITX,-BITY)), "PLUS", pView->m_iPage, pView->GetDocument());
-
-   pView->GetDocument()->Add(pObj);
-   pView->Select(pObj);
-
-   selectMode = move;
-   nDragHandle = 8;
-   lastPoint = local;
-
-   OnMouseMove(pView, nFlags, point);
-}
-
-////////////////////////////////////////////////////////////////////////////
-// CPortinGateTool
-
-CPortinGateTool::CPortinGateTool() : CGateTool(portingate)
-{
-}
-
-void CPortinGateTool::OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point)
-{
-   CPoint oldpoint = point;
-   oldpoint.x += BITX_KB;
-   oldpoint.y -= BITY_KB;
-
-   CLogiTool::OnLButtonDown(pView, nFlags, oldpoint);
-
-   CPoint local = oldpoint;
-   pView->ClientToDoc(local);
-
-   CLogiGate* pObj = new CLogiPortinGate(CRect(local, CSize(BITX_KB,-BITY_KB)), "PORTIN", pView->m_iPage, pView->GetDocument());
-
-   pView->GetDocument()->Add(pObj);
-   pView->Select(pObj);
-
-   selectMode = move;
-   nDragHandle = 8;
-   lastPoint = local;
-
-   OnMouseMove(pView, nFlags, point);
-}
-
-////////////////////////////////////////////////////////////////////////////
-// CPortoutGateTool
-
-CPortoutGateTool::CPortoutGateTool() : CGateTool(portoutgate)
-{
-}
-
-void CPortoutGateTool::OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point)
-{
-   CPoint oldpoint = point;
-   oldpoint.x += BITX_KB;
-   oldpoint.y -= BITY_KB;
-
-   CLogiTool::OnLButtonDown(pView, nFlags, oldpoint);
-
-   CPoint local = oldpoint;
-   pView->ClientToDoc(local);
-
-   CLogiGate* pObj = new CLogiPortoutGate(CRect(local, CSize(BITX_KB,-BITY_KB)), "PORTOUT", pView->m_iPage, pView->GetDocument());
 
    pView->GetDocument()->Add(pObj);
    pView->Select(pObj);

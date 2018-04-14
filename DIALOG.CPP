@@ -389,72 +389,6 @@ void CSetupDlg::OnSimulateSpeedUpdate()
    m_ceSimRate.EnableWindow(m_iSimRateType == 1);
 }
 
-// CIoinDlg dialog
-
-
-CIoinDlg::CIoinDlg(CWnd* pParent /*=NULL*/)
-: CDialog(CIoinDlg::IDD, pParent)
-{
-   //{{AFX_DATA_INIT(CIoinDlg)
-   m_iAddress = 0;
-   m_iInitial = 0;
-   //}}AFX_DATA_INIT
-}
-
-void CIoinDlg::DoDataExchange(CDataExchange* pDX)
-{
-   CDialog::DoDataExchange(pDX);
-   //{{AFX_DATA_MAP(CIoinDlg)
-   DDX_Text(pDX, IDC_IO_IN_ADDRESS, m_iAddress);
-   DDV_MinMaxUInt(pDX, m_iAddress, 0, 65535);
-   DDX_Text(pDX, IDC_IO_IN_INITIAL, m_iInitial);
-   DDV_MinMaxUInt(pDX, m_iInitial, 0, 255);
-   //}}AFX_DATA_MAP
-}
-
-BEGIN_MESSAGE_MAP(CIoinDlg, CDialog)
-   //{{AFX_MSG_MAP(CIoinDlg)
-   ON_BN_CLICKED(ID_HELP, OnHelp)
-   //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-
-/////////////////////////////////////////////////////////////////////////////
-// CIoinDlg message handlers
-/////////////////////////////////////////////////////////////////////////////
-// CIooutDlg dialog
-
-
-CIooutDlg::CIooutDlg(CWnd* pParent /*=NULL*/)
-: CDialog(CIooutDlg::IDD, pParent)
-{
-   //{{AFX_DATA_INIT(CIooutDlg)
-   m_iAddress = 0;
-   m_iInitial = 0;
-   //}}AFX_DATA_INIT
-}
-
-void CIooutDlg::DoDataExchange(CDataExchange* pDX)
-{
-   CDialog::DoDataExchange(pDX);
-   //{{AFX_DATA_MAP(CIooutDlg)
-   DDX_Text(pDX, IDC_IO_OUT_ADDRESS, m_iAddress);
-   DDV_MinMaxUInt(pDX, m_iAddress, 0, 65535);
-   DDX_Text(pDX, IDC_IO_OUT_INITIAL, m_iInitial);
-   DDV_MinMaxUInt(pDX, m_iInitial, 0, 255);
-   //}}AFX_DATA_MAP
-}
-
-BEGIN_MESSAGE_MAP(CIooutDlg, CDialog)
-   //{{AFX_MSG_MAP(CIooutDlg)
-   ON_BN_CLICKED(ID_HELP, OnHelp)
-   //}}AFX_MSG_MAP
-END_MESSAGE_MAP()
-
-
-/////////////////////////////////////////////////////////////////////////////
-// CIooutDlg message handlers
-/////////////////////////////////////////////////////////////////////////////
 // CNoneDlg dialog
 
 
@@ -733,26 +667,6 @@ BOOL CInvertDlg::OnInitDialog()
 
    m_bmBtn.SubclassDlgItem(IDC_INVERT_BMBTN, this);
    RecalcBM();
-
-   return TRUE;  // return TRUE  unless you set the focus to a control
-}
-
-BOOL CIoinDlg::OnInitDialog()
-{
-   CDialog::OnInitDialog();
-
-   m_bmBtn.SubclassDlgItem(IDC_IOIN_BMBTN, this);
-   m_bmBtn.LoadBitmaps(IDB_IO_INB);
-
-   return TRUE;  // return TRUE  unless you set the focus to a control
-}
-
-BOOL CIooutDlg::OnInitDialog()
-{
-   CDialog::OnInitDialog();
-
-   m_bmBtn.SubclassDlgItem(IDC_IOOUT_BMBTN, this);
-   m_bmBtn.LoadBitmaps(IDB_IO_OUTB);
 
    return TRUE;  // return TRUE  unless you set the focus to a control
 }
@@ -1418,16 +1332,6 @@ void CFileoutDlg::OnHelp()
 void CInvertDlg::OnHelp()
 {
    ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\inverter_gate.htm");
-}
-
-void CIoinDlg::OnHelp()
-{
-   ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\port_in_device.htm");
-}
-
-void CIooutDlg::OnHelp()
-{
-   ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\port_out_device.htm");
 }
 
 void CLedDlg::OnHelp()

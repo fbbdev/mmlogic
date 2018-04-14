@@ -282,28 +282,6 @@ public:
 }
 ;
 
-class CPortinGateTool : public CGateTool
-{
-   // Constructors
-public:
-   CPortinGateTool();
-
-   // Implementation
-   virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-}
-;
-
-class CPortoutGateTool : public CGateTool
-{
-   // Constructors
-public:
-   CPortoutGateTool();
-
-   // Implementation
-   virtual void OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& point);
-}
-;
-
 class CReadfileGateTool : public CGateTool
 {
    // Constructors

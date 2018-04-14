@@ -171,10 +171,6 @@
 				<param name="Local" value="html\bit_bucket_device.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Port Out Device">
-				<param name="Local" value="html\port_out_device.htm">
-				</OBJECT>
-			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Write File Device">
 				<param name="Local" value="html\write_file_device.htm">
 				</OBJECT>
@@ -227,10 +223,6 @@
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Read File Device">
 				<param name="Local" value="html\read_file.htm">
-				</OBJECT>
-			<LI> <OBJECT type="text/sitemap">
-				<param name="Name" value="Port In Device">
-				<param name="Local" value="html\port_in_device.htm">
 				</OBJECT>
 			<LI> <OBJECT type="text/sitemap">
 				<param name="Name" value="Random Device">

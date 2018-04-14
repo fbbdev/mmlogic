@@ -736,68 +736,6 @@ protected:
 
 /////////////////////////////////////////////////////////////////////////////
 
-class CLogiPortinGate : public CLogiGate
-{
-protected:
-   DECLARE_SERIAL(CLogiPortinGate);
-   CLogiPortinGate();
-
-   CLogiPortinGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, UINT iIooutAddress = 0, UINT iIooutInitial = 0);
-   virtual void Initialize(CLogiView* pView, UINT iMode);
-   void Simulate(CLogiDoc* pDoc);
-
-   // Implementation
-public:
-   UINT m_uTemp;
-   UINT m_iAddress;
-   UINT m_iInitial;
-   int m_iLastState;
-
-   virtual void Serialize(CArchive& ar);
-   virtual CLogiObj* Clone(CLogiDoc* pDoc);
-   virtual void OnOpen(CLogiView* pView);
-   virtual void MoveTo(const CRect& position, CLogiView* pView = NULL);
-   virtual void SetGateID();
-   virtual void SetContacts();
-
-protected:
-
-   friend class CRectTool;
-}
-;
-
-/////////////////////////////////////////////////////////////////////////////
-
-class CLogiPortoutGate : public CLogiGate
-{
-protected:
-   DECLARE_SERIAL(CLogiPortoutGate);
-   CLogiPortoutGate();
-
-   CLogiPortoutGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, UINT iIooutAddress = 0, UINT iIooutInitial = 0);
-   void Simulate(CLogiDoc* pDoc);
-
-   // Implementation
-public:
-   UINT m_iAddress;
-   UINT m_iInitial;
-   int m_iLastState;
-
-   virtual void Serialize(CArchive& ar);
-   virtual CLogiObj* Clone(CLogiDoc* pDoc);
-   virtual void OnOpen(CLogiView* pView);
-   virtual void MoveTo(const CRect& position, CLogiView* pView = NULL);
-   virtual void SetGateID();
-   virtual void SetContacts();
-
-protected:
-
-   friend class CRectTool;
-}
-;
-
-/////////////////////////////////////////////////////////////////////////////
-
 class CLogiReadfileGate : public CLogiGate
 {
 protected:

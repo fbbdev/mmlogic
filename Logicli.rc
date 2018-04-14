@@ -91,8 +91,6 @@ IDB_LED7_OFF            BITMAP                  "RES\\LED7_OFF.BMP"
 IDB_LED_ONR             BITMAP                  "RES\\LED_ONR.BMP"
 IDB_LED_ONY             BITMAP                  "RES\\LED_ONY.BMP"
 IDB_LED_ONG             BITMAP                  "RES\\LED_ONG.BMP"
-IDB_IO_OUT              BITMAP                  "RES\\IO_OUT.BMP"
-IDB_IO_IN               BITMAP                  "RES\\IO_IN.BMP"
 IDB_PAGE_OUT            BITMAP                  "RES\\PAGE_OUT.BMP"
 IDB_GROUND              BITMAP                  "RES\\GROUND.BMP"
 IDB_WAV                 BITMAP                  "RES\\WAV.BMP"
@@ -164,8 +162,6 @@ IDB_FILE_INB            BITMAP                  "RES\\FILE_INB.BMP"
 IDB_FILE_OUTB           BITMAP                  "RES\\FILEOUTB.BMP"
 IDB_GROUNDB             BITMAP                  "RES\\GROUNDB.BMP"
 IDB_INVERTB             BITMAP                  "RES\\INVERTB.BMP"
-IDB_IO_INB              BITMAP                  "RES\\IO_INB.BMP"
-IDB_IO_OUTB             BITMAP                  "RES\\IO_OUTB.BMP"
 IDB_KEYBOARD_OFFB       BITMAP                  "RES\\KEYBRDFB.BMP"
 IDB_KEYPADB             BITMAP                  "RES\\KEYPADB.BMP"
 IDB_LED4_OFFB           BITMAP                  "RES\\LED4OFFB.BMP"
@@ -494,7 +490,6 @@ BEGIN
             MENUITEM "&Led",                        ID_DRAW_LEDGATE
             MENUITEM "&8 Segment LED",              ID_DRAW_LED7GATE
             MENUITEM "Sound &Wave",                 ID_DRAW_SOUNDWAVE
-            MENUITEM "Port &Out",                   ID_DRAW_PORTOUT
             MENUITEM "Signal &Sender",              ID_DRAW_SIGNALSENDER
             MENUITEM "Write &File",                 ID_DRAW_WRITEFILE
             MENUITEM "&Ascii Display",              ID_DRAW_ASCIIDISPLAY
@@ -510,7 +505,6 @@ BEGIN
             MENUITEM "&Ground",                     ID_DRAW_GROUND
             MENUITEM "&Plus",                       ID_DRAW_PLUS
             MENUITEM "&Ascii Keyboard",             ID_DRAW_ASCIIKEYBOARD
-            MENUITEM "Port &In",                    ID_DRAW_PORTIN
             MENUITEM "Signal &Receiver",            ID_DRAW_SIGNALRECEIVER
             MENUITEM "Read &File",                  ID_DRAW_READFILE
             MENUITEM "&Keypad",                     ID_DRAW_KEYPAD
@@ -923,36 +917,6 @@ BEGIN
     CONTROL         "INVERT",IDC_INVERT_BMBTN,"Button",BS_OWNERDRAW | WS_GROUP,83,12,45,41
 END
 
-IDD_PROP_IO_OUT DIALOG 20, 20, 191, 92
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-CAPTION "Port Out Properties"
-FONT 8, "MS Shell Dlg"
-BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,135,6,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,135,24,50,14
-    PUSHBUTTON      "Help",ID_HELP,135,42,50,14
-    EDITTEXT        IDC_IO_OUT_ADDRESS,81,10,39,14,ES_AUTOHSCROLL | WS_GROUP
-    EDITTEXT        IDC_IO_OUT_INITIAL,81,28,39,14,ES_AUTOHSCROLL | WS_GROUP
-    CONTROL         "IOOUT",IDC_IOOUT_BMBTN,"Button",BS_OWNERDRAW | WS_GROUP,10,48,48,40
-    LTEXT           "Address (Decimal)",IDC_STATIC,5,12,74,10
-    LTEXT           "Initial Value (Decimal)",IDC_STATIC,5,31,74,10
-END
-
-IDD_PROP_IO_IN DIALOG 20, 20, 191, 92
-STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
-CAPTION "Port In Properties"
-FONT 8, "MS Shell Dlg"
-BEGIN
-    DEFPUSHBUTTON   "OK",IDOK,135,6,50,14,WS_GROUP
-    PUSHBUTTON      "Cancel",IDCANCEL,135,24,50,14
-    PUSHBUTTON      "Help",ID_HELP,135,42,50,14
-    EDITTEXT        IDC_IO_IN_ADDRESS,81,10,39,14,ES_AUTOHSCROLL | WS_GROUP
-    EDITTEXT        IDC_IO_IN_INITIAL,81,28,39,14,ES_AUTOHSCROLL | WS_GROUP
-    CONTROL         "IOIN",IDC_IOIN_BMBTN,"Button",BS_OWNERDRAW | WS_GROUP,7,46,46,43
-    LTEXT           "Address (Decimal)",IDC_STATIC,5,12,74,10
-    LTEXT           "Initial Value (Decimal)",IDC_STATIC,5,31,74,10
-END
-
 IDD_PROP_NONE DIALOG 20, 20, 213, 82
 STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
 CAPTION "No Properties"
@@ -1030,7 +994,7 @@ BEGIN
     GROUPBOX        "Address Size",IDC_STATIC,90,5,55,40,WS_GROUP
     CONTROL         "8 Bits",IDC_MEMORY_8BITS,"Button",BS_AUTORADIOBUTTON | WS_GROUP | WS_TABSTOP,95,16,33,10
     CONTROL         "16 Bits",IDC_MEMORY_16BITS,"Button",BS_AUTORADIOBUTTON,95,30,37,10
-    CONTROL         "Shared", IDC_MEMORY_SHARED, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 9, 77, 39, 10
+    CONTROL         "Shared",IDC_MEMORY_SHARED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,9,77,39,10
     LTEXT           "Filename:",IDC_STATIC,10,93,35,12
     EDITTEXT        IDC_MEMORY_FILENAME,45,93,100,12,ES_AUTOHSCROLL | WS_GROUP
     CONTROL         "MEMORY",IDC_MEMORY_BMBTN,"Button",BS_OWNERDRAW | WS_GROUP,155,5,45,100
@@ -1794,8 +1758,6 @@ BEGIN
     ID_DRAW_READFILE        "Choose READ FILE device drawing tool\nRead File"
     ID_DRAW_WRITEFILE       "Choose WRITE FILE device drawing tool\nWrite File"
     ID_DRAW_GROUND          "Choose GROUND device drawing tool\nGround"
-    ID_DRAW_PORTIN          "Choose PORT IN device drawing tool\nPort In"
-    ID_DRAW_PORTOUT         "Choose PORT OUT device drawing tool\nPort Out"
     ID_DRAW_ASCIIKEYBOARD   "Choose ASCII KEYBOARD device drawing tool\nKeyboard"
     ID_DRAW_SIGNALSENDER    "Choose SIGNAL SENDER device drawing tool\nSignal Sender"
 END

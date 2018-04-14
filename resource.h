@@ -31,8 +31,6 @@
 #define IDD_PROP_NULL                   126
 #define IDB_NULL                        127
 #define IDD_PROP_INVERT                 128
-#define IDD_PROP_IO_OUT                 129
-#define IDD_PROP_IO_IN                  130
 #define IDD_PROP_NONE                   131
 #define IDD_PROP_SOUND                  132
 #define IDD_PROP_FILE_OUT               133
@@ -70,8 +68,6 @@
 #define IDB_LED_ONR                     165
 #define IDB_LED_ONY                     166
 #define IDB_LED_ONG                     167
-#define IDB_IO_OUT                      168
-#define IDB_IO_IN                       169
 #define IDB_PAGE_OUT                    170
 #define IDB_GROUND                      171
 #define IDB_LIGHTBULB                   172
@@ -171,8 +167,6 @@
 #define IDB_GROUNDB                     266
 #define CG_IDP_FILE_CORRUPT             267
 #define IDB_INVERTB                     268
-#define IDB_IO_INB                      269
-#define IDB_IO_OUTB                     270
 #define CG_IDS_TIPOFTHEDAYHELP          271
 #define IDB_KEYBOARD_OFFB               272
 #define IDB_KEYBOARD_ONB                273
@@ -446,7 +440,6 @@
 #define IDC_OSCILLATOR_STARTLO          534
 #define IDC_OSCILLATOR_LO               535
 #define IDC_OSCILLATOR_HI               536
-#define IDC_IO_IN_INITIAL               537
 #define IDC_SWITCH_INITON               538
 #define IDC_SWITCH_MOMENTARY            539
 #define IDC_LED_BLINK                   540
@@ -461,9 +454,6 @@
 #define IDC_SWITCH_ON                   549
 #define IDC_SWITCH_OFF                  550
 #define IDC_LED_CONSTANT                551
-#define IDC_IO_IN_ADDRESS               552
-#define IDC_IO_OUT_ADDRESS              553
-#define IDC_IO_OUT_INITIAL              554
 #define IDC_SOUND_COMMANDS              555
 #define IDC_SOUND_WAIT                  556
 #define IDC_BACKGROUND_FILENAME         557
@@ -476,8 +466,6 @@
 #define IDC_FILEIN_BMBTN                564
 #define IDC_FILEOUT_BMBTN               565
 #define IDC_INVERT_BMBTN                566
-#define IDC_IOIN_BMBTN                  567
-#define IDC_IOOUT_BMBTN                 568
 #define IDC_LED_BMBTN                   569
 #define IDC_LED7_BMBTN                  570
 #define IDC_NONE_BMBTN                  571
@@ -699,8 +687,6 @@
 #define ID_DRAW_READFILE                33033
 #define ID_DRAW_WRITEFILE               33034
 #define ID_DRAW_GROUND                  33035
-#define ID_DRAW_PORTIN                  33036
-#define ID_DRAW_PORTOUT                 33037
 #define ID_DRAW_ASCIIKEYBOARD           33038
 #define ID_DRAW_SIGNALSENDER            33039
 #define ID_DRAW_SIGNALRECEIVER          33040

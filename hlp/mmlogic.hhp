@@ -56,8 +56,6 @@ html\read_file.htm
 html\write_file_device.htm
 html\network_device.htm
 html\networking_setup_basics.htm
-html\port_out_device.htm
-html\port_in_device.htm
 html\signal_sender_device.htm
 html\signal_receiver_device.htm
 html\counter_device.htm

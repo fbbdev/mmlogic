@@ -36,8 +36,6 @@
 #define HID_DRAW_READFILE                       0x18109
 #define HID_DRAW_WRITEFILE                      0x1810A
 #define HID_DRAW_GROUND                         0x1810B
-#define HID_DRAW_PORTIN                         0x1810C
-#define HID_DRAW_PORTOUT                        0x1810D
 #define HID_DRAW_ASCIIKEYBOARD                  0x1810E
 #define HID_DRAW_SIGNALSENDER                   0x1810F
 #define HID_DRAW_SIGNALRECEIVER                 0x18110
@@ -126,8 +124,6 @@
 #define HIDD_PROP_WIRE                          0x2007C
 #define HIDD_PROP_NULL                          0x2007E
 #define HIDD_PROP_INVERT                        0x20080
-#define HIDD_PROP_IO_OUT                        0x20081
-#define HIDD_PROP_IO_IN                         0x20082
 #define HIDD_PROP_NONE                          0x20083
 #define HIDD_PROP_SOUND                         0x20084
 #define HIDD_PROP_FILE_OUT                      0x20085

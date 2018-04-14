@@ -439,28 +439,6 @@ BOOL CLogiDoc::Reset(UINT iMode)
 
       if (CurrentObj->IsKindOf(RUNTIME_CLASS(CLogiGate)))
       {
-         // Disallow port I/O gates on WinNT
-
-         if (bWinNT && (iMode == ID_SIMULATE_RUN || iMode == ID_SIMULATE_STEP))
-         {
-            if (
-               (CurrentObj->m_Logishape == portingate)  ||
-               (CurrentObj->m_Logishape == portoutgate)
-               )
-            {
-               vpos = GetFirstViewPosition();
-               while (vpos != NULL)
-               {
-                  pView = (CLogiView*)GetNextView(vpos);
-                  pView->SetPage(CurrentObj->m_iPage);
-                  pView->Select(CurrentObj, TRUE);
-               }
-               ::MessageBox(::GetFocus(),"The Port In and Port Out devices do not work with Windows NT and above.\n\nSecurity features in recent versions of Windows do not allow direct access to your computer's ports.", "Error", MB_OK | MB_ICONEXCLAMATION);
-               //TODO: Implement NT Port In and Out devices.
-               return FALSE;         
-            }
-         }
-
          // Initialize the device
 
          vpos = GetFirstViewPosition();
@@ -501,8 +479,7 @@ BOOL CLogiDoc::Reset(UINT iMode)
             (CurrentObj->m_Logishape == plusgate)          ||
             (CurrentObj->m_Logishape == asciikeyboardgate) ||
             (CurrentObj->m_Logishape == keypadgate)        ||
-            (CurrentObj->m_Logishape == clockgate)         ||
-            (CurrentObj->m_Logishape == portingate)
+            (CurrentObj->m_Logishape == clockgate)
             )
          {
             EventQueue.AddTail(CurrentObj);
@@ -1512,32 +1489,6 @@ void CLogiDoc::Serialize(CArchive& ar)
                      ar.Write(Buffer,strlen(Buffer));
                      break;
                   }
-               case portingate:
-                  {
-                     sprintf(Buffer,"%d %d %d %d %d %d %d\015\012",
-                        CurrentGate->m_Logishape,
-                        CurrentGate->m_position.TopLeft().x,
-                        CurrentGate->m_position.TopLeft().y,
-                        CurrentGate->m_position.BottomRight().x,
-                        CurrentGate->m_position.BottomRight().y,
-                        ((CLogiPortinGate*) CurrentGate)->m_iAddress,
-                        ((CLogiPortinGate*) CurrentGate)->m_iInitial);
-                     ar.Write(Buffer,strlen(Buffer));
-                     break;
-                  }
-               case portoutgate:
-                  {
-                     sprintf(Buffer,"%d %d %d %d %d %d %d\015\012",
-                        CurrentGate->m_Logishape,
-                        CurrentGate->m_position.TopLeft().x,
-                        CurrentGate->m_position.TopLeft().y,
-                        CurrentGate->m_position.BottomRight().x,
-                        CurrentGate->m_position.BottomRight().y,
-                        ((CLogiPortoutGate*) CurrentGate)->m_iAddress,
-                        ((CLogiPortoutGate*) CurrentGate)->m_iInitial);
-                     ar.Write(Buffer,strlen(Buffer));
-                     break;
-                  }
                case orgate:
                   {
                      sprintf(Buffer,"%d %d %d %d %d %d %d\015\012",
@@ -1915,18 +1866,6 @@ void CLogiDoc::Serialize(CArchive& ar)
                Add(new CLogiPlusGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "PLUS", iPage, this));
                break;
             }
-         case portingate:
-            {
-               sscanf(Buffer,"%*d %d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1,&tmp2);
-               Add(new CLogiPortinGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "PORTIN", iPage, this, tmp1, tmp2));
-               break;
-            }
-         case portoutgate:
-            {
-               sscanf(Buffer,"%*d %d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1,&tmp2);
-               Add(new CLogiPortoutGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "PORTOUT", iPage, this, tmp1, tmp2));
-               break;
-            }
          case readfilegate:
             {
                sscanf(Buffer,"%*d %d %d %d %d %d %[^\n]",&x1,&y1,&x2,&y2,&tmp1,&buf1);
@@ -2264,7 +2203,9 @@ void CLogiDoc::Serialize(CArchive& ar)
 
                break;
             }
-         default: ASSERT(FALSE);
+         default:
+            ::MessageBox(::GetFocus(), "Found invalid or deprecated device. Skipping.", "Error", MB_OK | MB_ICONEXCLAMATION);
+            break;
          }
       }
 

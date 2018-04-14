@@ -476,18 +476,6 @@
     <Image Include="RES\INVERTB.BMP">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="RES\IO_IN.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\IO_INB.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\IO_OUT.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="RES\IO_OUTB.BMP">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="Res\JK_PCB.BMP">
       <Filter>Resource Files</Filter>
     </Image>
@@ -1307,12 +1295,6 @@
       <Filter>HTML Help Topics</Filter>
     </None>
     <None Include="hlp\html\pointer_tool.htm">
-      <Filter>HTML Help Topics</Filter>
-    </None>
-    <None Include="hlp\html\port_in_device.htm">
-      <Filter>HTML Help Topics</Filter>
-    </None>
-    <None Include="hlp\html\port_out_device.htm">
       <Filter>HTML Help Topics</Filter>
     </None>
     <None Include="hlp\html\probe_tool.htm">

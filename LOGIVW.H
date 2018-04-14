@@ -156,10 +156,6 @@ protected:
    afx_msg void OnUpdateDrawGroundGate(CCmdUI* pCmdUI);
    afx_msg void OnDrawPlusGate();
    afx_msg void OnUpdateDrawPlusGate(CCmdUI* pCmdUI);
-   afx_msg void OnDrawPortinGate();
-   afx_msg void OnUpdateDrawPortinGate(CCmdUI* pCmdUI);
-   afx_msg void OnDrawPortoutGate();
-   afx_msg void OnUpdateDrawPortoutGate(CCmdUI* pCmdUI);
    afx_msg void OnDrawReadfileGate();
    afx_msg void OnUpdateDrawReadfileGate(CCmdUI* pCmdUI);
    afx_msg void OnDrawSignalreceiverGate();

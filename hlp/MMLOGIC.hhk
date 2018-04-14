@@ -207,16 +207,6 @@
 		<param name="Local" value="html/pointer_tool.htm">
 		</OBJECT>
 	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Port In Device">
-		<param name="Name" value="Port In Device">
-		<param name="Local" value="html/port_in_device.htm">
-		</OBJECT>
-	<LI> <OBJECT type="text/sitemap">
-		<param name="Name" value="Port Out Device">
-		<param name="Name" value="Port Out Device">
-		<param name="Local" value="html/port_out_device.htm">
-		</OBJECT>
-	<LI> <OBJECT type="text/sitemap">
 		<param name="Name" value="Probe Tool">
 		<param name="Name" value="Probe Tool">
 		<param name="Local" value="html/probe_tool.htm">

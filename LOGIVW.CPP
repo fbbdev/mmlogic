@@ -77,10 +77,6 @@ BEGIN_MESSAGE_MAP(CLogiView, CAutoScrollView)
    ON_UPDATE_COMMAND_UI(ID_DRAW_GROUND, OnUpdateDrawGroundGate)
    ON_COMMAND(ID_DRAW_PLUS, OnDrawPlusGate)
    ON_UPDATE_COMMAND_UI(ID_DRAW_PLUS, OnUpdateDrawPlusGate)
-   ON_COMMAND(ID_DRAW_PORTIN, OnDrawPortinGate)
-   ON_UPDATE_COMMAND_UI(ID_DRAW_PORTIN, OnUpdateDrawPortinGate)
-   ON_COMMAND(ID_DRAW_PORTOUT, OnDrawPortoutGate)
-   ON_UPDATE_COMMAND_UI(ID_DRAW_PORTOUT, OnUpdateDrawPortoutGate)
    ON_COMMAND(ID_DRAW_READFILE, OnDrawReadfileGate)
    ON_UPDATE_COMMAND_UI(ID_DRAW_READFILE, OnUpdateDrawReadfileGate)
    ON_COMMAND(ID_DRAW_SIGNALRECEIVER, OnDrawSignalreceiverGate)
@@ -1385,28 +1381,6 @@ void CLogiView::OnUpdateDrawPlusGate(CCmdUI* pCmdUI)
 {
    if (GetDocument()->m_bKeepGoing || GetDocument()->m_bPause) pCmdUI->Enable(FALSE);
    pCmdUI->SetRadio(CLogiTool::c_LogiShape == plusgate);
-}
-
-void CLogiView::OnDrawPortinGate()
-{
-   CLogiTool::c_LogiShape = portingate;
-}
-
-void CLogiView::OnUpdateDrawPortinGate(CCmdUI* pCmdUI)
-{
-   if (GetDocument()->m_bKeepGoing || GetDocument()->m_bPause) pCmdUI->Enable(FALSE);
-   pCmdUI->SetRadio(CLogiTool::c_LogiShape == portingate);
-}
-
-void CLogiView::OnDrawPortoutGate()
-{
-   CLogiTool::c_LogiShape = portoutgate;
-}
-
-void CLogiView::OnUpdateDrawPortoutGate(CCmdUI* pCmdUI)
-{
-   if (GetDocument()->m_bKeepGoing || GetDocument()->m_bPause) pCmdUI->Enable(FALSE);
-   pCmdUI->SetRadio(CLogiTool::c_LogiShape == portoutgate);
 }
 
 void CLogiView::OnDrawReadfileGate()
