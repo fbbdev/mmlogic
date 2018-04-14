@@ -15,7 +15,6 @@ extern void CheckWindow(int *x,int *y, int *w, int *h);
 extern void LaunchFile(CString &csFile);
 extern void RelativeToFullPath(CString &csRelPath, CString &csBasePath, CString &csFullPath);
 extern BOOL TouchFile(CString &csFile);
-extern BOOL MyBeep(DWORD dwFreq, DWORD dwDuration);
 extern BOOL IsWindowsNT();
 
 class Anode : public CObject

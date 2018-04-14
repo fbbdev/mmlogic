@@ -194,48 +194,6 @@ BOOL TouchFile(CString &csFile)
    return bStatus;
 }
 
-BOOL MyBeep(DWORD dwFreq, DWORD dwDuration)
-{
-   unsigned char count_lo;
-   unsigned char count_hi;
-   WORD count;
-   clock_t NumTicksToWait;
-
-   if (dwFreq < 37) dwFreq = 37;
-
-   count = (WORD) (1193180L / dwFreq);
-   count_lo = LOBYTE(count);
-   count_hi = HIBYTE(count);
-
-   _asm
-   {
-         mov al, 0xB6
-         out 0x43, al
-         mov al, count_lo
-         out 0x42, al
-         mov al, count_hi
-         out 0x42, al
-         xor al, al
-         in al, 0x61
-         or al, 0x03
-         out 0x61, al
-   }
-
-   NumTicksToWait = dwDuration + clock();
-   while (NumTicksToWait > clock());
-
-   _asm
-   {
-      xor al, al
-         in al, 0x61
-         xor al, 0x03
-         out 0x61, al
-   }
-
-   return TRUE;
-
-}
-
 BOOL IsWindowsNT()
 {
    OSVERSIONINFO VersionInformation;

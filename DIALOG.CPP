@@ -1148,24 +1148,11 @@ void CMuxDlg::RecalcBM()
 
 void CBuzzerDlg::OnBuzzerTest()
 {
-
    long frequency;
-
-   OSVERSIONINFO VersionInformation;
-   memset(&VersionInformation, 0, sizeof(OSVERSIONINFO));
-   VersionInformation.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
 
    frequency = m_iFreq;
 
-   GetVersionEx(&VersionInformation);
-   if (VersionInformation.dwPlatformId == VER_PLATFORM_WIN32_NT)
-   {
-      Beep(frequency, m_iDuration);
-   }
-   else
-   {
-      MyBeep(frequency, m_iDuration);
-   }
+   Beep(frequency, m_iDuration);
 }
 
 void CFileinDlg::OnBrowse()

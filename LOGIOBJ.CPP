@@ -3117,26 +3117,13 @@ void CLogiBuzzerGate::Simulate(CLogiDoc* /*pDoc*/)
 {
    long frequency;
 
-   OSVERSIONINFO VersionInformation;
-   memset(&VersionInformation, 0, sizeof(OSVERSIONINFO));
-   VersionInformation.dwOSVersionInfoSize = sizeof(OSVERSIONINFO);
-
    // Perform Simulation
 
    if (((Node[0])->State) == HI)
    {
-
       frequency = m_iFreq;
 
-      GetVersionEx(&VersionInformation);
-      if (VersionInformation.dwPlatformId == VER_PLATFORM_WIN32_NT)
-      {
-         Beep(frequency, m_iDuration);
-      }
-      else
-      {
-         MyBeep(frequency, m_iDuration);
-      }
+      Beep(frequency, m_iDuration);
 
       GateID = IDB_BUZZER_ON;
    }
