@@ -170,8 +170,8 @@ void CAutoScrollView::AutoScroll(UINT nRefMessage)
       {
          // Flip the Y coordinate if we're not in MM_TEXT
          nMapFactor = (nMapMode == MM_TEXT) ? 1 : -1;
-         ptScrollPos.y += (int) dy * nMapFactor;
-         ptScrollPos.x += (int) dx;
+         ptScrollPos.y += (int) dy * nMapFactor / 8;
+         ptScrollPos.x += (int) dx / 8;
          m_bIsScrolling = TRUE;
          OnAutoScroll(ptCursorPos, TRUE);
          ScrollToPosition(ptScrollPos);
