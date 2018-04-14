@@ -30,7 +30,7 @@ public:
    // Implementation
 public:
    virtual ~CSplitFrame();
-   void CSplitFrame::OnSysCommand(UINT nID, LONG lParam);
+   void CSplitFrame::OnSysCommand(UINT nID, LPARAM lParam);
    HACCEL m_haccel;
 
    // Generated message map functions

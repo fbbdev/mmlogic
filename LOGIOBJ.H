@@ -109,7 +109,6 @@ public:
    UINT GateID;
    UINT GateIDs[8];
    long EventCycle;
-   unsigned int i;
    CRect rect;
    //   RGBQUAD rgbOrig[16];
    BITMAPINFO16 m_Bmi;

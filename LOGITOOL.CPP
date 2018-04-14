@@ -171,7 +171,7 @@ void CSelectTool::OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& poi
          // If we hit a gate check if we hit a node
          if (pGateObj != NULL)
          {
-            CLogiGate* pGateObj = (CLogiGate*) pView->GetDocument()->ObjectAtContact(local, &io, pView->m_iPage);
+            pGateObj = (CLogiGate*) pView->GetDocument()->ObjectAtContact(local, &io, pView->m_iPage);
             if ((pGateObj) && (pGateObj->Node[io] != pView->GetDocument()->m_pAnodeNULL))
             {
                pView->GetDocument()->pAnodeProbe = pGateObj->Node[io];
@@ -208,7 +208,7 @@ void CSelectTool::OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& poi
       if (pObj != NULL)
       {
 
-         CLogiGate* pGateObj = (CLogiGate*)pView->GetDocument()->ObjectAtContact(local, &io, pView->m_iPage);
+         pGateObj = (CLogiGate*)pView->GetDocument()->ObjectAtContact(local, &io, pView->m_iPage);
          if ((pGateObj) && (pGateObj->Node[io]))
          {
             CLogiWire* CurrentWire;
@@ -2067,11 +2067,11 @@ void CWireTool::OnLButtonUp(CLogiView* pView, UINT nFlags, const CPoint& point)
       pEndGateObj->Wire[EndIO].AddHead(m_pObj);
 
       // Snap it to the contact
-      CPoint point = pEndGateObj->Contact[EndIO];
-      pView->DocToClient(point);
+      CPoint pnt = pEndGateObj->Contact[EndIO];
+      pView->DocToClient(pnt);
 
       // Cannot jump to EXITWIRE since point is a new point
-      selectTool.OnLButtonUp(pView, nFlags, point);
+      selectTool.OnLButtonUp(pView, nFlags, pnt);
       pView->Select(NULL);
 
       // Let wire know gates and contacts (swap if user started on input)

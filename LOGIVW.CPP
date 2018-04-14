@@ -1974,7 +1974,7 @@ void CLogiView::OnUpdateGotoPage(CCmdUI* /*pCmdUI*/)
 {
 }
 
-LONG CLogiView::OnFindReplace(WPARAM /*wParam*/, LPARAM /*lParam*/)
+LPARAM CLogiView::OnFindReplace(WPARAM /*wParam*/, LPARAM /*lParam*/)
 {
    BOOL bReplaceTransactionStarted = FALSE;
 

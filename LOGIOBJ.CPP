@@ -26,7 +26,6 @@ CLogiObj::CLogiObj(const CRect& position, LogiShape shape, int ipage, CLogiDoc* 
 
 void CLogiObj::Serialize(CArchive& ar)
 {
-
    CObject::Serialize(ar);
 
    if (ar.IsStoring())
@@ -391,7 +390,6 @@ CLogiGate::~CLogiGate()
 
 CLogiGate::CLogiGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int outputs, int inputs, UINT gateID, LogiShape Logishape): CLogiObj(position, Logishape, ipage, pdoc)
 {
-   int i;
    ASSERT_VALID(this);
 
    Name = name;
@@ -417,13 +415,12 @@ CLogiGate::CLogiGate(const CRect& position, const char *name, int ipage, CLogiDo
    rgbBlack.rgbBlue = 0;
    rgbBlack.rgbReserved = 0;
 
-   for (i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+   for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
    bInitialized = TRUE;
 }
 
 void CLogiGate::CleanupReferences()
 {
-   int i;
    CLogiWire* CurrentWire;
    POSITION pos;
 
@@ -434,7 +431,7 @@ void CLogiGate::CleanupReferences()
 
    // Clean all references (Nodes and Graphical Wires) to all contacts.
 
-   for (i=0;i<Contacts;i++)
+   for (int i=0;i<Contacts;i++)
    {
 
       // If contact in use then clean up
@@ -483,7 +480,6 @@ void CLogiGate::Serialize(CArchive& ar)
    else
    {
       WORD wTemp;
-      int i;
 
       ar >> wTemp; Outputs = (int)wTemp;
       ar >> wTemp; Inputs = (int)wTemp;
@@ -510,7 +506,7 @@ void CLogiGate::Serialize(CArchive& ar)
       // the Undo system to restore an object to a previous state.
 
       if (!bInitialized)
-         for (i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+         for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
       bInitialized = TRUE;
    }
 }
@@ -520,11 +516,10 @@ void CLogiGate::MoveTo(const CRect& /*position*/, CLogiView* pView)
    CLogiWire* CurrentWire;
    CRect dummy;
    POSITION pos;
-   int i;
 
    // for each contact (node) modify each wire position
 
-   for (i=0;i<Contacts;i++)
+   for (int i=0;i<Contacts;i++)
    {
 
       // skip if not connected
@@ -584,11 +579,11 @@ void CLogiGate::Draw(CDC* pDC, CLogiView* /* pView */)
    m_position.bottom = m_position.top - m_size.cy;
    rect = m_position;
 
-   size = sizeof(BITMAPINFOHEADER) + ((1 << m_Bmi.bmiHeader.biBitCount) * sizeof(RGBQUAD));
+   size = sizeof(BITMAPINFOHEADER) + (((DWORD) (((DWORD) 1) << m_Bmi.bmiHeader.biBitCount)) * sizeof(RGBQUAD));
 
    // backup color table and mung the orignal to build a mask
 
-   for (i=0;i<16;i++)
+   for (int i=0;i<16;i++)
    {
       if (*(DWORD *) &pBmi->bmiColors[i] == *(DWORD *) &rgbTransparent)
       {
@@ -602,11 +597,11 @@ void CLogiGate::Draw(CDC* pDC, CLogiView* /* pView */)
 
    // Draw Mask
 
-   ::StretchDIBits(pDC->GetSafeHdc(), rect.left, rect.bottom, m_size.cx, m_size.cy, 0, 0, m_size.cx, m_size.cy, (void *)(((DWORD) pBmi)+size), (BITMAPINFO *)&m_Bmi, DIB_RGB_COLORS, SRCAND);
+   ::StretchDIBits(pDC->GetSafeHdc(), rect.left, rect.bottom, m_size.cx, m_size.cy, 0, 0, m_size.cx, m_size.cy, (void *)(((uintptr_t)pBmi)+size), (BITMAPINFO *)&m_Bmi, DIB_RGB_COLORS, SRCAND);
 
    // Now modify color table to properly overlay the image
 
-   for (i=0;i<16;i++)
+   for (int i=0;i<16;i++)
    {
       if (*(DWORD *) &m_Bmi.bmiColors[i] == *(DWORD *) &rgbWhite)
       {
@@ -620,7 +615,7 @@ void CLogiGate::Draw(CDC* pDC, CLogiView* /* pView */)
 
    // draw overlay
 
-   ::StretchDIBits(pDC->GetSafeHdc(), rect.left, rect.bottom, m_size.cx, m_size.cy, 0, 0, m_size.cx, m_size.cy, (void *)(((DWORD) pBmi)+size), (BITMAPINFO *) &m_Bmi, DIB_RGB_COLORS, SRCPAINT);
+   ::StretchDIBits(pDC->GetSafeHdc(), rect.left, rect.bottom, m_size.cx, m_size.cy, 0, 0, m_size.cx, m_size.cy, (void *)(((uintptr_t) pBmi)+size), (BITMAPINFO *) &m_Bmi, DIB_RGB_COLORS, SRCPAINT);
 
 #ifdef _DEBUG
    UnlockResource(hBitmap);
@@ -662,21 +657,18 @@ void CLogiGate::MoveHandleTo(int nHandle, CPoint point, CLogiView* pView)
 // rect must be in logical coordinates
 void CLogiGate::Animate(CLogiView* /*pView*/)
 {
-
    // Only Some devices will overide this to perform animation
 
 }
 
 void CLogiGate::Action(CLogiView* /*pView*/, BOOL /*bDown*/, const CPoint& /*point*/)
 {
-
    // Only Some devices will overide this to perform actions
 
 }
 
 void CLogiGate::Initialize(CLogiView* /*pView*/, UINT /*iMode*/)
 {
-
    // Only Some devices will overide this to perform initialization
    EventCycle = -1;
 
@@ -684,7 +676,6 @@ void CLogiGate::Initialize(CLogiView* /*pView*/, UINT /*iMode*/)
 
 void CLogiGate::Cleanup(CLogiView* /*pView*/)
 {
-
    // Only Some devices will overide this to perform cleanup
 
 }
@@ -770,7 +761,6 @@ CLogiANDGate::CLogiANDGate()
 
 CLogiANDGate::CLogiANDGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iAnd2inputs, BOOL bAndDemorgan) : CLogiGate(position, name, ipage, pdoc, 1, 2+iAnd2inputs, IDB_AND2, andgate)
 {
-
    m_iInputs = iAnd2inputs;
    m_bDemorgan = bAndDemorgan;
 
@@ -803,15 +793,13 @@ void CLogiANDGate::Serialize(CArchive& ar)
 
 void CLogiANDGate::Simulate(CLogiDoc* pDoc)
 {
-   int i;
-
    // Perform Simulation
 
    if (m_bDemorgan)
    {
       (Node[0])->NextState = LO;
 
-      for (i=1;i<=Inputs;i++)
+      for (int i=1;i<=Inputs;i++)
       {
          if ((Node[i])->State == LO)
          {
@@ -829,7 +817,7 @@ void CLogiANDGate::Simulate(CLogiDoc* pDoc)
    {
       (Node[0])->NextState = HI;
 
-      for (i=1;i<=Inputs;i++)
+      for (int i=1;i<=Inputs;i++)
       {
          if ((Node[i])->State == LO)
          {
@@ -876,11 +864,9 @@ void CLogiANDGate::SetGateID(void)
 
 void CLogiANDGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    switch (Inputs)
    {
@@ -929,7 +915,6 @@ void CLogiANDGate::SetContacts(void)
 
 void CLogiANDGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -956,7 +941,6 @@ void CLogiANDGate::OnOpen(CLogiView* pView)
 {
    ASSERT_VALID(this);
 
-   int i;
    CAndDlg dlg;
 
    dlg.m_iInputs = m_iInputs;
@@ -968,7 +952,7 @@ void CLogiANDGate::OnOpen(CLogiView* pView)
 
    if (m_iInputs != dlg.m_iInputs)
    {
-      for (i=0;i<Contacts;i++)
+      for (int i=0;i<Contacts;i++)
       {
          if (Node[i] != m_pDocument->m_pAnodeNULL)
          {
@@ -977,7 +961,7 @@ void CLogiANDGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (i=0;i<(Outputs + 2 + dlg.m_iInputs);i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<(Outputs + 2 + dlg.m_iInputs);i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iInputs = dlg.m_iInputs;
@@ -1001,7 +985,6 @@ CLogiXORGate::CLogiXORGate()
 
 CLogiXORGate::CLogiXORGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iXor2inputs, BOOL bXorDemorgan) : CLogiGate(position, name, ipage, pdoc, 1, 2+iXor2inputs, IDB_XOR2, xorgate)
 {
-
    m_iInputs = iXor2inputs;
    m_bDemorgan = bXorDemorgan;
 
@@ -1033,14 +1016,13 @@ void CLogiXORGate::Serialize(CArchive& ar)
 
 void CLogiXORGate::Simulate(CLogiDoc* pDoc)
 {
-   int i;
    int iCountHI = 0;
 
    // Perform Simulation
 
    // Count Number of HI inputs
 
-   for (i=1;i<=Inputs;i++)
+   for (int i=1;i<=Inputs;i++)
    {
       if      ((Node[i])->State == HI     ) iCountHI++;
       else if ((Node[i])->State == UNKNOWN)
@@ -1109,11 +1091,9 @@ void CLogiXORGate::SetGateID(void)
 
 void CLogiXORGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    switch (Inputs)
    {
@@ -1162,7 +1142,6 @@ void CLogiXORGate::SetContacts(void)
 
 void CLogiXORGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -1189,7 +1168,6 @@ void CLogiXORGate::OnOpen(CLogiView* pView)
 {
    ASSERT_VALID(this);
 
-   int i;
    CXorDlg dlg;
 
    dlg.m_i2Inputs = m_iInputs;
@@ -1201,7 +1179,7 @@ void CLogiXORGate::OnOpen(CLogiView* pView)
 
    if (m_iInputs != dlg.m_i2Inputs)
    {
-      for (i=0;i<Contacts;i++)
+      for (int i=0;i<Contacts;i++)
       {
          if (Node[i] != m_pDocument->m_pAnodeNULL)
          {
@@ -1210,7 +1188,7 @@ void CLogiXORGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (i=0;i<(Outputs + 2 + dlg.m_i2Inputs);i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<(Outputs + 2 + dlg.m_i2Inputs);i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iInputs = dlg.m_i2Inputs;
@@ -1234,7 +1212,6 @@ CLogiORGate::CLogiORGate()
 
 CLogiORGate::CLogiORGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iOr2inputs, BOOL bOrDemorgan) : CLogiGate(position, name, ipage, pdoc, 1, 2+iOr2inputs, IDB_OR2, orgate)
 {
-
    m_iInputs = iOr2inputs;
    m_bDemorgan = bOrDemorgan;
 
@@ -1266,7 +1243,6 @@ void CLogiORGate::Serialize(CArchive& ar)
 
 void CLogiORGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    if (m_bDemorgan)
@@ -1338,11 +1314,9 @@ void CLogiORGate::SetGateID(void)
 
 void CLogiORGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    switch (Inputs)
    {
@@ -1391,13 +1365,11 @@ void CLogiORGate::SetContacts(void)
 
 void CLogiORGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
 
    CLogiGate::MoveTo(position, pView);
-
 }
 
 CLogiObj* CLogiORGate::Clone(CLogiDoc* pDoc)
@@ -1418,7 +1390,6 @@ void CLogiORGate::OnOpen(CLogiView* pView)
 {
    ASSERT_VALID(this);
 
-   int i;
    COrDlg dlg;
 
    dlg.m_iInputs = m_iInputs;
@@ -1430,7 +1401,7 @@ void CLogiORGate::OnOpen(CLogiView* pView)
 
    if (m_iInputs != dlg.m_iInputs)
    {
-      for (i=0;i<Contacts;i++)
+      for (int i=0;i<Contacts;i++)
       {
          if (Node[i] != m_pDocument->m_pAnodeNULL)
          {
@@ -1439,7 +1410,7 @@ void CLogiORGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (i=0;i<(Outputs + 2 + dlg.m_iInputs);i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<(Outputs + 2 + dlg.m_iInputs);i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iInputs = dlg.m_iInputs;
@@ -1463,7 +1434,6 @@ CLogiOscillatorGate::CLogiOscillatorGate()
 
 CLogiOscillatorGate::CLogiOscillatorGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int CountHI, int CountLO) : CLogiGate(position, name, ipage, pdoc, 1, 0, IDB_OSCILLATOR, oscillatorgate)
 {
-
    m_iCountHI = CountHI;
    m_iCountLO = CountLO;
 
@@ -1503,7 +1473,6 @@ void CLogiOscillatorGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiOscillatorGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    m_Fire--;
@@ -1542,11 +1511,9 @@ void CLogiOscillatorGate::SetGateID(void)
 
 void CLogiOscillatorGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_OUT_Y_1_1;
@@ -1555,7 +1522,6 @@ void CLogiOscillatorGate::SetContacts(void)
 
 void CLogiOscillatorGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -1612,7 +1578,6 @@ CLogiINVERTGate::CLogiINVERTGate()
 
 CLogiINVERTGate::CLogiINVERTGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, BOOL bInvertDemorgan) : CLogiGate(position, name, ipage, pdoc, 1, 1, IDB_INVERT, invertgate)
 {
-
    m_bDemorgan = bInvertDemorgan;
 
    SetGateID();
@@ -1643,7 +1608,6 @@ void CLogiINVERTGate::Serialize(CArchive& ar)
 
 void CLogiINVERTGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    if (m_bDemorgan)
@@ -1676,11 +1640,9 @@ void CLogiINVERTGate::SetGateID(void)
 
 void CLogiINVERTGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[1].x += CONTACT_X_IN;
    Contact[1].y -= CONTACT_IN_Y_1_1;
@@ -1692,7 +1654,6 @@ void CLogiINVERTGate::SetContacts(void)
 
 void CLogiINVERTGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -1747,7 +1708,6 @@ CLogiTristateGate::CLogiTristateGate()
 
 CLogiTristateGate::CLogiTristateGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, BOOL bDemorgan, BOOL bAssertLO) : CLogiGate(position, name, ipage, pdoc, 1, 2, IDB_TRISTATE_BUFFER_LO, tristategate)
 {
-
    m_bDemorgan = bDemorgan;
    m_bAssertLO = bAssertLO;
 
@@ -1779,7 +1739,6 @@ void CLogiTristateGate::Serialize(CArchive& ar)
 
 void CLogiTristateGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    BOOL bAsserted = FALSE;
@@ -1847,11 +1806,9 @@ void CLogiTristateGate::SetGateID(void)
 
 void CLogiTristateGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[2].x += CONTACT_X_IN;
    Contact[2].y -= CONTACT_IN_Y_1_1;
@@ -1866,7 +1823,6 @@ void CLogiTristateGate::SetContacts(void)
 
 void CLogiTristateGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -1923,7 +1879,6 @@ CLogiBusGate::CLogiBusGate()
 
 CLogiBusGate::CLogiBusGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iInputs, BOOL bDummy2) : CLogiGate(position, name, ipage, pdoc, 1, 8, IDB_BUS_8, busgate)
 {
-
    m_iInputs = iInputs;
    m_bDummy2 = bDummy2;
 
@@ -1955,7 +1910,6 @@ void CLogiBusGate::Serialize(CArchive& ar)
 
 void CLogiBusGate::Simulate(CLogiDoc* /* pDoc */)
 {
-
    // This Method must exist so that the Base Class is not called
    // for performance reasons. PostSimulate will take care of it
 
@@ -2077,11 +2031,9 @@ void CLogiBusGate::SetGateID(void)
 
 void CLogiBusGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    switch (m_iInputs)
    {
@@ -2141,7 +2093,6 @@ void CLogiBusGate::SetContacts(void)
 
 void CLogiBusGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -2188,7 +2139,7 @@ void CLogiBusGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (/*jal int */  i=0;i<(Outputs + (2<<dlg.m_iInputs));i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<(Outputs + (2<<dlg.m_iInputs));i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iInputs = dlg.m_iInputs;
@@ -2265,7 +2216,7 @@ void CLogiClockGate::Simulate(CLogiDoc* pDoc)
    case 5: uTemp = ctCurrent.GetYear(); break;
    }
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       if (uTemp & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
    }
@@ -2290,11 +2241,9 @@ void CLogiClockGate::SetGateID(void)
 
 void CLogiClockGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[7].x += CONTACT_X_OUT;
    Contact[7].y -= CONTACT_Y_8;
@@ -2317,7 +2266,6 @@ void CLogiClockGate::SetContacts(void)
 
 void CLogiClockGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -2411,7 +2359,6 @@ void CLogiTimerGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiTimerGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    if ((Node[1])->State == HI)
@@ -2452,11 +2399,9 @@ void CLogiTimerGate::SetGateID(void)
 
 void CLogiTimerGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_OUT_Y_1_1;
@@ -2467,7 +2412,6 @@ void CLogiTimerGate::SetContacts(void)
 
 void CLogiTimerGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -2524,7 +2468,6 @@ CLogiLedGate::CLogiLedGate()
 
 CLogiLedGate::CLogiLedGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iLedRed, int iLedBlink) : CLogiGate(position, name, ipage, pdoc, 0, 1, IDB_LED_UNKNOWN, ledgate)
 {
-
    m_iRed = iLedRed;
    m_iBlink = iLedBlink;
 
@@ -2557,7 +2500,6 @@ void CLogiLedGate::Serialize(CArchive& ar)
 
 void CLogiLedGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -2565,7 +2507,6 @@ void CLogiLedGate::Animate(CLogiView* pView)
 
 void CLogiLedGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    // Draw Device in its initialized state (BitMap ID held in GateID)
 
    SetGateID();
@@ -2581,7 +2522,6 @@ void CLogiLedGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiLedGate::Simulate(CLogiDoc* /*pDoc*/)
 {
-
    // Perform Simulation
 
    if (((Node[0])->State) == HI)
@@ -2610,11 +2550,9 @@ void CLogiLedGate::SetGateID(void)
 
 void CLogiLedGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_IN_Y_1_1;
@@ -2623,7 +2561,6 @@ void CLogiLedGate::SetContacts(void)
 
 void CLogiLedGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -2680,7 +2617,6 @@ CLogiSwitchGate::CLogiSwitchGate()
 
 CLogiSwitchGate::CLogiSwitchGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int SwitchOn, int SwitchToggle) : CLogiGate(position, name, ipage, pdoc, 1, 0, IDB_SWITCH_OFF, switchgate)
 {
-
    m_iOn = SwitchOn;
    m_iToggle = SwitchToggle;
 
@@ -2713,7 +2649,6 @@ void CLogiSwitchGate::Serialize(CArchive& ar)
 
 void CLogiSwitchGate::Action(CLogiView* pView, BOOL bDown, const CPoint& /*point*/)
 {
-
    // if momentary then
 
    if (m_iToggle == 1)
@@ -2763,7 +2698,6 @@ void CLogiSwitchGate::Action(CLogiView* pView, BOOL bDown, const CPoint& /*point
 
 void CLogiSwitchGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -2771,7 +2705,6 @@ void CLogiSwitchGate::Animate(CLogiView* pView)
 
 void CLogiSwitchGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    // Draw Device in its initialized state (BitMap ID held in GateID)
 
    SetGateID();
@@ -2782,7 +2715,6 @@ void CLogiSwitchGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiSwitchGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    if ((GateID == IDB_SWITCH_ON) || (GateID == IDB_SWITCHM_ON))
@@ -2827,11 +2759,9 @@ void CLogiSwitchGate::SetGateID(void)
 
 void CLogiSwitchGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_OUT_Y_1_1;
@@ -2840,7 +2770,6 @@ void CLogiSwitchGate::SetContacts(void)
 
 void CLogiSwitchGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -2897,7 +2826,6 @@ CLogiSelectGate::CLogiSelectGate()
 
 CLogiSelectGate::CLogiSelectGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iInitial, int iDummy) : CLogiGate(position, name, ipage, pdoc, 4, 0, IDB_SELECT_0, selectgate)
 {
-
    m_iInitial = iInitial;
    m_iDummy = iDummy;
 
@@ -2930,7 +2858,6 @@ void CLogiSelectGate::Serialize(CArchive& ar)
 
 void CLogiSelectGate::Action(CLogiView* pView, BOOL bDown, const CPoint& /*point*/)
 {
-
    if (bDown)
    {
       GateID++;
@@ -2945,7 +2872,6 @@ void CLogiSelectGate::Action(CLogiView* pView, BOOL bDown, const CPoint& /*point
 
 void CLogiSelectGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -2953,7 +2879,6 @@ void CLogiSelectGate::Animate(CLogiView* pView)
 
 void CLogiSelectGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    // Draw Device in its initialized state (BitMap ID held in GateID)
 
    SetGateID();
@@ -2964,12 +2889,11 @@ void CLogiSelectGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiSelectGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    m_uTemp = GateID - IDB_SELECT_0;
 
-   for (i=0;i<4;i++)
+   for (int i=0;i<4;i++)
    {
       if (m_uTemp & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
    }
@@ -2987,11 +2911,9 @@ void CLogiSelectGate::SetGateID(void)
 // SetContacts
 void CLogiSelectGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_Y_2;
@@ -3007,7 +2929,6 @@ void CLogiSelectGate::SetContacts(void)
 
 void CLogiSelectGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -3064,7 +2985,6 @@ CLogiBuzzerGate::CLogiBuzzerGate()
 
 CLogiBuzzerGate::CLogiBuzzerGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iFreq, int iDuration) : CLogiGate(position, name, ipage, pdoc, 0, 1, IDB_BUZZER_OFF, buzzergate)
 {
-
    m_iFreq = iFreq;
    m_iDuration = iDuration;
 
@@ -3096,7 +3016,6 @@ void CLogiBuzzerGate::Serialize(CArchive& ar)
 
 void CLogiBuzzerGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -3104,7 +3023,6 @@ void CLogiBuzzerGate::Animate(CLogiView* pView)
 
 void CLogiBuzzerGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    // Draw Device in its initialized state (BitMap ID held in GateID)
 
    SetGateID();
@@ -3140,11 +3058,9 @@ void CLogiBuzzerGate::SetGateID(void)
 
 void CLogiBuzzerGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_IN_Y_1_1;
@@ -3154,7 +3070,6 @@ void CLogiBuzzerGate::SetContacts(void)
 
 void CLogiBuzzerGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -3211,7 +3126,6 @@ CLogiNULLGate::CLogiNULLGate()
 
 CLogiNULLGate::CLogiNULLGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iPass, int iFloat) : CLogiGate(position, name, ipage, pdoc, 1, 1, IDB_NULL, nullgate)
 {
-
    m_iPass = iPass;
    m_iFloat = iFloat;
 
@@ -3243,7 +3157,6 @@ void CLogiNULLGate::Serialize(CArchive& ar)
 
 void CLogiNULLGate::Simulate(CLogiDoc* /* pDoc */)
 {
-
    // Perform Simulation
 
    // This Method must exist so that the Base Class is not called
@@ -3347,11 +3260,9 @@ void CLogiNULLGate::SetGateID(void)
 
 void CLogiNULLGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[1].x += CONTACT_NULL_X-1;
    Contact[1].y -= CONTACT_NULL_Y;
@@ -3362,7 +3273,6 @@ void CLogiNULLGate::SetContacts(void)
 
 void CLogiNULLGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -3419,7 +3329,6 @@ CLogiLed7Gate::CLogiLed7Gate()
 
 CLogiLed7Gate::CLogiLed7Gate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iLed7Red, int iLed7Inputs) : CLogiGate(position, name, ipage, pdoc, 0, 8, IDB_LED7_OFF, led7gate)
 {
-
    m_iRed = iLed7Red;
    m_iInputs = iLed7Inputs;
 
@@ -3466,7 +3375,7 @@ void CLogiLed7Gate::Draw(CDC* pDC, CLogiView* pView )
       m_position.bottom = m_position.top - m_size.cy;
       rect = m_position;
 
-      for (i=0;i<8;i++)
+      for (int i=0;i<8;i++)
       {
          GateID = GateIDs[i];
 
@@ -3474,7 +3383,7 @@ void CLogiLed7Gate::Draw(CDC* pDC, CLogiView* pView )
          hBitmap = LoadResource(AfxGetInstanceHandle(),hResource);
          pBmi = (BITMAPINFO *) LockResource(hBitmap);
 
-         ::StretchDIBits(pDC->GetSafeHdc(), rect.left, rect.bottom, m_size.cx, m_size.cy, 0, 0, m_size.cx, m_size.cy, (void *)(((DWORD) pBmi)+size), pBmi, DIB_RGB_COLORS, SRCPAINT);
+         ::StretchDIBits(pDC->GetSafeHdc(), rect.left, rect.bottom, m_size.cx, m_size.cy, 0, 0, m_size.cx, m_size.cy, (void *)(((uintptr_t) pBmi)+size), pBmi, DIB_RGB_COLORS, SRCPAINT);
 
 #ifdef _DEBUG
          UnlockResource(hBitmap);
@@ -3486,7 +3395,6 @@ void CLogiLed7Gate::Draw(CDC* pDC, CLogiView* pView )
 
 void CLogiLed7Gate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -3494,7 +3402,6 @@ void CLogiLed7Gate::Animate(CLogiView* pView)
 
 void CLogiLed7Gate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    // Draw Device in its initialized state (BitMap ID held in GateID)
 
    SetGateID();
@@ -3513,7 +3420,6 @@ void CLogiLed7Gate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiLed7Gate::Simulate(CLogiDoc* /*pDoc*/)
 {
-
    // Perform Simulation
 
    if (m_iInputs == 0)
@@ -3531,7 +3437,7 @@ void CLogiLed7Gate::Simulate(CLogiDoc* /*pDoc*/)
    {
       UINT uTemp = 0;
 
-      for (i=0;i<4;i++)
+      for (int i=0;i<4;i++)
       {
          switch ((Node[i])->State)
          {
@@ -3540,7 +3446,7 @@ void CLogiLed7Gate::Simulate(CLogiDoc* /*pDoc*/)
          }
       }
 
-      if ((Node[i])->State == HI)
+      if ((Node[4])->State == HI)
       {
          switch (uTemp)
          {
@@ -3615,11 +3521,9 @@ void CLogiLed7Gate::SetGateID(void)
 
 void CLogiLed7Gate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    if (m_iInputs == 0)
    {
@@ -3704,7 +3608,7 @@ void CLogiLed7Gate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (/*jal int */  i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iRed = dlg.m_iRed;
@@ -3728,7 +3632,6 @@ CLogiAsciidisplayGate::CLogiAsciidisplayGate()
 
 CLogiAsciidisplayGate::CLogiAsciidisplayGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc) : CLogiGate(position, name, ipage, pdoc, 0, 10, IDB_DISPLAY, asciidisplaygate)
 {
-
    SetGateID();
    SetContacts();
 
@@ -3757,7 +3660,6 @@ void CLogiAsciidisplayGate::Serialize(CArchive& ar)
 
 void CLogiAsciidisplayGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -3867,12 +3769,12 @@ void CLogiAsciidisplayGate::Draw(CDC* pDC, CLogiView* pView)
       int oldBkMode = pDC->SetBkMode(TRANSPARENT);
       COLORREF oldTextColor = pDC->SetTextColor(RGB(255,255,0));
 
-      CRect rect = m_position;
-      rect.NormalizeRect();
+      CRect rct = m_position;
+      rct.NormalizeRect();
 
       CSize csExtent = pDC->GetTextExtent( "A", 1);
 
-      CPoint cpTemp = rect.TopLeft() + CSize(18, 8);
+      CPoint cpTemp = rct.TopLeft() + CSize(18, 8);
 
       // draw text
 
@@ -3901,7 +3803,6 @@ void CLogiAsciidisplayGate::Draw(CDC* pDC, CLogiView* pView)
 
 void CLogiAsciidisplayGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    SetGateID();
 
    pView->InvalObj(this);
@@ -3910,12 +3811,11 @@ void CLogiAsciidisplayGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiAsciidisplayGate::Simulate(CLogiDoc* /*pDoc*/)
 {
-
    // Perform Simulation
 
    if (Node[9]->State == HI)
    {
-      for (i=0;i<8;i++) m_iCol[i] = 0;
+      for (int i=0;i<8;i++) m_iCol[i] = 0;
 
       m_iRow = 0;
    }
@@ -3926,7 +3826,7 @@ void CLogiAsciidisplayGate::Simulate(CLogiDoc* /*pDoc*/)
       {
          char uTemp = 0;
 
-         for (i=0;i<8;i++)
+         for (int i=0;i<8;i++)
          {
             switch ((Node[i])->State)
             {
@@ -4030,11 +3930,9 @@ void CLogiAsciidisplayGate::SetGateID(void)
 
 void CLogiAsciidisplayGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_Y_3;
@@ -4063,7 +3961,6 @@ void CLogiAsciidisplayGate::SetContacts(void)
 
 void CLogiAsciidisplayGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -4120,7 +4017,6 @@ CLogiAsciikeyboardGate::CLogiAsciikeyboardGate()
 
 CLogiAsciikeyboardGate::CLogiAsciikeyboardGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, BOOL bAscii) : CLogiGate(position, name, ipage, pdoc, 9, 0, IDB_KEYBOARD_ON, asciikeyboardgate)
 {
-
    m_bAscii = bAscii;
 
    SetGateID();
@@ -4151,7 +4047,6 @@ void CLogiAsciikeyboardGate::Serialize(CArchive& ar)
 
 void CLogiAsciikeyboardGate::Message(CLogiView* pView, UINT nChar, BOOL bDown)
 {
-
    if (bDown)
    {
       m_nChar = nChar;
@@ -4169,7 +4064,6 @@ void CLogiAsciikeyboardGate::Message(CLogiView* pView, UINT nChar, BOOL bDown)
 
 void CLogiAsciikeyboardGate::Action(CLogiView* pView, BOOL bDown, const CPoint& /*point*/)
 {
-
    // Perform Action (for selecting Keyboard Only)
 
    if (!bDown)
@@ -4209,7 +4103,6 @@ void CLogiAsciikeyboardGate::Action(CLogiView* pView, BOOL bDown, const CPoint& 
 
 void CLogiAsciikeyboardGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -4217,7 +4110,6 @@ void CLogiAsciikeyboardGate::Animate(CLogiView* pView)
 
 void CLogiAsciikeyboardGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    // Draw Device in its initialized state (BitMap ID held in GateID)
 
    m_nChar = 0;
@@ -4236,12 +4128,9 @@ void CLogiAsciikeyboardGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiAsciikeyboardGate::Simulate(CLogiDoc* pDoc)
 {
-
-   int i;
-
    // Perform Simulation
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       if (((1<<i) & m_nChar) != 0)
       {
@@ -4274,11 +4163,9 @@ void CLogiAsciikeyboardGate::SetGateID(void)
 
 void CLogiAsciikeyboardGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_Y_3;
@@ -4304,7 +4191,6 @@ void CLogiAsciikeyboardGate::SetContacts(void)
 
 void CLogiAsciikeyboardGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -4361,7 +4247,6 @@ CLogiGroundGate::CLogiGroundGate()
 
 CLogiGroundGate::CLogiGroundGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc) : CLogiGate(position, name, ipage, pdoc, 1, 0, IDB_GROUND, groundgate)
 {
-
    SetGateID();
    SetContacts();
 
@@ -4390,7 +4275,6 @@ void CLogiGroundGate::Serialize(CArchive& ar)
 
 void CLogiGroundGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    (Node[0])->NextState = LO;
@@ -4407,11 +4291,9 @@ void CLogiGroundGate::SetGateID(void)
 
 void CLogiGroundGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_OUT_Y_1_1;
@@ -4420,7 +4302,6 @@ void CLogiGroundGate::SetContacts(void)
 
 void CLogiGroundGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -4477,7 +4358,6 @@ CLogiPlusGate::CLogiPlusGate()
 
 CLogiPlusGate::CLogiPlusGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc) : CLogiGate(position, name, ipage, pdoc, 1, 0, IDB_PLUS, plusgate)
 {
-
    SetContacts();
 
 }
@@ -4505,7 +4385,6 @@ void CLogiPlusGate::Serialize(CArchive& ar)
 
 void CLogiPlusGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    (Node[0])->NextState = HI;
@@ -4522,11 +4401,9 @@ void CLogiPlusGate::SetGateID(void)
 
 void CLogiPlusGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_OUT_Y_1_1;
@@ -4535,7 +4412,6 @@ void CLogiPlusGate::SetContacts(void)
 
 void CLogiPlusGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -4593,7 +4469,6 @@ CLogiReadfileGate::CLogiReadfileGate()
 
 CLogiReadfileGate::CLogiReadfileGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iFormat, const char *pFileName) : CLogiGate(position, name, ipage, pdoc, 9, 2, IDB_FILE_IN, readfilegate)
 {
-
    m_csFileName = pFileName;
    m_iFormat = iFormat;
    m_pFile = NULL;
@@ -4626,7 +4501,6 @@ void CLogiReadfileGate::Serialize(CArchive& ar)
 
 void CLogiReadfileGate::Animate(CLogiView* pView)
 {
-
    pView->InvalObj(this);
 
 }
@@ -4646,7 +4520,6 @@ void CLogiReadfileGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiReadfileGate::Simulate(CLogiDoc* pDoc)
 {
-
    unsigned int uTemp;
 
    // Perform Simulation
@@ -4693,7 +4566,7 @@ void CLogiReadfileGate::Simulate(CLogiDoc* pDoc)
 
          // if read fails then handle it
 
-         int iStatus;
+         size_t iStatus;
 
          if (m_iFormat == 0)
          {
@@ -4729,7 +4602,7 @@ void CLogiReadfileGate::Simulate(CLogiDoc* pDoc)
                (Node[0])->NextState = HI;
                GateID = IDB_FILE_IN;
 
-               for (i=1;i<9;i++)
+               for (int i=1;i<9;i++)
                {
                   (Node[i])->NextState = UNKNOWN;
                }
@@ -4743,7 +4616,7 @@ void CLogiReadfileGate::Simulate(CLogiDoc* pDoc)
 
             // convert the byte to signals
 
-            for (i=0;i<8;i++)
+            for (int i=0;i<8;i++)
             {
                if (uTemp & (1<<i)) (Node[i+1])->NextState = HI; else (Node[i+1])->NextState = LO;
             }
@@ -4776,11 +4649,9 @@ void CLogiReadfileGate::SetGateID(void)
 
 void CLogiReadfileGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_Y_1;
@@ -4812,7 +4683,6 @@ void CLogiReadfileGate::SetContacts(void)
 
 void CLogiReadfileGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -4866,12 +4736,10 @@ IMPLEMENT_SERIAL(CLogiSignalreceiverGate, CLogiGate, 0)
 
 CLogiSignalreceiverGate::CLogiSignalreceiverGate()
 {
-
-}
+   }
 
 CLogiSignalreceiverGate::CLogiSignalreceiverGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int idummy, const char *psignalname) : CLogiGate(position, name, ipage, pdoc, 1, 0, IDB_PAGE_IN, signalreceivergate)
 {
-
    m_iDummy = idummy;
    m_csSignalName = psignalname;
 
@@ -4986,10 +4854,10 @@ void CLogiSignalreceiverGate::Draw(CDC* pDC, CLogiView* pView)
       int oldBkMode = pDC->SetBkMode(TRANSPARENT);
       COLORREF oldTextColor = pDC->SetTextColor(RGB(0, 0, 0));
 
-      CRect rect = m_position;
-      rect.NormalizeRect();
+      CRect rct = m_position;
+      rct.NormalizeRect();
 
-      pDC->TextOut(rect.left+9, rect.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
+      pDC->TextOut(rct.left+9, rct.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
 
       pDC->SetTextColor(oldTextColor);
       pDC->SetBkMode(oldBkMode);
@@ -5000,7 +4868,6 @@ void CLogiSignalreceiverGate::Draw(CDC* pDC, CLogiView* pView)
 
 void CLogiSignalreceiverGate::Simulate(CLogiDoc* /* pDoc */)
 {
-
    // Perform Simulation
 
    // This Method must exist so that the Base Class is not called
@@ -5039,11 +4906,9 @@ void CLogiSignalreceiverGate::SetGateID(void)
 
 void CLogiSignalreceiverGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT_SIG;
    Contact[0].y -= CONTACT_Y_2;
@@ -5067,7 +4932,6 @@ void CLogiSignalreceiverGate::SetText(LPCTSTR text)
 
 void CLogiSignalreceiverGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -5235,10 +5099,10 @@ void CLogiSignalsenderGate::Draw(CDC* pDC, CLogiView* pView)
       int oldBkMode = pDC->SetBkMode(TRANSPARENT);
       COLORREF oldTextColor = pDC->SetTextColor(RGB(0,0,0));
 
-      CRect rect = m_position;
-      rect.NormalizeRect();
+      CRect rct = m_position;
+      rct.NormalizeRect();
 
-      pDC->TextOut(rect.left+8, rect.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
+      pDC->TextOut(rct.left+8, rct.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
 
       pDC->SetTextColor(oldTextColor);
       pDC->SetBkMode(oldBkMode);
@@ -5249,7 +5113,6 @@ void CLogiSignalsenderGate::Draw(CDC* pDC, CLogiView* pView)
 
 void CLogiSignalsenderGate::Simulate(CLogiDoc* /* pDoc */)
 {
-
    // Perform Simulation (nothing to do)
    // The simulator will "steal" the state from the node that drives
    // this copy it to the "Mate" of this Sender.
@@ -5290,7 +5153,6 @@ BOOL CLogiSignalsenderGate::PostSimulate(CLogiDoc* pDoc)
 
 void CLogiSignalsenderGate::SetGateID(void)
 {
-
    LOGFONT lf;
    memset(&lf,0,sizeof(lf));
 
@@ -5317,11 +5179,9 @@ void CLogiSignalsenderGate::SetGateID(void)
 
 void CLogiSignalsenderGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_Y_2;
@@ -5345,7 +5205,6 @@ void CLogiSignalsenderGate::SetText(LPCTSTR text)
 
 void CLogiSignalsenderGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -5402,7 +5261,6 @@ CLogiAnalyzeGate::CLogiAnalyzeGate()
 
 CLogiAnalyzeGate::CLogiAnalyzeGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int idummy, const char *psignalname) : CLogiGate(position, name, ipage, pdoc, 0, 1, IDB_ANALYZE, analyzegate)
 {
-
    m_iDummy = idummy;
    m_csSignalName = psignalname;
 
@@ -5515,10 +5373,10 @@ void CLogiAnalyzeGate::Draw(CDC* pDC, CLogiView* pView)
       int oldBkMode = pDC->SetBkMode(TRANSPARENT);
       COLORREF oldTextColor = pDC->SetTextColor(RGB(0,0,0));
 
-      CRect rect = m_position;
-      rect.NormalizeRect();
+      CRect rct = m_position;
+      rct.NormalizeRect();
 
-      pDC->TextOut(rect.left+12, rect.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
+      pDC->TextOut(rct.left+12, rct.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
 
       pDC->SetTextColor(oldTextColor);
       pDC->SetBkMode(oldBkMode);
@@ -5560,11 +5418,9 @@ void CLogiAnalyzeGate::SetGateID(void)
 
 void CLogiAnalyzeGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_Y_2;
@@ -5588,7 +5444,6 @@ void CLogiAnalyzeGate::SetText(LPCTSTR text)
 
 void CLogiAnalyzeGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -5645,7 +5500,6 @@ CLogiSoundwaveGate::CLogiSoundwaveGate()
 
 CLogiSoundwaveGate::CLogiSoundwaveGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, BOOL bSoundWait, const char *pSoundCommands) : CLogiGate(position, name, ipage, pdoc, 0, 1, IDB_WAV, soundwavegate)
 {
-
    m_csFileName = pSoundCommands;
    m_bWait = bSoundWait;
 
@@ -5684,7 +5538,6 @@ void CLogiSoundwaveGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiSoundwaveGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    if ((Node[0]->State == HI) && (m_iLastState == LO))
@@ -5724,11 +5577,9 @@ void CLogiSoundwaveGate::SetGateID(void)
 
 void CLogiSoundwaveGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_IN_Y_1_1;
@@ -5737,7 +5588,6 @@ void CLogiSoundwaveGate::SetContacts(void)
 
 void CLogiSoundwaveGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -5796,7 +5646,6 @@ CLogiWritefileGate::CLogiWritefileGate()
 
 CLogiWritefileGate::CLogiWritefileGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iFormat, const char *pFileName) : CLogiGate(position, name, ipage, pdoc, 0, 9, IDB_FILE_OUT, writefilegate)
 {
-
    m_csFileName = pFileName;
    m_iFormat = iFormat;
    m_pFile = NULL;
@@ -5829,14 +5678,12 @@ void CLogiWritefileGate::Serialize(CArchive& ar)
 
 void CLogiWritefileGate::Animate(CLogiView* pView)
 {
-
    pView->InvalObj(this);
 
 }
 
 void CLogiWritefileGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    if (m_pFile) fclose(m_pFile);
    m_pFile = NULL;
    m_iLastState = UNKNOWN;
@@ -5849,7 +5696,6 @@ void CLogiWritefileGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiWritefileGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    if ((Node[8]->State == HI) && (m_iLastState == LO))
@@ -5874,12 +5720,12 @@ void CLogiWritefileGate::Simulate(CLogiDoc* pDoc)
 
       UINT uTemp = 0;
 
-      for (i=0;i<8;i++)
+      for (int i=0;i<8;i++)
       {
          if ((Node[i])->State == HI) uTemp |= 1<<i;
       }
 
-      int iStatus;
+      size_t iStatus;
 
       if (m_iFormat == 0)
       {
@@ -5921,11 +5767,9 @@ void CLogiWritefileGate::SetGateID(void)
 
 void CLogiWritefileGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_Y_3;
@@ -5952,7 +5796,6 @@ void CLogiWritefileGate::SetContacts(void)
 
 void CLogiWritefileGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -6010,7 +5853,6 @@ CLogiFlipflopGate::CLogiFlipflopGate()
 
 CLogiFlipflopGate::CLogiFlipflopGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iStyle, BOOL bEdge, BOOL bPresetClear) : CLogiGate(position, name, ipage, pdoc, 2, 5, IDB_FF_RS, flipflopgate)
 {
-
    m_iStyle = iStyle;
    m_bEdge  = bEdge;
    m_bPresetClear = bPresetClear;
@@ -6489,8 +6331,6 @@ void CLogiFlipflopGate::SetGateID(void)
 
 void CLogiFlipflopGate::SetContacts(void)
 {
-   int i;
-
    switch (m_iStyle)
    {
    case 0:
@@ -6508,7 +6348,7 @@ void CLogiFlipflopGate::SetContacts(void)
 
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    if (m_bPresetClear)
    {
@@ -6648,7 +6488,6 @@ void CLogiFlipflopGate::ResizeRect()
 
 void CLogiFlipflopGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -6698,7 +6537,7 @@ void CLogiFlipflopGate::OnOpen(CLogiView* pView)
 
       // Here, 7 is maximum number of contacts
       ASSERT(Contacts <= 7);
-      for (/*jal int */  i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<7;i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iStyle = dlg.m_iStyle;
@@ -6729,7 +6568,6 @@ CLogiKeypadGate::CLogiKeypadGate()
 
 CLogiKeypadGate::CLogiKeypadGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc) : CLogiGate(position, name, ipage, pdoc, 5, 0, IDB_KEYPAD, keypadgate)
 {
-
    SetGateID();
    SetContacts();
 
@@ -6758,7 +6596,6 @@ void CLogiKeypadGate::Serialize(CArchive& ar)
 
 void CLogiKeypadGate::Action(CLogiView* pView, BOOL bDown, const CPoint& point)
 {
-
    // Perform Action
 
    CRect crButton;
@@ -6820,7 +6657,6 @@ done:
 
 void CLogiKeypadGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -6828,7 +6664,6 @@ void CLogiKeypadGate::Animate(CLogiView* pView)
 
 void CLogiKeypadGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    // Draw Device in its initialized state (BitMap ID held in GateID)
 
    m_nKey = 0;
@@ -6842,10 +6677,9 @@ void CLogiKeypadGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiKeypadGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
-   for (i=0;i<4;i++)
+   for (int i=0;i<4;i++)
    {
       if (((1<<i) & m_nKey) != 0)
       {
@@ -6878,11 +6712,9 @@ void CLogiKeypadGate::SetGateID(void)
 
 void CLogiKeypadGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT_KP;
    Contact[0].y -= CONTACT_Y_2;
@@ -6903,7 +6735,6 @@ void CLogiKeypadGate::SetContacts(void)
 
 void CLogiKeypadGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -6960,7 +6791,6 @@ CLogiCounterGate::CLogiCounterGate()
 
 CLogiCounterGate::CLogiCounterGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iSize, UINT iInit) : CLogiGate(position, name, ipage, pdoc, 9, 3, IDB_COUNTER4, countergate)
 {
-
    m_iSize = iSize;
    m_iInit = iInit;
 
@@ -6992,7 +6822,6 @@ void CLogiCounterGate::Serialize(CArchive& ar)
 
 void CLogiCounterGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    m_iLastState = UNKNOWN;
    m_uTemp = m_iInit;
 
@@ -7003,7 +6832,6 @@ void CLogiCounterGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiCounterGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    switch (m_iSize)
@@ -7047,7 +6875,7 @@ void CLogiCounterGate::Simulate(CLogiDoc* pDoc)
             }
          }
 
-         for (i=0;i<4;i++)
+         for (int i=0;i<4;i++)
          {
             if (m_uTemp & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
          }
@@ -7096,7 +6924,7 @@ void CLogiCounterGate::Simulate(CLogiDoc* pDoc)
             }
          }
 
-         for (i=0;i<8;i++)
+         for (int i=0;i<8;i++)
          {
             if (m_uTemp & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
          }
@@ -7141,11 +6969,9 @@ void CLogiCounterGate::SetGateID(void)
 
 void CLogiCounterGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    switch (m_iSize)
    {
@@ -7213,7 +7039,6 @@ void CLogiCounterGate::SetContacts(void)
 
 void CLogiCounterGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -7260,7 +7085,7 @@ void CLogiCounterGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (/*jal int */  i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iSize = dlg.m_iSize;
@@ -7284,7 +7109,6 @@ CLogiRandomGate::CLogiRandomGate()
 
 CLogiRandomGate::CLogiRandomGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iSpare, unsigned int uSeed) : CLogiGate(position, name, ipage, pdoc, 8, 2, IDB_RANDOM, randomgate)
 {
-
    m_iSpare = iSpare;
    m_uSeed = uSeed;
 
@@ -7316,7 +7140,6 @@ void CLogiRandomGate::Serialize(CArchive& ar)
 
 void CLogiRandomGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    m_iLastState = UNKNOWN;
 
    // Init random number generator
@@ -7341,7 +7164,6 @@ void CLogiRandomGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiRandomGate::Simulate(CLogiDoc* pDoc)
 {
-
    // if reset restore back to seed state
 
    if (Node[9]->State == HI)
@@ -7366,7 +7188,7 @@ void CLogiRandomGate::Simulate(CLogiDoc* pDoc)
       }
    }
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       if (m_uTemp & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
    }
@@ -7385,11 +7207,9 @@ void CLogiRandomGate::SetGateID(void)
 
 void CLogiRandomGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[8].x += CONTACT_X_IN;
    Contact[8].y -= CONTACT_Y_7;
@@ -7418,7 +7238,6 @@ void CLogiRandomGate::SetContacts(void)
 
 void CLogiRandomGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -7475,7 +7294,6 @@ CLogiBreakGate::CLogiBreakGate()
 
 CLogiBreakGate::CLogiBreakGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc) : CLogiGate(position, name, ipage, pdoc, 0, 1, IDB_BREAK, breakgate)
 {
-
    SetGateID();
    SetContacts();
 
@@ -7504,7 +7322,6 @@ void CLogiBreakGate::Serialize(CArchive& ar)
 
 void CLogiBreakGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -7512,7 +7329,6 @@ void CLogiBreakGate::Animate(CLogiView* pView)
 
 void CLogiBreakGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    m_iLastState = UNKNOWN;
    m_uTemp = 0;
 
@@ -7524,7 +7340,6 @@ void CLogiBreakGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiBreakGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform Simulation
 
    // Determine if new bitmap needed
@@ -7590,11 +7405,9 @@ void CLogiBreakGate::SetGateID(void)
 
 void CLogiBreakGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_IN_Y_1_1;
@@ -7602,7 +7415,6 @@ void CLogiBreakGate::SetContacts(void)
 
 void CLogiBreakGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -7659,7 +7471,6 @@ CLogiBitbucketGate::CLogiBitbucketGate()
 
 CLogiBitbucketGate::CLogiBitbucketGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc) : CLogiGate(position, name, ipage, pdoc, 0, 8, IDB_BITBUCKET, bitbucketgate)
 {
-
    SetGateID();
    SetContacts();
 
@@ -7688,7 +7499,6 @@ void CLogiBitbucketGate::Serialize(CArchive& ar)
 
 void CLogiBitbucketGate::Initialize(CLogiView* pView, UINT iMode)
 {
-
    m_iLastState = UNKNOWN;
    m_uTemp = 0;
 
@@ -7697,7 +7507,6 @@ void CLogiBitbucketGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiBitbucketGate::Simulate(CLogiDoc* /*pDoc*/)
 {
-
    // Perform Simulation
 
    // easy eh?
@@ -7711,11 +7520,9 @@ void CLogiBitbucketGate::SetGateID(void)
 
 void CLogiBitbucketGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[7].x += CONTACT_X_IN;
    Contact[7].y -= CONTACT_Y_8;
@@ -7738,7 +7545,6 @@ void CLogiBitbucketGate::SetContacts(void)
 
 void CLogiBitbucketGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -7800,7 +7606,6 @@ CLogiNetworkGate::~CLogiNetworkGate()
 
 CLogiNetworkGate::CLogiNetworkGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iDirection, UINT uPort, const char *pName) : CLogiGate(position, name, ipage, pdoc, 9, 9, IDB_NETWORK_CALL, networkgate)
 {
-
    m_iDirection = iDirection;
    m_uPort = uPort;
    m_csName = pName;
@@ -7835,7 +7640,6 @@ void CLogiNetworkGate::Serialize(CArchive& ar)
 
 void CLogiNetworkGate::Animate(CLogiView* pView)
 {
-
    // Draw Device in its current state (BitMap ID held in GateID)
 
    pView->InvalObj(this);
@@ -7876,7 +7680,6 @@ void CLogiNetworkGate::Cleanup(CLogiView* /*pView*/)
 
 void CLogiNetworkGate::Simulate(CLogiDoc* pDoc)
 {
-
    // if (m_lParam == FD_CLOSE)
    //   {
    //   m_soSocket.ConnectOff();
@@ -7989,11 +7792,9 @@ void CLogiNetworkGate::SetGateID(void)
 
 void CLogiNetworkGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_OUT;
    Contact[0].y -= CONTACT_Y_1;
@@ -8040,7 +7841,6 @@ void CLogiNetworkGate::SetContacts(void)
 
 void CLogiNetworkGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -8139,10 +7939,9 @@ void CLogiMemoryGate::Serialize(CArchive& ar)
 
 void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
 {
-   int i;
    FILE *pFile;
    unsigned int uTemp = 0;
-   int iStatus;
+   size_t iStatus;
    char szBuffer[81];
 
    if ((iMode == ID_SIMULATE_RUN) || (iMode == ID_SIMULATE_STEP))
@@ -8197,7 +7996,7 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
          }
       }
 
-      for (i=0;i<m_iMemorySize;i++) m_cMemory[i] = 0xAAAA;
+      for (int i=0;i<m_iMemorySize;i++) m_cMemory[i] = 0xAAAA;
 
       if (m_csFileName != "\\NUL")
       {
@@ -8230,7 +8029,7 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
          // This must be set to loop 1 extra time, to
          // check for too much data. Hence the <= operator.
 
-         for (i=0;i<=m_iMemorySize;i++)
+         for (int i=0;i<=m_iMemorySize;i++)
          {
             if ((m_iFormat & 1) == 0) // binary
             {
@@ -8325,15 +8124,13 @@ void CLogiMemoryGate::Simulate(CLogiDoc* pDoc)
 {
    unsigned int uTemp; // don't declare this short, VC++ 6 optimizer bug
    unsigned int uAddr;
-   int i;
-
    // Perform Simulation
 
    uAddr = 0;
 
    // Get Address
 
-   for (i=0;i<m_iAddressBits;i++)
+   for (int i=0;i<m_iAddressBits;i++)
    {
       switch ((Node[i+8])->State)
       {
@@ -8350,7 +8147,7 @@ void CLogiMemoryGate::Simulate(CLogiDoc* pDoc)
    {
       uTemp = 0;
 
-      for (i=0;i<8;i++)
+      for (int i=0;i<8;i++)
       {
          // The data input nodes follow the WriteNode
 
@@ -8363,7 +8160,7 @@ void CLogiMemoryGate::Simulate(CLogiDoc* pDoc)
 
       if (uAddr == 0xFFFFFFFF)
       {
-         for (i=0;i<m_iMemorySize;i++) m_cMemory[i] = 0xAAAA;
+         for (int i=0;i<m_iMemorySize;i++) m_cMemory[i] = 0xAAAA;
       }
       else
       {
@@ -8381,7 +8178,7 @@ void CLogiMemoryGate::Simulate(CLogiDoc* pDoc)
       uTemp = m_cMemory[uAddr];
    }
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       (Node[i])->NextState = ((uTemp>>(i*2)) & 3);
    }
@@ -8426,11 +8223,9 @@ void CLogiMemoryGate::SetGateID(void)
 
 void CLogiMemoryGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    if (m_iAddressBits == 8)
    {
@@ -8556,7 +8351,6 @@ void CLogiMemoryGate::SetContacts(void)
 
 void CLogiMemoryGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -8608,7 +8402,7 @@ void CLogiMemoryGate::OnOpen(CLogiView* pView)
 
       // The + 9 is due to the "W" (write) input and 8-bit data input
 
-      for (/*jal int */  i=Outputs;i<Outputs + iNewAddressBits + 9;i++) 
+      for (int i=Outputs;i<Outputs + iNewAddressBits + 9;i++) 
       {
          Node[Outputs] = m_pDocument->m_pAnodeNULL;
       }
@@ -8641,7 +8435,6 @@ CLogiTapedriveGate::CLogiTapedriveGate()
 
 CLogiTapedriveGate::CLogiTapedriveGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iFormat, int iSize, int iStart, const char *pFileName) : CLogiGate(position, name, ipage, pdoc, 9, 13, IDB_TAPEDRIVE, tapedrivegate)
 {
-
    m_iFormat = iFormat;
    m_csFileName = pFileName;
    m_iSize = iSize;
@@ -8679,16 +8472,15 @@ void CLogiTapedriveGate::Serialize(CArchive& ar)
 
 void CLogiTapedriveGate::Initialize(CLogiView* pView, UINT iMode)
 {
-   int i;
    FILE *pFile;
    unsigned int uTemp = 0;
-   int iStatus;
+   size_t iStatus;
    char szBuffer[81];
 
    if ((iMode == ID_SIMULATE_RUN) || (iMode == ID_SIMULATE_STEP))
    {
 
-      for (i=0;i<m_iSize;i++) m_cMemory[i] = 0xAAAA;
+      for (int i=0;i<m_iSize;i++) m_cMemory[i] = 0xAAAA;
       m_iPosition = m_iStartPosition;
 
       if (m_csFileName != "\\NUL")
@@ -8710,7 +8502,7 @@ void CLogiTapedriveGate::Initialize(CLogiView* pView, UINT iMode)
             return;
          }
 
-         for (i=0;i<m_iSize+1;i++)
+         for (int i=0;i<m_iSize+1;i++)
          {
             if (m_iFormat == 0)
             {
@@ -8822,7 +8614,7 @@ void CLogiTapedriveGate::Simulate(CLogiDoc* pDoc)
 
             // Get Data to write
 
-            for (i=0;i<8;i++)
+            for (int i=0;i<8;i++)
             {
                switch ((Node[i+14])->State)
                {
@@ -8842,7 +8634,7 @@ void CLogiTapedriveGate::Simulate(CLogiDoc* pDoc)
 
             // Output data
 
-            for (i=0;i<8;i++)
+            for (int i=0;i<8;i++)
             {
                (Node[i+1])->NextState = ((uTemp>>(i*2)) & 3);
             }
@@ -8868,11 +8660,9 @@ void CLogiTapedriveGate::SetGateID(void)
 
 void CLogiTapedriveGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[21].x += CONTACT_X_IN; // Data In
    Contact[21].y -= CONTACT_Y_17;
@@ -8929,7 +8719,6 @@ void CLogiTapedriveGate::SetContacts(void)
 
 void CLogiTapedriveGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -8991,7 +8780,6 @@ CLogiMuxGate::CLogiMuxGate()
 
 CLogiMuxGate::CLogiMuxGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, BOOL bMuxDeMux, int iStyle) : CLogiGate(position, name, ipage, pdoc, 16, 16, IDB_MUX_8TO1, muxgate)
 {
-
    m_iStyle = iStyle;
    m_bDeMux = bMuxDeMux;
 
@@ -9030,7 +8818,6 @@ void CLogiMuxGate::Initialize(CLogiView* pView, UINT iMode)
 
 void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
 {
-
    // Perform simulation
 
    int m_iNextState = -1;
@@ -9052,7 +8839,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
             {
                UINT uTemp = 0;
 
-               for (i=0;i<3;i++)
+               for (int i=0;i<3;i++)
                {
                   switch ((Node[i+3])->State)
                   {
@@ -9094,7 +8881,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
             {
                UINT uTemp = 0;
 
-               for (i=0;i<2;i++)
+               for (int i=0;i<2;i++)
                {
                   switch ((Node[i+3])->State)
                   {
@@ -9167,7 +8954,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
          {
          case UNKNOWN:
             {
-               for (i=0;i<8;i++)
+               for (int i=0;i<8;i++)
                {
                   Node[i]->NextState = UNKNOWN;
                }
@@ -9177,7 +8964,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
             {
                UINT uTemp = 0;
 
-               for (i=0;i<3;i++)
+               for (int i=0;i<3;i++)
                {
                   switch ((Node[i+9])->State)
                   {
@@ -9188,14 +8975,14 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
 
                if (bDontKnow)
                {
-                  for (i=0;i<8;i++)
+                  for (int i=0;i<8;i++)
                   {
                      Node[i]->NextState = UNKNOWN;
                   }
                }
                else
                {
-                  for (i=0;i<8;i++)
+                  for (int i=0;i<8;i++)
                   {
                      Node[i]->NextState = HI;
                   }
@@ -9206,7 +8993,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
             }
          case HI:
             {
-               for (i=0;i<8;i++)
+               for (int i=0;i<8;i++)
                {
                   Node[i]->NextState = HI;
                }
@@ -9221,7 +9008,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
          {
          case UNKNOWN:
             {
-               for (i=0;i<4;i++)
+               for (int i=0;i<4;i++)
                {
                   Node[i]->NextState = UNKNOWN;
                }
@@ -9231,7 +9018,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
             {
                UINT uTemp = 0;
 
-               for (i=0;i<2;i++)
+               for (int i=0;i<2;i++)
                {
                   switch ((Node[i+5])->State)
                   {
@@ -9242,14 +9029,14 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
 
                if (bDontKnow)
                {
-                  for (i=0;i<4;i++)
+                  for (int i=0;i<4;i++)
                   {
                      Node[i]->NextState = UNKNOWN;
                   }
                }
                else
                {
-                  for (i=0;i<4;i++)
+                  for (int i=0;i<4;i++)
                   {
                      Node[i]->NextState = HI;
                   }
@@ -9260,7 +9047,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
             }
          case HI:
             {
-               for (i=0;i<4;i++)
+               for (int i=0;i<4;i++)
                {
                   Node[i]->NextState = HI;
                }
@@ -9275,7 +9062,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
          {
          case UNKNOWN:
             {
-               for (i=0;i<2;i++)
+               for (int i=0;i<2;i++)
                {
                   Node[i]->NextState = UNKNOWN;
                }
@@ -9293,14 +9080,14 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
 
                if (bDontKnow)
                {
-                  for (i=0;i<2;i++)
+                  for (int i=0;i<2;i++)
                   {
                      Node[i]->NextState = UNKNOWN;
                   }
                }
                else
                {
-                  for (i=0;i<2;i++)
+                  for (int i=0;i<2;i++)
                   {
                      Node[i]->NextState = HI;
                   }
@@ -9311,7 +9098,7 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
             }
          case HI:
             {
-               for (i=0;i<2;i++)
+               for (int i=0;i<2;i++)
                {
                   Node[i]->NextState = HI;
                }
@@ -9383,7 +9170,6 @@ void CLogiMuxGate::Simulate(CLogiDoc* pDoc)
 
 void CLogiMuxGate::SetGateID(void)
 {
-
    switch (m_iStyle)
    {
    case 0: // 8to1
@@ -9441,11 +9227,9 @@ void CLogiMuxGate::SetGateID(void)
 
 void CLogiMuxGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    switch (m_iStyle)
    {
@@ -9611,7 +9395,6 @@ void CLogiMuxGate::SetContacts(void)
 
 void CLogiMuxGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();
@@ -9639,9 +9422,7 @@ void CLogiMuxGate::OnOpen(CLogiView* pView)
    ASSERT_VALID(this);
 
    CMuxDlg dlg;
-   int i;
-
-   dlg.m_iStyle = m_iStyle;
+      dlg.m_iStyle = m_iStyle;
    dlg.m_bDeMux = m_bDeMux;
 
    if (dlg.DoModal() != IDOK) return;
@@ -9650,7 +9431,7 @@ void CLogiMuxGate::OnOpen(CLogiView* pView)
 
    if (m_iStyle != dlg.m_iStyle)
    {
-      for (i=0;i<Contacts;i++)
+      for (int i=0;i<Contacts;i++)
       {
          if (Node[i] != m_pDocument->m_pAnodeNULL)
          {
@@ -9659,7 +9440,7 @@ void CLogiMuxGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_iStyle = dlg.m_iStyle;
@@ -9684,7 +9465,6 @@ CLogiAluGate::CLogiAluGate()
 
 CLogiAluGate::CLogiAluGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, BOOL bAluDeAlu, int iAlu2Inputs) : CLogiGate(position, name, ipage, pdoc, 12, 20, IDB_ALU, alugate)
 {
-
    m_iInputs = iAlu2Inputs;
    m_bDeAlu = bAluDeAlu;
 
@@ -9729,7 +9509,7 @@ void CLogiAluGate::Simulate(CLogiDoc* pDoc)
 
    (Node[11])->NextState = LO; // Cout
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       switch ((Node[i+24])->State)
       {
@@ -9738,7 +9518,7 @@ void CLogiAluGate::Simulate(CLogiDoc* pDoc)
       }
    }
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       switch ((Node[i+16])->State)
       {
@@ -9747,7 +9527,7 @@ void CLogiAluGate::Simulate(CLogiDoc* pDoc)
       }
    }
 
-   for (i=0;i<3;i++)
+   for (int i=0;i<3;i++)
    {
       switch ((Node[i+13])->State)
       {
@@ -9810,7 +9590,7 @@ void CLogiAluGate::Simulate(CLogiDoc* pDoc)
       {
          uTempF = uTempA;
 
-         for (i=0;i<min(uTempB,9);i++)
+         for (unsigned int i=0;i<min(uTempB,9);i++)
          {
             uTempF = (uTempF << 1) | uTempCin;
          }
@@ -9821,7 +9601,7 @@ void CLogiAluGate::Simulate(CLogiDoc* pDoc)
       {
          uTempF = uTempA<<1;
 
-         for (i=0;i<min(uTempB,9);i++)
+         for (unsigned int i=0;i<min(uTempB,9);i++)
          {
             uTempF = (uTempF >> 1) | (uTempCin<<8);
          }
@@ -9832,7 +9612,7 @@ void CLogiAluGate::Simulate(CLogiDoc* pDoc)
       }
    }
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       if (uTempF & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
    }
@@ -9854,7 +9634,7 @@ void CLogiAluGate::Simulate(CLogiDoc* pDoc)
 
 SORRYPAL:
 
-   for (i=0;i<8;i++)
+   for (int i=0;i<8;i++)
    {
       (Node[i])->NextState = UNKNOWN;
    }
@@ -9875,11 +9655,9 @@ void CLogiAluGate::SetGateID(void)
 
 void CLogiAluGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[ 0].x += CONTACT_X_OUT; // Data Out
    Contact[ 0].y -= CONTACT_Y_14;
@@ -9956,7 +9734,6 @@ void CLogiAluGate::SetContacts(void)
 
 void CLogiAluGate::MoveTo(const CRect& position, CLogiView* pView)
 {
-
    CLogiObj::MoveTo(position, pView);
 
    SetContacts();

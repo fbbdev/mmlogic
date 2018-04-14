@@ -982,8 +982,8 @@ void CLogiDoc::Simulate(UINT iMode)
       if(m_bColorWires)
       {
          // call update for each view, to draw the new wire colors
-         POSITION pos = GetFirstViewPosition();
-         while (pos != NULL)  ((CLogiView*)GetNextView(pos))->OnUpdate(NULL, HINT_UPDATE_WINDOW, NULL);
+         POSITION pos3 = GetFirstViewPosition();
+         while (pos3 != NULL)  ((CLogiView*)GetNextView(pos3))->OnUpdate(NULL, HINT_UPDATE_WINDOW, NULL);
       }
 
       // Tally Cycle Count
@@ -1256,7 +1256,7 @@ void CLogiDoc::Serialize(CArchive& ar)
       CLogiObj* CurrentGate;
       CLogiObj* CurrentWire;
       CStringArray* PageNames;
-      int iLastPage;
+      intptr_t iLastPage;
 
       // m_PageNames cannot be accessed for reading directly, as
       // GetPageNames performs some pre-processing
@@ -1267,18 +1267,18 @@ void CLogiDoc::Serialize(CArchive& ar)
       // CheckForStrays();
 
       sprintf(Buffer,"%d %d %d\015\012", version, VERSION_MAJOR, VERSION_MINOR);
-      ar.Write(Buffer,strlen(Buffer));
+      ar.Write(Buffer, (UINT) strlen(Buffer));
 
       for( iPage=1; iPage <= iLastPage; iPage++ )
       {
          sprintf(Buffer,"%d %d\015\012", pagechange, iPage);
-         ar.Write(Buffer,strlen(Buffer));
+         ar.Write(Buffer, (UINT) strlen(Buffer));
 
          // Write page name, if any
          if (!PageNames->GetAt(iPage-1).IsEmpty())
          {
-            sprintf(Buffer,"%d %s\015\012", pagename, PageNames->GetAt(iPage-1));
-            ar.Write(Buffer,strlen(Buffer));
+            sprintf(Buffer,"%d %s\015\012", pagename, PageNames->GetAt(iPage-1).GetString());
+            ar.Write(Buffer, (UINT) strlen(Buffer));
          }
 
          for( pos = m_objects.GetHeadPosition(); pos != NULL; )
@@ -1302,7 +1302,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.TopLeft().y,
                         CurrentGate->m_position.BottomRight().x,
                         CurrentGate->m_position.BottomRight().y);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case countergate:
@@ -1315,7 +1315,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiCounterGate*) CurrentGate)->m_iSize,
                         ((CLogiCounterGate*) CurrentGate)->m_iInit);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case robotgate:
@@ -1334,7 +1334,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         ((CLogiRobotGate*) CurrentGate)->m_iHotspotX,
                         ((CLogiRobotGate*) CurrentGate)->m_iHotspotY,
                         ((CLogiRobotGate*) CurrentGate)->m_csFileName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case networkgate:
@@ -1348,7 +1348,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         ((CLogiNetworkGate*) CurrentGate)->m_iDirection,
                         ((CLogiNetworkGate*) CurrentGate)->m_uPort,
                         ((CLogiNetworkGate*) CurrentGate)->m_csName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case buzzergate:
@@ -1361,7 +1361,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiBuzzerGate*) CurrentGate)->m_iFreq,
                         ((CLogiBuzzerGate*) CurrentGate)->m_iDuration);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case soundwavegate:
@@ -1374,7 +1374,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiSoundwaveGate*) CurrentGate)->m_bWait,
                         ((CLogiSoundwaveGate*) CurrentGate)->m_csFileName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case bitmapgate:
@@ -1388,7 +1388,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         ((CLogiBitmapGate*) CurrentGate)->m_iStyle,
                         ((CLogiBitmapGate*) CurrentGate)->m_csFileName.GetBuffer(1),
                         ((CLogiBitmapGate*) CurrentGate)->m_bPlayground);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case textgate:
@@ -1401,10 +1401,10 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiTextGate*) CurrentGate)->m_iStyle,
                         ((CLogiTextGate*) CurrentGate)->m_csFileName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      sprintf(Buffer,"%s\015\012",((CLogiTextGate*) CurrentGate)->m_pTextText.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case signalreceivergate:
@@ -1416,10 +1416,10 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().x,
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiSignalreceiverGate*) CurrentGate)->m_iDummy);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      sprintf(Buffer,"%s\015\012",((CLogiSignalreceiverGate*) CurrentGate)->m_csSignalName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case signalsendergate:
@@ -1431,10 +1431,10 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().x,
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiSignalsenderGate*) CurrentGate)->m_iDummy);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      sprintf(Buffer,"%s\015\012",((CLogiSignalsenderGate*) CurrentGate)->m_csSignalName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case writefilegate:
@@ -1447,7 +1447,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiWritefileGate*) CurrentGate)->m_iFormat,
                         ((CLogiWritefileGate*) CurrentGate)->m_csFileName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case readfilegate:
@@ -1460,7 +1460,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiReadfileGate*) CurrentGate)->m_iFormat,
                         ((CLogiReadfileGate*) CurrentGate)->m_csFileName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case led7gate:
@@ -1473,7 +1473,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiLed7Gate*) CurrentGate)->m_iRed,
                         ((CLogiLed7Gate*) CurrentGate)->m_iInputs);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case randomgate:
@@ -1486,7 +1486,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiRandomGate*) CurrentGate)->m_iSpare,
                         ((CLogiRandomGate*) CurrentGate)->m_uSeed);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case orgate:
@@ -1499,7 +1499,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiORGate*) CurrentGate)->m_iInputs,
                         ((CLogiORGate*) CurrentGate)->m_bDemorgan);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case muxgate:
@@ -1512,7 +1512,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiMuxGate*) CurrentGate)->m_bDeMux,
                         ((CLogiMuxGate*) CurrentGate)->m_iStyle);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case alugate:
@@ -1525,7 +1525,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiAluGate*) CurrentGate)->m_bDeAlu,
                         ((CLogiAluGate*) CurrentGate)->m_iInputs);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case asciikeyboardgate:
@@ -1537,7 +1537,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().x,
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiAsciikeyboardGate*) CurrentGate)->m_bAscii);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case invertgate:
@@ -1549,7 +1549,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().x,
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiINVERTGate*) CurrentGate)->m_bDemorgan);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case tristategate:
@@ -1562,7 +1562,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiTristateGate*) CurrentGate)->m_bDemorgan,
                         ((CLogiTristateGate*) CurrentGate)->m_bAssertLO);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case busgate:
@@ -1575,7 +1575,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiBusGate*) CurrentGate)->m_iInputs,
                         ((CLogiBusGate*) CurrentGate)->m_bDummy2);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case flipflopgate:
@@ -1589,7 +1589,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         ((CLogiFlipflopGate*) CurrentGate)->m_iStyle,
                         ((CLogiFlipflopGate*) CurrentGate)->m_bEdge,
                         ((CLogiFlipflopGate*) CurrentGate)->m_bPresetClear);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      break;
                   }
@@ -1603,7 +1603,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiNULLGate*) CurrentGate)->m_iPass,
                         ((CLogiNULLGate*) CurrentGate)->m_iFloat);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      break;
                   }
@@ -1617,7 +1617,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiANDGate*) CurrentGate)->m_iInputs,
                         ((CLogiANDGate*) CurrentGate)->m_bDemorgan);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      break;
                   }
@@ -1631,7 +1631,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiXORGate*) CurrentGate)->m_iInputs,
                         ((CLogiXORGate*) CurrentGate)->m_bDemorgan);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      break;
                   }
@@ -1645,7 +1645,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiLedGate*) CurrentGate)->m_iRed,
                         ((CLogiLedGate*) CurrentGate)->m_iBlink);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case switchgate:
@@ -1658,7 +1658,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiSwitchGate*) CurrentGate)->m_iOn,
                         ((CLogiSwitchGate*) CurrentGate)->m_iToggle);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case selectgate:
@@ -1671,7 +1671,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiSelectGate*) CurrentGate)->m_iInitial,
                         ((CLogiSelectGate*) CurrentGate)->m_iDummy);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case oscillatorgate:
@@ -1684,7 +1684,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiOscillatorGate*) CurrentGate)->m_iCountHI,
                         ((CLogiOscillatorGate*) CurrentGate)->m_iCountLO);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case clockgate:
@@ -1697,7 +1697,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiClockGate*) CurrentGate)->m_iSeconds,
                         ((CLogiClockGate*) CurrentGate)->m_bSpare);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case timergate:
@@ -1710,7 +1710,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiTimerGate*) CurrentGate)->m_uDelay,
                         ((CLogiTimerGate*) CurrentGate)->m_bSpare);
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case memorygate:
@@ -1723,7 +1723,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.BottomRight().y,
                         ((CLogiMemoryGate*) CurrentGate)->m_iFormat,
                         ((CLogiMemoryGate*) CurrentGate)->m_csFileName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                case tapedrivegate:
@@ -1738,7 +1738,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         ((CLogiTapedriveGate*) CurrentGate)->m_iSize,
                         ((CLogiTapedriveGate*) CurrentGate)->m_iStartPosition,
                         ((CLogiTapedriveGate*) CurrentGate)->m_csFileName.GetBuffer(1));
-                     ar.Write(Buffer,strlen(Buffer));
+                     ar.Write(Buffer, (UINT) strlen(Buffer));
                      break;
                   }
                }
@@ -1757,27 +1757,27 @@ void CLogiDoc::Serialize(CArchive& ar)
                   CurrentWire->m_position.BottomRight().y,
                   CurrentWire->m_position.TopLeft().x,
                   CurrentWire->m_position.TopLeft().y);
-               ar.Write(Buffer,strlen(Buffer));
+               ar.Write(Buffer, (UINT) strlen(Buffer));
             }
          }
       }
 
       sprintf(Buffer,"%d %d\015\012", pagecolor, m_paperColor);
-      ar.Write(Buffer,strlen(Buffer));
+      ar.Write(Buffer, (UINT) strlen(Buffer));
 
       sprintf(Buffer,"%d %d\015\012", unconnected, m_iUnconnected);
-      ar.Write(Buffer,strlen(Buffer));
+      ar.Write(Buffer, (UINT) strlen(Buffer));
 
       sprintf(Buffer,"%d %d %d %d\015\012", pagegrid, m_bGrid, m_uGridWidth, m_uGridHeight);
-      ar.Write(Buffer,strlen(Buffer));
+      ar.Write(Buffer, (UINT) strlen(Buffer));
 
       // New fields for canvas size and simulation rate
 
       sprintf(Buffer,"%d %d %d\015\012", canvassize, m_uCanvasWidth, m_uCanvasHeight);
-      ar.Write(Buffer,strlen(Buffer));
+      ar.Write(Buffer, (UINT) strlen(Buffer));
 
       sprintf(Buffer, "%d %d %d\015\012", simrate, m_bSimRateSpecified, m_iSimRate);
-      ar.Write(Buffer,strlen(Buffer));
+      ar.Write(Buffer, (UINT) strlen(Buffer));
 
       LOGFONT lf;
 
@@ -2039,7 +2039,7 @@ void CLogiDoc::Serialize(CArchive& ar)
             }
          case asciikeyboardgate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1);
+               sscanf(Buffer,"%*d %d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1,&tmp2);
                Add(new CLogiAsciikeyboardGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "KEYBOARD", iPage, this, tmp1));
                break;
             }
@@ -2382,7 +2382,6 @@ CLogiObj* CLogiDoc::ObjectAt(const CPoint& point, int ipage)
 
 CLogiObj* CLogiDoc::ObjectAtContact(const CPoint& point, int *io, int ipage)
 {
-   int i;
    CRect rect(point, CSize(7, 7));
    rect.OffsetRect(-3,-3);
    POSITION pos = m_objects.GetTailPosition();
@@ -2392,7 +2391,7 @@ CLogiObj* CLogiDoc::ObjectAtContact(const CPoint& point, int *io, int ipage)
       CLogiObj* pObj = (CLogiObj*)m_objects.GetPrev(pos);
       if ((pObj->m_iPage == ipage) && pObj->IsKindOf(RUNTIME_CLASS(CLogiGate)) && pObj->Intersects(rect))
       {
-         for (i=0;i<((CLogiGate *)pObj)->Contacts;i++)
+         for (int i=0;i<((CLogiGate *)pObj)->Contacts;i++)
          {
             if (rect.PtInRect(((CLogiGate *)pObj)->Contact[i]))
             {
@@ -2410,7 +2409,6 @@ CLogiObj* CLogiDoc::ObjectAtContact(const CPoint& point, int *io, int ipage)
 
 CLogiObj* CLogiDoc::ObjectAtContactExact(const CPoint& point, int *io, int ipage)
 {
-   int i;
    CRect rect(point, CSize(7, 7));
    rect.OffsetRect(-3,-3);
    POSITION pos = m_objects.GetTailPosition();
@@ -2420,7 +2418,7 @@ CLogiObj* CLogiDoc::ObjectAtContactExact(const CPoint& point, int *io, int ipage
       CLogiObj* pObj = (CLogiObj*)m_objects.GetPrev(pos);
       if ((pObj->m_iPage == ipage) && pObj->IsKindOf(RUNTIME_CLASS(CLogiGate)) && pObj->Intersects(rect))
       {
-         for (i=0;i<((CLogiGate *)pObj)->Contacts;i++)
+         for (int i=0;i<((CLogiGate *)pObj)->Contacts;i++)
          {
             if (point == ((CLogiGate *)pObj)->Contact[i])
             {
@@ -2928,7 +2926,7 @@ CStringArray *CLogiDoc::GetPageNames()
    m_PageNames.SetSize(iMaxPage);
 
    // Pad m_PageNames with blank strings for untitled pages
-   int index;
+   intptr_t index;
    for (index = m_PageNames.GetUpperBound() + 1; index <= iMaxPage-1; index++)
       m_PageNames.Add("");
 

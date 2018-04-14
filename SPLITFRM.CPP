@@ -42,7 +42,7 @@ END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CSplitFrame message handlers
-void CSplitFrame::OnSysCommand(UINT nID, LONG lParam)
+void CSplitFrame::OnSysCommand(UINT nID, LPARAM lParam)
 {
    if ( ( nID & 0x0FFF0 ) != SC_CLOSE )
    {

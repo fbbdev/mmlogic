@@ -378,11 +378,9 @@ NOWAY:
 // SetContacts
 void CLogiTextGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_Y_1;
@@ -463,7 +461,7 @@ void CLogiTextGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (/*jal int */  i=0;i<4;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<4;i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_pTextText = dlg.m_pTextText;

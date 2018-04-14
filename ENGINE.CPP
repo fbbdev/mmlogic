@@ -93,10 +93,10 @@ void LaunchFile(CString &csFile)
 {
    HINSTANCE hInstance = ShellExecute(AfxGetMainWnd()->GetSafeHwnd(), "open", csFile, NULL, NULL, SW_SHOWNORMAL);
 
-   if (((int) hInstance) <= 32)
+   if (intptr_t(hInstance) <= 32)
    {
       CString csMessage;
-      csMessage = GetShellExecuteError((int) hInstance);
+      csMessage = GetShellExecuteError((int) intptr_t(hInstance));
       csMessage += " ";
       csMessage += csFile;
 

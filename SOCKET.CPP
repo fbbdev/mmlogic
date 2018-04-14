@@ -13,7 +13,6 @@ static char BASED_CODE THIS_FILE[] = __FILE__;
 
 #define MAX_PENDING_CONNECTS 4  /* The backlog allowed for listen() */
 #define MAX_PACKET_SIZE 1024
-#define SD_BOTH 2
 
 /////////////////////////////////////////////////////////////////////////////
 // CSocketWnd
@@ -283,11 +282,9 @@ LRESULT CSocketWnd::OnNetConnectack( WPARAM /*wParam*/, LPARAM lParam)
 
             if (status != 0)
             {
-               int i;
-
                // Queue up each char
 
-               for (i=0;i<status;i++)
+               for (int i=0;i<status;i++)
                {
                   pDoc->NetworkMessageQueue.AddTail(new ANetworkMessage(pObj, pDoc, WSAGETSELECTEVENT(lParam), Buffer[i]));
                   pDoc->NetworkMessageQueue.AddTail(new ANetworkMessage(pObj, pDoc, 0L, 0));

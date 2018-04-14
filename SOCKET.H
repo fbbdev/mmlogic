@@ -21,7 +21,7 @@ public:
    // Operations
 public:
 
-   int iSocket;    // Current Handle Send Socket
+   SOCKET iSocket;    // Current Handle Send Socket
    int iPort;    // Current requested send Port
 
    BOOL bConnected;    // Flag that send socket is connected
@@ -55,9 +55,9 @@ public:
    // Generated message map functions
 protected:
    //{{AFX_MSG(CSocketWnd)
-   afx_msg LONG OnNetAcceptfinish(UINT wParam, LONG lParam);
-   afx_msg LONG OnNetConnectack(UINT wParam, LONG lParam);
-   afx_msg LONG OnNetConnectfinish(UINT wParam, LONG lParam);
+   afx_msg LRESULT OnNetAcceptfinish(WPARAM wParam, LPARAM lParam);
+   afx_msg LRESULT OnNetConnectack(WPARAM wParam, LPARAM lParam);
+   afx_msg LRESULT OnNetConnectfinish(WPARAM wParam, LPARAM lParam);
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
 }

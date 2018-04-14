@@ -226,7 +226,7 @@ protected:
    afx_msg void OnUpdateEditRedo(CCmdUI* pCmdUI);
    afx_msg void OnViewGotoPage();
    afx_msg void OnUpdateGotoPage(CCmdUI* pCmdUI);
-   afx_msg LONG OnFindReplace(WPARAM wParam, LPARAM lParam);
+   afx_msg LPARAM OnFindReplace(WPARAM wParam, LPARAM lParam);
    afx_msg void OnEditFind();
    afx_msg void OnEditReplace();
    afx_msg void OnDrawBisectwire();

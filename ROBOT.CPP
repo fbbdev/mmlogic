@@ -61,15 +61,15 @@ BOOL CLogiRobotGate::ConnectOn()
          if (bError) return(FALSE);
       }
 
-      CSize size = m_Playground->m_size;
+      CSize sz = m_Playground->m_size;
 
       switch (m_iPosition)
       {
-      case 0: m_xPos = size.cx/2;    m_yPos = size.cy/2;    break;
+      case 0: m_xPos = sz.cx/2;      m_yPos = sz.cy/2;    break;
       case 1: m_xPos = 0;            m_yPos = 0;            break;
-      case 2: m_xPos = size.cx-1;    m_yPos = 0;            break;
-      case 3: m_xPos = 0;            m_yPos = size.cy-1;    break;
-      case 4: m_xPos = size.cx-1;    m_yPos = size.cy-1;    break;
+      case 2: m_xPos = sz.cx-1;      m_yPos = 0;            break;
+      case 3: m_xPos = 0;            m_yPos = sz.cy-1;    break;
+      case 4: m_xPos = sz.cx-1;      m_yPos = sz.cy-1;    break;
       case 5: m_xPos = m_iPositionX; m_yPos = m_iPositionY; break;
       }
 
@@ -278,7 +278,7 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
 
                // Get direction
 
-               for (i=0;i<2;i++)
+               for (int i=0;i<2;i++)
                {
                   switch ((Node[i+6])->State)
                   {
@@ -301,7 +301,7 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
 
                // Init output color index
 
-               for (i=0;i<4;i++) Node[i+1]->NextState = LO;
+               for (int i=0;i<4;i++) Node[i+1]->NextState = LO;
 
                // Find color at new position
 
@@ -328,7 +328,7 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
                {
                   Node[0]->NextState = LO;
 
-                  for (i=0;i<4;i++)
+                  for (int i=0;i<4;i++)
                   {
                      if (((1<<i) & iHit) != 0)
                      {
@@ -345,7 +345,7 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
 
                m_uIndex = 0;
 
-               for (i=0;i<4;i++)
+               for (int i=0;i<4;i++)
                {
                   switch ((Node[i+8])->State)
                   {
@@ -375,7 +375,7 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
 
                // Get color index
 
-               for (i=0;i<4;i++)
+               for (int i=0;i<4;i++)
                {
                   switch ((Node[i+8])->State)
                   {
@@ -386,7 +386,7 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
 
                // Get direction
 
-               for (i=0;i<2;i++)
+               for (int i=0;i<2;i++)
                {
                   switch ((Node[i+2])->State)
                   {
@@ -430,7 +430,7 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
 
                m_uIndex = 0;
 
-               for (i=0;i<4;i++)
+               for (int i=0;i<4;i++)
                {
                   switch ((Node[i+4])->State)
                   {
@@ -484,11 +484,9 @@ void CLogiRobotGate::Simulate(CLogiDoc* pDoc)
 // SetContacts
 void CLogiRobotGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    switch (m_iStyle)
    {
@@ -629,7 +627,7 @@ void CLogiRobotGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (/*jal int */  i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
    }
 
    m_csFileName = dlg.m_csFileName;

@@ -369,7 +369,7 @@ void CLogiBitmapGate::Simulate(CLogiDoc* pDoc)
    {
       UINT uTemp = 0;
 
-      for (i=0;i<8;i++)
+      for (int i=0;i<8;i++)
       {
          if ((Node[i])->State == HI) uTemp |= 1<<i;
       }
@@ -422,11 +422,9 @@ void CLogiBitmapGate::Simulate(CLogiDoc* pDoc)
 // SetContacts
 void CLogiBitmapGate::SetContacts(void)
 {
-   int i;
-
    // compute new contact points
 
-   for (i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
+   for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
    Contact[0].x += CONTACT_X_IN;
    Contact[0].y -= CONTACT_Y_1;
@@ -499,7 +497,7 @@ void CLogiBitmapGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (/*jal int */ i=0;i<4;i++) Node[i] = pView->GetDocument()->m_pAnodeNULL;
+      for (int i=0;i<4;i++) Node[i] = pView->GetDocument()->m_pAnodeNULL;
    }
 
    m_csFileName = dlg.m_csFileName;
