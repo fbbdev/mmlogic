@@ -603,8 +603,12 @@ BOOL CLogiDoc::Reset(UINT iMode)
       }
    }
 
-   // Pair Signal Senders and Signal Receivers (init pointers first)
+   // Pair Signal Senders and Signal Receivers
 
+   CObList receivers;
+   CObList sendersSatisfied;
+
+   // Init pointers and make list of all receivers
    for( pos = m_objects.GetHeadPosition(); pos != NULL; )
    {
       CurrentObj = (CLogiObj*) m_objects.GetNext( pos );
@@ -618,20 +622,9 @@ BOOL CLogiDoc::Reset(UINT iMode)
       else if (CurrentObj->m_Logishape == signalreceivergate)
       {
          ((CLogiSignalreceiverGate*) CurrentObj)->m_Mate = NULL;
+         receivers.AddTail(CurrentObj);
       }
    }
-
-   CObList receivers;
-   CObList sendersSatisfied;
-
-   // make list of all receivers
-   for (pos = m_objects.GetHeadPosition(); pos != NULL; )
-   {
-      CurrentObj2 = (CLogiObj*) m_objects.GetNext(pos);
-      if (CurrentObj2->m_Logishape == signalreceivergate)
-         receivers.AddTail(CurrentObj2);
-   }
-
 
    // now look for senders
    for (pos = m_objects.GetHeadPosition(); pos != NULL; )
@@ -641,6 +634,7 @@ BOOL CLogiDoc::Reset(UINT iMode)
       if (CurrentObj->m_Logishape == signalsendergate)
       {
          CString signalname = ((CLogiSignalsenderGate*) CurrentObj)->m_csSignalName;
+         int signalwidth = ((CLogiSignalsenderGate*)CurrentObj)->m_iSignalWidth;
          // find receiver(s)
          for (pos2 = receivers.GetHeadPosition(); pos2 != NULL; )
          {
@@ -648,6 +642,19 @@ BOOL CLogiDoc::Reset(UINT iMode)
             CurrentObj2 = (CLogiObj*) receivers.GetNext(pos2);
             if (((CLogiSignalreceiverGate*) CurrentObj2)->m_csSignalName == signalname)
             {
+               if (((CLogiSignalreceiverGate*) CurrentObj2)->m_iSignalWidth != signalwidth)
+               {
+                  vpos = GetFirstViewPosition();
+                  while (vpos != NULL)
+                  {
+                     pView = (CLogiView*)GetNextView(vpos);
+                     pView->SetPage(CurrentObj2->m_iPage);
+                     pView->Select(CurrentObj2, TRUE);
+                  }
+
+                  ::MessageBox(::GetFocus(), "The width of the selected Signal Receiver does not match the width of its Sender", "Error", MB_OK | MB_ICONEXCLAMATION);
+                  return FALSE;
+               }
                // add
                ((CLogiSignalsenderGate*) CurrentObj)->m_Mates.AddTail(CurrentObj2);
                receivers.RemoveAt(thispos);
@@ -1415,7 +1422,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.TopLeft().y,
                         CurrentGate->m_position.BottomRight().x,
                         CurrentGate->m_position.BottomRight().y,
-                        ((CLogiSignalreceiverGate*) CurrentGate)->m_iDummy);
+                        ((CLogiSignalreceiverGate*) CurrentGate)->m_iSignalWidth);
                      ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      sprintf(Buffer,"%s\015\012",((CLogiSignalreceiverGate*) CurrentGate)->m_csSignalName.GetBuffer(1));
@@ -1430,7 +1437,7 @@ void CLogiDoc::Serialize(CArchive& ar)
                         CurrentGate->m_position.TopLeft().y,
                         CurrentGate->m_position.BottomRight().x,
                         CurrentGate->m_position.BottomRight().y,
-                        ((CLogiSignalsenderGate*) CurrentGate)->m_iDummy);
+                        ((CLogiSignalsenderGate*) CurrentGate)->m_iSignalWidth);
                      ar.Write(Buffer, (UINT) strlen(Buffer));
 
                      sprintf(Buffer,"%s\015\012",((CLogiSignalsenderGate*) CurrentGate)->m_csSignalName.GetBuffer(1));
@@ -1874,16 +1881,16 @@ void CLogiDoc::Serialize(CArchive& ar)
             }
          case signalreceivergate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d",&x1,&y1,&x2,&y2);
+               sscanf(Buffer,"%*d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1);
                ar.ReadString(Buffer,1024-1);
-               Add(new CLogiSignalreceiverGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "SIGNALRX", iPage, this, 0, Buffer));
+               Add(new CLogiSignalreceiverGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "SIGNALRX", iPage, this, tmp1, Buffer));
                break;
             }
          case signalsendergate:
             {
-               sscanf(Buffer,"%*d %d %d %d %d",&x1,&y1,&x2,&y2);
+               sscanf(Buffer,"%*d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1);
                ar.ReadString(Buffer,1024-1);
-               Add(new CLogiSignalsenderGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "SIGNALTX", iPage, this, 0, Buffer));
+               Add(new CLogiSignalsenderGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "SIGNALTX", iPage, this, tmp1, Buffer));
                break;
             }
          case analyzegate:

@@ -916,6 +916,7 @@ class CSignalreceiverDlg : public CDialog
    // Construction
 public:
    CSignalreceiverDlg(CWnd* pParent = NULL);   // standard constructor
+   void RecalcBM();
 
    CBitmapButton m_bmBtn;
 
@@ -923,7 +924,7 @@ public:
    //{{AFX_DATA(CSignalreceiverDlg)
    enum { IDD = IDD_PROP_SIGNALRECEIVER }; //ignore//
    CString	m_csSignalName;
-   int		m_iDummy;
+   int m_iSignalWidth;
    //}}AFX_DATA
 
 
@@ -940,6 +941,10 @@ protected:
    // Generated message map functions
    //{{AFX_MSG(CSignalreceiverDlg)
    virtual BOOL OnInitDialog();
+   afx_msg void OnWidth1Bit();
+   afx_msg void OnWidth2Bits();
+   afx_msg void OnWidth4Bits();
+   afx_msg void OnWidth8Bits();
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
@@ -953,6 +958,7 @@ class CSignalsenderDlg : public CDialog
    // Construction
 public:
    CSignalsenderDlg(CWnd* pParent = NULL);   // standard constructor
+   void RecalcBM();
 
    CBitmapButton m_bmBtn;
 
@@ -960,7 +966,7 @@ public:
    //{{AFX_DATA(CSignalsenderDlg)
    enum { IDD = IDD_PROP_SIGNALSENDER }; //ingore//
    CString	m_csSignalName;
-   int		m_iDummy;
+   int m_iSignalWidth;
    //}}AFX_DATA
 
 
@@ -977,6 +983,10 @@ protected:
    // Generated message map functions
    //{{AFX_MSG(CSignalsenderDlg)
    virtual BOOL OnInitDialog();
+   afx_msg void OnWidth1Bit();
+   afx_msg void OnWidth2Bits();
+   afx_msg void OnWidth4Bits();
+   afx_msg void OnWidth8Bits();
    afx_msg void OnHelp();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()

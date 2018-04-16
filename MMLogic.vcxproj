@@ -122,6 +122,10 @@
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -156,6 +160,10 @@
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -194,6 +202,18 @@
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Manifest>
+      <OutputManifestFile>
+      </OutputManifestFile>
+    </Manifest>
+    <ManifestResourceCompile>
+      <ResourceOutputFileName>
+      </ResourceOutputFileName>
+    </ManifestResourceCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -231,6 +251,18 @@
       <Culture>0x0409</Culture>
       <AdditionalIncludeDirectories>$(IntDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
+    <Manifest>
+      <AdditionalManifestFiles>
+      </AdditionalManifestFiles>
+    </Manifest>
+    <Manifest>
+      <OutputManifestFile>
+      </OutputManifestFile>
+    </Manifest>
+    <ManifestResourceCompile>
+      <ResourceOutputFileName>
+      </ResourceOutputFileName>
+    </ManifestResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Analyze.cpp">
@@ -544,6 +576,7 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(Filename)%(Extension)" &gt;&gt; "hlp\
     <Image Include="RES\BITBUCKB.BMP" />
     <Image Include="Res\BITMAP1.BMP" />
     <Image Include="Res\bitmap2.bmp" />
+    <Image Include="RES\BITMAP3.BMP" />
     <Image Include="RES\BMP.BMP" />
     <Image Include="RES\BMPB.BMP" />
     <Image Include="RES\BMPSB.BMP" />
@@ -777,8 +810,20 @@ makehm /h /a afxhh.h IDW_,HIDW_,0x50000 "%(Filename)%(Extension)" &gt;&gt; "hlp\
     <Image Include="res\OSCB.bmp" />
     <Image Include="res\PAGEOUTB.bmp" />
     <Image Include="RES\PAGE_IN.BMP" />
+    <Image Include="Res\PAGE_IN2.BMP" />
+    <Image Include="Res\PAGE_IN2B.BMP" />
+    <Image Include="Res\PAGE_IN4.BMP" />
+    <Image Include="Res\PAGE_IN4B.BMP" />
+    <Image Include="Res\PAGE_IN8.BMP" />
+    <Image Include="Res\PAGE_IN8B.BMP" />
     <Image Include="res\page_inb.bmp" />
     <Image Include="RES\PAGE_OUT.BMP" />
+    <Image Include="Res\PAGE_OUT2.BMP" />
+    <Image Include="Res\PAGE_OUT2B.BMP" />
+    <Image Include="Res\PAGE_OUT4.BMP" />
+    <Image Include="Res\PAGE_OUT4B.BMP" />
+    <Image Include="Res\PAGE_OUT8.BMP" />
+    <Image Include="Res\PAGE_OUT8B.BMP" />
     <Image Include="RES\PALETTE.BMP" />
     <Image Include="RES\PLUS.BMP" />
     <Image Include="res\plusb.bmp" />
@@ -1076,7 +1121,6 @@ echo.
     </CustomBuild>
     <None Include="hlp\Table of Contents.hhc" />
     <None Include="MMLogic.nsi" />
-    <None Include="res\LOGICLI.RC2" />
     <None Include="RES\PENCIL.CUR" />
     <None Include="RES\PROBE_FL.CUR" />
     <None Include="RES\PROBE_MI.CUR" />
@@ -1090,11 +1134,6 @@ echo.
     <Text Include="License.txt" />
     <Text Include="Readme.txt" />
     <Text Include="Tips.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="res\MMLogic.manifest">
-      <SubType>Designer</SubType>
-    </Manifest>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

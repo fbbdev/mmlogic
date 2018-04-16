@@ -4736,16 +4736,18 @@ IMPLEMENT_SERIAL(CLogiSignalreceiverGate, CLogiGate, 0)
 
 CLogiSignalreceiverGate::CLogiSignalreceiverGate()
 {
-   }
+}
 
-CLogiSignalreceiverGate::CLogiSignalreceiverGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int idummy, const char *psignalname) : CLogiGate(position, name, ipage, pdoc, 1, 0, IDB_PAGE_IN, signalreceivergate)
+CLogiSignalreceiverGate::CLogiSignalreceiverGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int isignalwidth, const char *psignalname)
+: CLogiGate(position, name, ipage, pdoc,
+            (1 << ((isignalwidth < 0 || isignalwidth > 3) ? 0 : isignalwidth)), 0,
+            IDB_PAGE_IN, signalreceivergate)
 {
-   m_iDummy = idummy;
+   m_iSignalWidth = isignalwidth;
    m_csSignalName = psignalname;
 
    SetGateID();
    SetContacts();
-
 }
 
 void CLogiSignalreceiverGate::Serialize(CArchive& ar)
@@ -4756,12 +4758,12 @@ void CLogiSignalreceiverGate::Serialize(CArchive& ar)
 
    if (ar.IsStoring())
    {
-      ar << m_iDummy;
+      ar << m_iSignalWidth;
       ar << m_csSignalName;
    }
    else
    {
-      ar >> m_iDummy;
+      ar >> m_iSignalWidth;
       ar >> m_csSignalName;
 
       SetGateID();
@@ -4841,7 +4843,7 @@ void CLogiSignalreceiverGate::Draw(CDC* pDC, CLogiView* pView)
 
       // draw it
 
-      ::StretchDIBits(pDC->GetSafeHdc(), m_position.left+9, m_position.bottom+2, csSize.cx, csSize.cy, 0, 0, m_Bmi.bmiHeader.biWidth, m_Bmi.bmiHeader.biHeight, lpImage, (LPBITMAPINFO) &m_Bmi, DIB_RGB_COLORS, SRCCOPY);
+      ::StretchDIBits(pDC->GetSafeHdc(), m_position.left+9, m_position.bottom + ((m_size.cy - BITY_SIG)/2) + 2, csSize.cx, csSize.cy, 0, 0, m_Bmi.bmiHeader.biWidth, m_Bmi.bmiHeader.biHeight, lpImage, (LPBITMAPINFO) &m_Bmi, DIB_RGB_COLORS, SRCCOPY);
 
       delete [] lpImage;
    }
@@ -4857,13 +4859,12 @@ void CLogiSignalreceiverGate::Draw(CDC* pDC, CLogiView* pView)
       CRect rct = m_position;
       rct.NormalizeRect();
 
-      pDC->TextOut(rct.left+9, rct.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
+      pDC->TextOut(rct.left+9, rct.top + ((m_size.cy - BITY_SIG) / 2) + 2, m_csSignalName, min(m_csSignalName.GetLength(),6));
 
       pDC->SetTextColor(oldTextColor);
       pDC->SetBkMode(oldBkMode);
       pDC->SelectObject(pOldFont);
    }
-
 }
 
 void CLogiSignalreceiverGate::Simulate(CLogiDoc* /* pDoc */)
@@ -4877,6 +4878,20 @@ void CLogiSignalreceiverGate::Simulate(CLogiDoc* /* pDoc */)
    // Call base class to Queue Events for Driven Devices
 
    // CLogiGate::Simulate(pDoc);
+}
+
+void CLogiSignalreceiverGate::ResizeRect()
+{
+   switch (m_iSignalWidth)
+   {
+   case 3: m_size = CSize(BITX_SIG8, BITY_SIG8); break;
+   case 2: m_size = CSize(BITX_SIG4, BITY_SIG4); break;
+   case 1: m_size = CSize(BITX_SIG2, BITY_SIG2); break;
+   case 0:
+   default: m_size = CSize(BITX_SIG, BITY_SIG); break;
+   }
+
+   m_position = CRect(m_position.TopLeft(), CSize(m_size.cx, -m_size.cy));
 }
 
 void CLogiSignalreceiverGate::SetGateID(void)
@@ -4901,7 +4916,20 @@ void CLogiSignalreceiverGate::SetGateID(void)
    m_font.DeleteObject();
    m_font.CreateFontIndirect(&lf);
 
-   GateID = IDB_PAGE_IN;
+   if (m_iSignalWidth < 0 || m_iSignalWidth > 3)
+      m_iSignalWidth = 0;
+
+   switch (m_iSignalWidth)
+   {
+   case 3: GateID = IDB_PAGE_IN8; break;
+   case 2: GateID = IDB_PAGE_IN4; break;
+   case 1: GateID = IDB_PAGE_IN2; break;
+   case 0:
+   default: GateID = IDB_PAGE_IN; break;
+   }
+
+   Outputs = (1 << m_iSignalWidth);
+   Contacts = Inputs + Outputs;
 }
 
 void CLogiSignalreceiverGate::SetContacts(void)
@@ -4910,8 +4938,45 @@ void CLogiSignalreceiverGate::SetContacts(void)
 
    for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
-   Contact[0].x += CONTACT_X_OUT_SIG;
-   Contact[0].y -= CONTACT_Y_2;
+   // always start at contact 2 if not 8-bit signal
+   if (Contacts < 8)
+   {
+      Contact[0].x += CONTACT_X_OUT_SIG;
+      Contact[0].y -= CONTACT_Y_2;
+
+      if (Contacts > 1)
+      {
+         Contact[1].x += CONTACT_X_OUT_SIG;
+         Contact[1].y -= CONTACT_Y_3;
+
+         if (Contacts > 3)
+         {
+            Contact[2].x += CONTACT_X_OUT_SIG;
+            Contact[2].y -= CONTACT_Y_4;
+            Contact[3].x += CONTACT_X_OUT_SIG;
+            Contact[3].y -= CONTACT_Y_5;
+         }
+      }
+   }
+   else // if 8-bit signal
+   {
+      Contact[0].x += CONTACT_X_OUT_SIG;
+      Contact[0].y -= CONTACT_Y_1;
+      Contact[1].x += CONTACT_X_OUT_SIG;
+      Contact[1].y -= CONTACT_Y_2;
+      Contact[2].x += CONTACT_X_OUT_SIG;
+      Contact[2].y -= CONTACT_Y_3;
+      Contact[3].x += CONTACT_X_OUT_SIG;
+      Contact[3].y -= CONTACT_Y_4;
+      Contact[4].x += CONTACT_X_OUT_SIG;
+      Contact[4].y -= CONTACT_Y_5;
+      Contact[5].x += CONTACT_X_OUT_SIG;
+      Contact[5].y -= CONTACT_Y_6;
+      Contact[6].x += CONTACT_X_OUT_SIG;
+      Contact[6].y -= CONTACT_Y_7;
+      Contact[7].x += CONTACT_X_OUT_SIG;
+      Contact[7].y -= CONTACT_Y_8;
+   }
 }
 
 BOOL CLogiSignalreceiverGate::HasText()
@@ -4944,7 +5009,7 @@ CLogiObj* CLogiSignalreceiverGate::Clone(CLogiDoc* pDoc)
 {
    ASSERT_VALID(this);
 
-   CLogiSignalreceiverGate* pClone = new CLogiSignalreceiverGate(m_position, Name, m_iPage, pDoc, m_iDummy, m_csSignalName);
+   CLogiSignalreceiverGate* pClone = new CLogiSignalreceiverGate(m_position, Name, m_iPage, pDoc, m_iSignalWidth, m_csSignalName);
 
    ASSERT_VALID(pClone);
 
@@ -4961,19 +5026,45 @@ void CLogiSignalreceiverGate::OnOpen(CLogiView* pView)
    CSignalreceiverDlg dlg;
 
    dlg.m_csSignalName = m_csSignalName;
-   dlg.m_iDummy = m_iDummy;
+   dlg.m_iSignalWidth = m_iSignalWidth;
 
    if (dlg.DoModal() != IDOK) return;
+
+   int iNewSignalWidth = dlg.m_iSignalWidth;
+
+   if (iNewSignalWidth < 0 || iNewSignalWidth > 3)
+      iNewSignalWidth = 0;
+
+   if (m_iSignalWidth != iNewSignalWidth)
+   {
+      for (int i = 0; i < Contacts; i++)
+      {
+         if (Node[i] != m_pDocument->m_pAnodeNULL)
+         {
+            pView->MessageBox("Device cannot be connected when changing number of outputs", "Error", MB_ICONEXCLAMATION);
+            return;
+         }
+      }
+
+      for (int i = 0; i < (1 << iNewSignalWidth) + Inputs; i++)
+      {
+         Node[i] = m_pDocument->m_pAnodeNULL;
+      }
+   }
 
    pView->GetDocument()->BeginManualEdit(this); // for undo system
 
    m_csSignalName = dlg.m_csSignalName;
-   m_iDummy = dlg.m_iDummy;
+   m_iSignalWidth = dlg.m_iSignalWidth;
 
    SetGateID();
-   SetContacts();
 
    Invalidate();
+   ResizeRect();
+   Invalidate();
+
+   SetContacts();
+
    m_pDocument->SetModifiedFlag();
 }
 
@@ -4986,9 +5077,12 @@ CLogiSignalsenderGate::CLogiSignalsenderGate()
 {
 }
 
-CLogiSignalsenderGate::CLogiSignalsenderGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int idummy, const char *psignalname) : CLogiGate(position, name, ipage, pdoc, 0, 1, IDB_PAGE_OUT, signalsendergate)
+CLogiSignalsenderGate::CLogiSignalsenderGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int isignalwidth, const char *psignalname)
+: CLogiGate(position, name, ipage, pdoc,
+            0, (1 << ((isignalwidth < 0 || isignalwidth > 3) ? 0 : isignalwidth)),
+            IDB_PAGE_OUT, signalsendergate)
 {
-   m_iDummy = idummy;
+   m_iSignalWidth = isignalwidth;
    m_csSignalName = psignalname;
 
    SetGateID();
@@ -5003,12 +5097,12 @@ void CLogiSignalsenderGate::Serialize(CArchive& ar)
 
    if (ar.IsStoring())
    {
-      ar << m_iDummy;
+      ar << m_iSignalWidth;
       ar << m_csSignalName;
    }
    else
    {
-      ar >> m_iDummy;
+      ar >> m_iSignalWidth;
       ar >> m_csSignalName;
 
       SetGateID();
@@ -5086,7 +5180,7 @@ void CLogiSignalsenderGate::Draw(CDC* pDC, CLogiView* pView)
 
       // draw it
 
-      ::StretchDIBits(pDC->GetSafeHdc(), m_position.left+8, m_position.bottom+2, csSize.cx, csSize.cy, 0, 0, m_Bmi.bmiHeader.biWidth, m_Bmi.bmiHeader.biHeight, lpImage, (LPBITMAPINFO) &m_Bmi, DIB_RGB_COLORS, SRCCOPY);
+      ::StretchDIBits(pDC->GetSafeHdc(), m_position.left+16, m_position.bottom + ((m_size.cy - BITY_SIG) / 2) + 2, csSize.cx, csSize.cy, 0, 0, m_Bmi.bmiHeader.biWidth, m_Bmi.bmiHeader.biHeight, lpImage, (LPBITMAPINFO) &m_Bmi, DIB_RGB_COLORS, SRCCOPY);
 
       delete [] lpImage;
    }
@@ -5102,7 +5196,7 @@ void CLogiSignalsenderGate::Draw(CDC* pDC, CLogiView* pView)
       CRect rct = m_position;
       rct.NormalizeRect();
 
-      pDC->TextOut(rct.left+8, rct.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
+      pDC->TextOut(rct.left+16, rct.top + ((m_size.cy - BITY_SIG) / 2) + 2, m_csSignalName, min(m_csSignalName.GetLength(),6));
 
       pDC->SetTextColor(oldTextColor);
       pDC->SetBkMode(oldBkMode);
@@ -5128,27 +5222,49 @@ BOOL CLogiSignalsenderGate::PostSimulate(CLogiDoc* pDoc)
    for (pos = m_Mates.GetHeadPosition(); pos != NULL; )
    {
       CLogiGate *mate = (CLogiGate *) m_Mates.GetNext(pos);
+      BOOL mateChanged = FALSE;
 
-      if (mate->Node[0] != m_pDocument->m_pAnodeNULL)
+      for (int i = 0; i < Inputs; i++)
       {
-         if (mate->Node[0]->NextState != Node[0]->NextState || mate->Node[0]->NextDriveState != Node[0]->NextDriveState)
+         if (mate->Node[i] != m_pDocument->m_pAnodeNULL)
          {
-            mate->Node[0]->NextState = Node[0]->NextState;
-            mate->Node[0]->NextDriveState = Node[0]->NextDriveState;
+            if (mate->Node[i]->NextState != Node[i]->NextState || mate->Node[i]->NextDriveState != Node[i]->NextDriveState)
+            {
+               mate->Node[i]->NextState = Node[i]->NextState;
+               mate->Node[i]->NextDriveState = Node[i]->NextDriveState;
 
-            // Call base class to Queue Events for Driven Devices
+               // Call base class to Queue Events for Driven Devices
 
-            mate->Node[0]->State = !mate->Node[0]->NextState; // Force difference to propagate
-            mate->Node[0]->DriveState = !mate->Node[0]->NextDriveState; // Force difference to propagate
+               mate->Node[i]->State = !mate->Node[i]->NextState; // Force difference to propagate
+               mate->Node[i]->DriveState = !mate->Node[i]->NextDriveState; // Force difference to propagate
 
-            mate->CLogiGate::Simulate(pDoc);
-
-            changed = TRUE;
+               mateChanged = TRUE;
+            }
          }
+      }
+
+      if (mateChanged)
+      {
+         mate->CLogiGate::Simulate(pDoc);
+         changed = TRUE;
       }
    }
 
    return changed;
+}
+
+void CLogiSignalsenderGate::ResizeRect()
+{
+   switch (m_iSignalWidth)
+   {
+   case 3: m_size = CSize(BITX_SIG8, BITY_SIG8); break;
+   case 2: m_size = CSize(BITX_SIG4, BITY_SIG4); break;
+   case 1: m_size = CSize(BITX_SIG2, BITY_SIG2); break;
+   case 0:
+   default: m_size = CSize(BITX_SIG, BITY_SIG); break;
+   }
+
+   m_position = CRect(m_position.TopLeft(), CSize(m_size.cx, -m_size.cy));
 }
 
 void CLogiSignalsenderGate::SetGateID(void)
@@ -5173,8 +5289,20 @@ void CLogiSignalsenderGate::SetGateID(void)
    m_font.DeleteObject();
    m_font.CreateFontIndirect(&lf);
 
-   GateID = IDB_PAGE_OUT;
+   if (m_iSignalWidth < 0 || m_iSignalWidth > 3)
+      m_iSignalWidth = 0;
 
+   switch (m_iSignalWidth)
+   {
+   case 3: GateID = IDB_PAGE_OUT8; break;
+   case 2: GateID = IDB_PAGE_OUT4; break;
+   case 1: GateID = IDB_PAGE_OUT2; break;
+   case 0:
+   default: GateID = IDB_PAGE_OUT; break;
+   }
+
+   Inputs = (1 << m_iSignalWidth);
+   Contacts = Inputs + Outputs;
 }
 
 void CLogiSignalsenderGate::SetContacts(void)
@@ -5183,8 +5311,45 @@ void CLogiSignalsenderGate::SetContacts(void)
 
    for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
-   Contact[0].x += CONTACT_X_IN;
-   Contact[0].y -= CONTACT_Y_2;
+   // always start at contact 2 if not 8-bit signal
+   if (Contacts < 8)
+   {
+      Contact[0].x += CONTACT_X_IN;
+      Contact[0].y -= CONTACT_Y_2;
+
+      if (Contacts > 1)
+      {
+         Contact[1].x += CONTACT_X_IN;
+         Contact[1].y -= CONTACT_Y_3;
+
+         if (Contacts > 3)
+         {
+            Contact[2].x += CONTACT_X_IN;
+            Contact[2].y -= CONTACT_Y_4;
+            Contact[3].x += CONTACT_X_IN;
+            Contact[3].y -= CONTACT_Y_5;
+         }
+      }
+   }
+   else // if 8-bit signal
+   {
+      Contact[0].x += CONTACT_X_IN;
+      Contact[0].y -= CONTACT_Y_1;
+      Contact[1].x += CONTACT_X_IN;
+      Contact[1].y -= CONTACT_Y_2;
+      Contact[2].x += CONTACT_X_IN;
+      Contact[2].y -= CONTACT_Y_3;
+      Contact[3].x += CONTACT_X_IN;
+      Contact[3].y -= CONTACT_Y_4;
+      Contact[4].x += CONTACT_X_IN;
+      Contact[4].y -= CONTACT_Y_5;
+      Contact[5].x += CONTACT_X_IN;
+      Contact[5].y -= CONTACT_Y_6;
+      Contact[6].x += CONTACT_X_IN;
+      Contact[6].y -= CONTACT_Y_7;
+      Contact[7].x += CONTACT_X_IN;
+      Contact[7].y -= CONTACT_Y_8;
+   }
 }
 
 BOOL CLogiSignalsenderGate::HasText()
@@ -5217,7 +5382,7 @@ CLogiObj* CLogiSignalsenderGate::Clone(CLogiDoc* pDoc)
 {
    ASSERT_VALID(this);
 
-   CLogiSignalsenderGate* pClone = new CLogiSignalsenderGate(m_position, Name, m_iPage, pDoc, m_iDummy, m_csSignalName);
+   CLogiSignalsenderGate* pClone = new CLogiSignalsenderGate(m_position, Name, m_iPage, pDoc, m_iSignalWidth, m_csSignalName);
 
    ASSERT_VALID(pClone);
 
@@ -5234,19 +5399,45 @@ void CLogiSignalsenderGate::OnOpen(CLogiView* pView)
    CSignalsenderDlg dlg;
 
    dlg.m_csSignalName = m_csSignalName;
-   dlg.m_iDummy = m_iDummy;
+   dlg.m_iSignalWidth = m_iSignalWidth;
 
    if (dlg.DoModal() != IDOK) return;
+
+   int iNewSignalWidth = dlg.m_iSignalWidth;
+
+   if (iNewSignalWidth < 0 || iNewSignalWidth > 3)
+      iNewSignalWidth = 0;
+
+   if (m_iSignalWidth != iNewSignalWidth)
+   {
+      for (int i = 0; i < Contacts; i++)
+      {
+         if (Node[i] != m_pDocument->m_pAnodeNULL)
+         {
+            pView->MessageBox("Device cannot be connected when changing number of inputs", "Error", MB_ICONEXCLAMATION);
+            return;
+         }
+      }
+
+      for (int i = Outputs; i < Outputs + (1 << iNewSignalWidth); i++)
+      {
+         Node[i] = m_pDocument->m_pAnodeNULL;
+      }
+   }
 
    pView->GetDocument()->BeginManualEdit(this); // for undo system
 
    m_csSignalName = dlg.m_csSignalName;
-   m_iDummy = dlg.m_iDummy;
+   m_iSignalWidth = dlg.m_iSignalWidth;
 
    SetGateID();
-   SetContacts();
 
    Invalidate();
+   ResizeRect();
+   Invalidate();
+
+   SetContacts();
+
    m_pDocument->SetModifiedFlag();
 }
 
@@ -5360,7 +5551,7 @@ void CLogiAnalyzeGate::Draw(CDC* pDC, CLogiView* pView)
 
       // draw it
 
-      ::StretchDIBits(pDC->GetSafeHdc(), m_position.left+12, m_position.bottom+2, csSize.cx, csSize.cy, 0, 0, m_Bmi.bmiHeader.biWidth, m_Bmi.bmiHeader.biHeight, lpImage, (LPBITMAPINFO) &m_Bmi, DIB_RGB_COLORS, SRCCOPY);
+      ::StretchDIBits(pDC->GetSafeHdc(), m_position.left+20, m_position.bottom+2, csSize.cx, csSize.cy, 0, 0, m_Bmi.bmiHeader.biWidth, m_Bmi.bmiHeader.biHeight, lpImage, (LPBITMAPINFO) &m_Bmi, DIB_RGB_COLORS, SRCCOPY);
 
       delete [] lpImage;
    }
@@ -5376,7 +5567,7 @@ void CLogiAnalyzeGate::Draw(CDC* pDC, CLogiView* pView)
       CRect rct = m_position;
       rct.NormalizeRect();
 
-      pDC->TextOut(rct.left+12, rct.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
+      pDC->TextOut(rct.left+20, rct.top+2, m_csSignalName, min(m_csSignalName.GetLength(),6));
 
       pDC->SetTextColor(oldTextColor);
       pDC->SetBkMode(oldBkMode);
@@ -8404,7 +8595,7 @@ void CLogiMemoryGate::OnOpen(CLogiView* pView)
 
       for (int i=Outputs;i<Outputs + iNewAddressBits + 9;i++) 
       {
-         Node[Outputs] = m_pDocument->m_pAnodeNULL;
+         Node[i] = m_pDocument->m_pAnodeNULL;
       }
    }
 

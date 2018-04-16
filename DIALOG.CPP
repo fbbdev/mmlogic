@@ -1632,29 +1632,87 @@ CSignalreceiverDlg::CSignalreceiverDlg(CWnd* pParent /*=NULL*/)
 {
    //{{AFX_DATA_INIT(CSignalreceiverDlg)
    m_csSignalName = _T("");
-   m_iDummy = -1;
+   m_iSignalWidth = 0;
    //}}AFX_DATA_INIT
 }
-
 
 void CSignalreceiverDlg::DoDataExchange(CDataExchange* pDX)
 {
    CDialog::DoDataExchange(pDX);
    //{{AFX_DATA_MAP(CSignalreceiverDlg)
    DDX_Text(pDX, IDC_SIGNALRECEIVER_SIGNALNAME, m_csSignalName);
-   DDX_Radio(pDX, IDC_SIGNALRECEIVER_DUMMY, m_iDummy);
+   DDX_Radio(pDX, IDC_SIGNALRECEIVER_1BIT, m_iSignalWidth);
    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CSignalreceiverDlg, CDialog)
    //{{AFX_MSG_MAP(CSignalreceiverDlg)
+   ON_BN_CLICKED(IDC_SIGNALRECEIVER_1BIT, &CSignalreceiverDlg::OnWidth1Bit)
+   ON_BN_CLICKED(IDC_SIGNALRECEIVER_2BITS, &CSignalreceiverDlg::OnWidth2Bits)
+   ON_BN_CLICKED(IDC_SIGNALRECEIVER_4BITS, &CSignalreceiverDlg::OnWidth4Bits)
+   ON_BN_CLICKED(IDC_SIGNALRECEIVER_8BITS, &CSignalreceiverDlg::OnWidth8Bits)
    ON_BN_CLICKED(ID_HELP, OnHelp)
    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
 // CSignalreceiverDlg message handlers
+
+void CSignalreceiverDlg::RecalcBM()
+{
+   UpdateData();
+
+   switch (m_iSignalWidth)
+   {
+   case 0: m_bmBtn.LoadBitmaps(IDB_PAGE_INB); break;
+   case 1: m_bmBtn.LoadBitmaps(IDB_PAGE_IN2B); break;
+   case 2: m_bmBtn.LoadBitmaps(IDB_PAGE_IN4B); break;
+   case 3: m_bmBtn.LoadBitmaps(IDB_PAGE_IN8B); break;
+   }
+}
+
+BOOL CSignalreceiverDlg::OnInitDialog()
+{
+   CDialog::OnInitDialog();
+
+   m_bmBtn.SubclassDlgItem(IDC_SIGNALRECEIVER_BMBTN, this);
+   m_bmBtn.LoadBitmaps(IDB_PAGE_INB);
+   RecalcBM();
+
+   return TRUE;  // return TRUE unless you set the focus to a control
+                 // EXCEPTION: OCX Property Pages should return FALSE
+}
+
+void CSignalreceiverDlg::OnWidth1Bit()
+{
+   RecalcBM();
+   m_bmBtn.Invalidate();
+}
+
+void CSignalreceiverDlg::OnWidth2Bits()
+{
+   RecalcBM();
+   m_bmBtn.Invalidate();
+}
+
+void CSignalreceiverDlg::OnWidth4Bits()
+{
+   RecalcBM();
+   m_bmBtn.Invalidate();
+}
+
+void CSignalreceiverDlg::OnWidth8Bits()
+{
+   RecalcBM();
+   m_bmBtn.Invalidate();
+}
+
+void CSignalreceiverDlg::OnHelp()
+{
+   ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\signal_receiver_device.htm");
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CSignalsenderDlg dialog
 
@@ -1664,7 +1722,7 @@ CSignalsenderDlg::CSignalsenderDlg(CWnd* pParent /*=NULL*/)
 {
    //{{AFX_DATA_INIT(CSignalsenderDlg)
    m_csSignalName = _T("");
-   m_iDummy = -1;
+   m_iSignalWidth = 0;
    //}}AFX_DATA_INIT
 }
 
@@ -1674,13 +1732,17 @@ void CSignalsenderDlg::DoDataExchange(CDataExchange* pDX)
    CDialog::DoDataExchange(pDX);
    //{{AFX_DATA_MAP(CSignalsenderDlg)
    DDX_Text(pDX, IDC_SIGNALSENDER_SIGNALNAME, m_csSignalName);
-   DDX_Radio(pDX, IDC_SIGNALSENDER_DUMMY, m_iDummy);
+   DDX_Radio(pDX, IDC_SIGNALSENDER_1BIT, m_iSignalWidth);
    //}}AFX_DATA_MAP
 }
 
 
 BEGIN_MESSAGE_MAP(CSignalsenderDlg, CDialog)
    //{{AFX_MSG_MAP(CSignalsenderDlg)
+   ON_BN_CLICKED(IDC_SIGNALSENDER_1BIT, &CSignalsenderDlg::OnWidth1Bit)
+   ON_BN_CLICKED(IDC_SIGNALSENDER_2BITS, &CSignalsenderDlg::OnWidth2Bits)
+   ON_BN_CLICKED(IDC_SIGNALSENDER_4BITS, &CSignalsenderDlg::OnWidth4Bits)
+   ON_BN_CLICKED(IDC_SIGNALSENDER_8BITS, &CSignalsenderDlg::OnWidth8Bits)
    ON_BN_CLICKED(ID_HELP, OnHelp)
    //}}AFX_MSG_MAP
 END_MESSAGE_MAP()
@@ -1688,15 +1750,17 @@ END_MESSAGE_MAP()
 /////////////////////////////////////////////////////////////////////////////
 // CSignalsenderDlg message handlers
 
-BOOL CSignalreceiverDlg::OnInitDialog()
+void CSignalsenderDlg::RecalcBM()
 {
-   CDialog::OnInitDialog();
+   UpdateData();
 
-   m_bmBtn.SubclassDlgItem(IDC_SIGNALRECEIVER_BMBTN, this);
-   m_bmBtn.LoadBitmaps(IDB_PAGE_INB);
-
-   return TRUE;  // return TRUE unless you set the focus to a control
-   // EXCEPTION: OCX Property Pages should return FALSE
+   switch (m_iSignalWidth)
+   {
+   case 0: m_bmBtn.LoadBitmaps(IDB_PAGE_OUTB); break;
+   case 1: m_bmBtn.LoadBitmaps(IDB_PAGE_OUT2B); break;
+   case 2: m_bmBtn.LoadBitmaps(IDB_PAGE_OUT4B); break;
+   case 3: m_bmBtn.LoadBitmaps(IDB_PAGE_OUT8B); break;
+   }
 }
 
 BOOL CSignalsenderDlg::OnInitDialog()
@@ -1705,20 +1769,41 @@ BOOL CSignalsenderDlg::OnInitDialog()
 
    m_bmBtn.SubclassDlgItem(IDC_SIGNALSENDER_BMBTN, this);
    m_bmBtn.LoadBitmaps(IDB_PAGE_OUTB);
+   RecalcBM();
 
    return TRUE;  // return TRUE unless you set the focus to a control
    // EXCEPTION: OCX Property Pages should return FALSE
 }
 
-void CSignalreceiverDlg::OnHelp()
+void CSignalsenderDlg::OnWidth1Bit()
 {
-   ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\signal_receiver_device.htm");
+   RecalcBM();
+   m_bmBtn.Invalidate();
+}
+
+void CSignalsenderDlg::OnWidth2Bits()
+{
+   RecalcBM();
+   m_bmBtn.Invalidate();
+}
+
+void CSignalsenderDlg::OnWidth4Bits()
+{
+   RecalcBM();
+   m_bmBtn.Invalidate();
+}
+
+void CSignalsenderDlg::OnWidth8Bits()
+{
+   RecalcBM();
+   m_bmBtn.Invalidate();
 }
 
 void CSignalsenderDlg::OnHelp()
 {
    ::HtmlHelp(NULL, "mmlogic.chm", HH_DISPLAY_TOPIC, (DWORD) "html\\signal_sender_device.htm");
 }
+
 /////////////////////////////////////////////////////////////////////////////
 // CKeyboardDlg dialog
 

@@ -774,14 +774,14 @@ protected:
    DECLARE_SERIAL(CLogiSignalreceiverGate);
    CLogiSignalreceiverGate();
 
-   CLogiSignalreceiverGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iDummy=0, const char *pSignalName="None");
+   CLogiSignalreceiverGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iSignalWidth=0, const char *pSignalName="None");
    void Draw(CDC* pDC, CLogiView* pView);
    void Simulate(CLogiDoc* pDoc);
 
    // Implementation
 public:
    CString m_csSignalName;
-   int m_iDummy;
+   int m_iSignalWidth;
    CLogiGate* m_Mate;
    CFont m_font;
    CFont* pOldFont;
@@ -795,6 +795,7 @@ public:
    virtual void MoveTo(const CRect& position, CLogiView* pView = NULL);
    virtual void SetGateID();
    virtual void SetContacts();
+   virtual void ResizeRect();
    virtual BOOL HasText();
    virtual CString GetText();
    virtual void SetText(LPCTSTR text);
@@ -813,7 +814,7 @@ protected:
    DECLARE_SERIAL(CLogiSignalsenderGate);
    CLogiSignalsenderGate();
 
-   CLogiSignalsenderGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iDummy=0, const char *pSignalName="None");
+   CLogiSignalsenderGate(const CRect& position, const char *name, int ipage, CLogiDoc* pdoc, int iSignalWidth=0, const char *pSignalName="None");
    void Draw(CDC* pDC, CLogiView* pView);
    void Simulate(CLogiDoc* pDoc);
    BOOL PostSimulate(CLogiDoc* pDoc);
@@ -821,7 +822,7 @@ protected:
    // Implementation
 public:
    CString m_csSignalName;
-   int m_iDummy;
+   int m_iSignalWidth;
    //CLogiGate* m_Mate;
    CObList m_Mates;
    CFont m_font;
@@ -836,6 +837,7 @@ public:
    virtual void MoveTo(const CRect& position, CLogiView* pView = NULL);
    virtual void SetGateID();
    virtual void SetContacts();;
+   virtual void ResizeRect();
    virtual BOOL HasText();
    virtual CString GetText();
    virtual void SetText(LPCTSTR text);

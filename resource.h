@@ -417,18 +417,30 @@
 #define IDC_AND_2INPUTS                 511
 #define IDC_OR_4INPUTS                  512
 #define IDC_OR_3INPUTS                  513
+#define IDB_PAGE_IN2B                   513
 #define IDC_PROBE_ON                    514
+#define IDB_PAGE_IN4B                   514
 #define IDC_OR_DEMORGAN                 515
+#define IDB_PAGE_IN8B                   515
 #define IDC_PROBE_OFF                   516
+#define IDB_PAGE_OUT2B                  516
 #define IDC_OR_BMP                      517
+#define IDB_PAGE_OUT4B                  517
 #define IDC_PROBE_NULL                  518
+#define IDB_PAGE_OUT8B                  518
 #define IDC_BUZZER_FREQ                 519
 #define IDC_PROBE_UNKNOWN               520
+#define IDB_PAGE_IN2                    520
 #define IDC_AND_3INPUTS                 521
+#define IDB_PAGE_IN4                    521
 #define IDC_BUZZER_DURATION             522
+#define IDB_PAGE_IN8                    522
 #define IDC_PROBE_PLUS                  523
+#define IDB_PAGE_OUT2                   523
 #define IDC_AND_4INPUTS                 524
+#define IDB_PAGE_OUT4                   524
 #define IDC_PROBE_MINUS                 525
+#define IDB_PAGE_OUT8                   525
 #define IDC_AND_DEMORGAN                526
 #define IDC_PROBE_FLOAT                 527
 #define IDC_AND_BMP                     528
@@ -514,8 +526,6 @@
 #define IDC_SIGNALSENDER_BMBTN          614
 #define IDC_SIGNALRECEIVER_SIGNALNAME   615
 #define IDC_SIGNALSENDER_SIGNALNAME     616
-#define IDC_SIGNALRECEIVER_DUMMY        617
-#define IDC_SIGNALSENDER_DUMMY          618
 #define IDC_KEYBOARD_BMBTN              619
 #define IDC_KEYBOARD_ASCII              620
 #define IDC_NETWORK_BMBTN               621
@@ -651,6 +661,14 @@
 #define IDC_MEMORY_16BITS               756
 #define IDC_FLIPFLOP_PC                 757
 #define IDC_MEMORY_SHARED               758
+#define IDC_SIGNALSENDER_1BIT           759
+#define IDC_SIGNALSENDER_2BITS          760
+#define IDC_SIGNALSENDER_4BITS          761
+#define IDC_SIGNALSENDER_8BITS          762
+#define IDC_SIGNALRECEIVER_1BIT         763
+#define IDC_SIGNALRECEIVER_2BITS        764
+#define IDC_SIGNALRECEIVER_4BITS        765
+#define IDC_SIGNALRECEIVER_8BITS        766
 #define ID_BROWSE                       33000
 #define ID_EDIT                         33001
 #define ID_INDICATOR_CYCLE              33002
@@ -753,9 +771,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        510
+#define _APS_NEXT_RESOURCE_VALUE        526
 #define _APS_NEXT_COMMAND_VALUE         33133
-#define _APS_NEXT_CONTROL_VALUE         759
+#define _APS_NEXT_CONTROL_VALUE         767
 #define _APS_NEXT_SYMED_VALUE           851
 #endif
 #endif

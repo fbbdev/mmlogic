@@ -1169,11 +1169,47 @@
     <Image Include="res\xor4b.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="RES\BITMAP3.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_IN2B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_IN4B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_IN8B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_OUT2B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_OUT4B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_OUT8B.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_IN2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_IN4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_IN8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_OUT2.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_OUT4.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Res\PAGE_OUT8.BMP">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
-    <None Include="res\LOGICLI.RC2">
-      <Filter>Resource Files</Filter>
-    </None>
     <None Include="RES\PENCIL.CUR">
       <Filter>Resource Files</Filter>
     </None>
@@ -1363,9 +1399,6 @@
     <Text Include="License.txt" />
     <Text Include="Readme.txt" />
     <Text Include="Tips.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Manifest Include="res\MMLogic.manifest" />
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="Resource.h">

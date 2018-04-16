@@ -138,8 +138,14 @@ enum LogiShape
 #define BITY_SCR 103
 #define BITX_NAM 42
 #define BITY_NAM 14
-#define BITX_SIG 59
+#define BITX_SIG 67
 #define BITY_SIG 19
+#define BITX_SIG2 BITX_SIG
+#define BITY_SIG2 25
+#define BITX_SIG4 BITX_SIG
+#define BITY_SIG4 37
+#define BITX_SIG8 BITX_SIG
+#define BITY_SIG8 49
 #define BITX_MUX BITX
 #define BITY_MUX 85
 #define BITX_FFPC BITX
@@ -175,7 +181,7 @@ enum LogiShape
 #define CONTACT_X_IN_FFPC 14
 
 #define CONTACT_X_OUT     46
-#define CONTACT_X_OUT_SIG 56
+#define CONTACT_X_OUT_SIG 64
 #define CONTACT_X_OUT_TAP 102
 #define CONTACT_X_OUT_KP  104
 
