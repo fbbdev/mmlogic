@@ -1883,6 +1883,12 @@ void CLogiDoc::Serialize(CArchive& ar)
             {
                sscanf(Buffer,"%*d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1);
                ar.ReadString(Buffer,1024-1);
+               if ((x2 - x1) < BITX_SIG)
+               {
+                  // if loading an older file, ignore signal width and fix gate size
+                  tmp1 = 0;
+                  x1 = x2 - BITX_SIG;
+               }
                Add(new CLogiSignalreceiverGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "SIGNALRX", iPage, this, tmp1, Buffer));
                break;
             }
@@ -1890,6 +1896,12 @@ void CLogiDoc::Serialize(CArchive& ar)
             {
                sscanf(Buffer,"%*d %d %d %d %d %d",&x1,&y1,&x2,&y2,&tmp1);
                ar.ReadString(Buffer,1024-1);
+               if ((x2 - x1) < BITX_SIG)
+               {
+                  // if loading an older file, ignore signal width and fix gate size
+                  tmp1 = 0;
+                  x2 = x1 + BITX_SIG;
+               }
                Add(new CLogiSignalsenderGate(CRect(x1+xo,y1+yo,x2+xo,y2+yo), "SIGNALTX", iPage, this, tmp1, Buffer));
                break;
             }
