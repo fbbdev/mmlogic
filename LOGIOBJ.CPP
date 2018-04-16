@@ -7014,7 +7014,11 @@ void CLogiCounterGate::Serialize(CArchive& ar)
 void CLogiCounterGate::Initialize(CLogiView* pView, UINT iMode)
 {
    m_iLastState = UNKNOWN;
-   m_uTemp = m_iInit;
+
+   if (m_bRing)
+      m_uTemp = m_iInit % (m_bTwisted ? 2*m_iBits : m_iBits);
+   else
+      m_uTemp = m_iInit & ((1 << m_iBits) - 1);
 
    SetGateID();
 
@@ -7025,117 +7029,79 @@ void CLogiCounterGate::Simulate(CLogiDoc* pDoc)
 {
    // Perform Simulation
 
-   switch (m_iSize)
+   UINT mask = (1 << m_iBits) - 1;
+
+   BOOL down = (Node[Outputs + 1]->State == HI);
+   BOOL carry = FALSE;
+
+   if (Node[Outputs]->State == HI)
    {
-   case 0:
+      // reset
+      if (m_bRing)
+         m_uTemp = m_iInit % (m_bTwisted ? 2*m_iBits : m_iBits);
+      else
+         m_uTemp = m_iInit & mask;
+   }
+   else if (Node[Outputs+2]->State == HI && m_iLastState == LO)
+   {
+      // rising edge on clock
+      if (down)
       {
-         Node[4]->NextState = LO;
+         if (m_uTemp == 0)
+         {
+            if (m_bRing)
+               m_uTemp = m_bTwisted ? 2 * m_iBits : m_iBits;
+            else
+               m_uTemp = mask + 1;
 
-         if (Node[5]->State == HI)
-         {
-            m_uTemp = m_iInit;
-         }
-         else
-         {
-            if ((Node[7]->State == HI) && (m_iLastState == LO))
-            {
-               if (Node[6]->State == HI)
-               {
-                  if (m_uTemp == 0)
-                  {
-                     Node[4]->NextState = HI;
-                     m_uTemp = 15;
-                  }
-                  else
-                  {
-                     m_uTemp--;
-                  }
-               }
-               else
-               {
-                  if (m_uTemp == 15)
-                  {
-                     Node[4]->NextState = HI;
-                     m_uTemp = 0;
-                  }
-                  else
-                  {
-                     m_uTemp++;
-                  }
-               }
-            }
+            carry = TRUE;
          }
 
-         for (int i=0;i<4;i++)
-         {
-            if (m_uTemp & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
-         }
-
-         m_iLastState = Node[7]->State;
-
-         break;
+         --m_uTemp;
       }
-
-   case 1:
+      else
       {
-         Node[8]->NextState = LO;
+         ++m_uTemp;
 
-         if (Node[9]->State == HI)
-         {
-            m_uTemp = m_iInit;
-         }
+         if (m_bRing)
+            m_uTemp %= (m_bTwisted ? 2*m_iBits : m_iBits);
          else
-         {
-            if ((Node[11]->State == HI) && (m_iLastState == LO))
-            {
-               if (Node[10]->State == HI)
-               {
-                  if (m_uTemp == 0)
-                  {
-                     Node[8]->NextState = HI;
-                     m_uTemp = 255;
-                  }
-                  else
-                  {
-                     m_uTemp--;
-                  }
-               }
-               else
-               {
-                  if (m_uTemp == 255)
-                  {
-                     Node[8]->NextState = HI;
-                     m_uTemp = 0;
-                  }
-                  else
-                  {
-                     m_uTemp++;
-                  }
-               }
-            }
-         }
+            m_uTemp &= mask;
 
-         for (int i=0;i<8;i++)
-         {
-            if (m_uTemp & (1<<i)) (Node[i])->NextState = HI; else (Node[i])->NextState = LO;
-         }
-
-         m_iLastState = Node[11]->State;
-
-         break;
+         carry = (m_uTemp == 0);
       }
    }
 
-   // Call base class to Queue Events for Driven Devices
+   m_iLastState = Node[Outputs+2]->State;
 
+   int state = m_uTemp;
+   if (m_bRing)
+   {
+      state = 1 << (m_uTemp % m_iBits);
+      if (m_bTwisted)
+         state = (state - 1) ^ (((m_uTemp / m_iBits) % 2) ? mask : 0);
+   }
+
+   for (int i = 0; i < m_iBits; ++i)
+      Node[i]->NextState = (state & (1 << i)) ? HI : LO;
+
+   Node[m_iBits]->NextState = carry ? HI : LO;
+
+   // Call base class to Queue Events for Driven Devices
    CLogiGate::Simulate(pDoc);
 }
 
 void CLogiCounterGate::SetGateID(void)
 {
-   switch (m_iSize)
+   m_iBits = (m_iSize & 1) ? 8 : 4;
+
+   // Type configuration is stored in bits 1 and 2 of m_iSize for backward compatibility
+   m_bRing = m_iSize & 2;
+   m_bTwisted = m_iSize & 4;
+
+   switch (m_iBits)
    {
-   case 0:
+   case 4:
       {
          Outputs = 5;
          Inputs = 3;
@@ -7144,7 +7110,7 @@ void CLogiCounterGate::SetGateID(void)
 
          break;
       }
-   case 1:
+   case 8:
       {
          Outputs = 9;
          Inputs = 3;
@@ -7164,9 +7130,9 @@ void CLogiCounterGate::SetContacts(void)
 
    for (int i=0;i<Contacts;i++) Contact[i] = m_position.TopLeft();
 
-   switch (m_iSize)
+   switch (m_iBits)
    {
-   case 0: // 4Bit
+   case 4: // 4Bit
       {
          Contact[7].x += CONTACT_X_IN;  // Clock
          Contact[7].y -= CONTACT_Y_11;
@@ -7191,7 +7157,7 @@ void CLogiCounterGate::SetContacts(void)
 
          break;
       }
-   case 1: // 8Bit
+   case 8: // 8Bit
       {
          Contact[11].x += CONTACT_X_IN;  // Clock
          Contact[11].y -= CONTACT_Y_11;
@@ -7258,14 +7224,18 @@ void CLogiCounterGate::OnOpen(CLogiView* pView)
 
    CCounterDlg dlg;
 
-   dlg.m_iSize = m_iSize;
+   dlg.m_iSize = m_iSize & 1;
    dlg.m_iInit = m_iInit;
+   dlg.m_bRing = (m_iSize & 2) != 0;
+   dlg.m_bTwisted = (m_iSize & 4) != 0;
 
    if (dlg.DoModal() != IDOK) return;
 
    pView->GetDocument()->BeginManualEdit(this); // for undo system
 
-   if (m_iSize != dlg.m_iSize)
+   int iNewBits = dlg.m_iSize ? 8 : 4;
+
+   if (m_iBits != iNewBits)
    {
       for (int i=0;i<Contacts;i++)
       {
@@ -7276,10 +7246,14 @@ void CLogiCounterGate::OnOpen(CLogiView* pView)
          }
       }
 
-      for (int i=0;i<Contacts;i++) Node[i] = m_pDocument->m_pAnodeNULL;
+      // 4/8 data pins + carry out + inputs
+      for (int i = 0; i < (iNewBits + 1 + Inputs); i++)
+      {
+         Node[i] = m_pDocument->m_pAnodeNULL;
+      }
    }
 
-   m_iSize = dlg.m_iSize;
+   m_iSize = dlg.m_iSize | ((dlg.m_bRing ? 1 : 0) << 1) | ((dlg.m_bTwisted ? 1 : 0) << 2);
    m_iInit = dlg.m_iInit;
 
    SetGateID();

@@ -17,5 +17,9 @@ customizations have been made:
   * **Shared memory mode:** memory blocks referring to the same file can
     optionally share their run-time storage. Writes on one block will then be
     visible from the others.
-  * **Multi-lane signals:** signal senders and receivers can be 1-, 2-, 4-,
-    or 8-bits wide. Wiring a wide data bus between pages is now easier.
+  * **Multi-lane signals:** signal senders and receivers can be configured
+    to be 1-, 2-, 4-, or 8-bits wide. Wiring a large data bus between pages
+	is then easier.
+  * **Ring and twisted-ring counter:** counter blocks can be configured to
+    work in ring and twisted-ring (a.k.a. Johnson counter) modes. This can
+	simplify the circuit for some state machines.

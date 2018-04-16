@@ -669,6 +669,9 @@
 #define IDC_SIGNALRECEIVER_2BITS        764
 #define IDC_SIGNALRECEIVER_4BITS        765
 #define IDC_SIGNALRECEIVER_8BITS        766
+#define IDC_COUNTER_RING                767
+#define IDC_COUNTER_TWISTED             768
+#define IDC_COUNTER_INITLBL             769
 #define ID_BROWSE                       33000
 #define ID_EDIT                         33001
 #define ID_INDICATOR_CYCLE              33002
@@ -771,9 +774,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        526
+#define _APS_NEXT_RESOURCE_VALUE        527
 #define _APS_NEXT_COMMAND_VALUE         33133
-#define _APS_NEXT_CONTROL_VALUE         767
+#define _APS_NEXT_CONTROL_VALUE         770
 #define _APS_NEXT_SYMED_VALUE           851
 #endif
 #endif

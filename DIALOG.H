@@ -7,6 +7,7 @@
 /////////////////////////////////////////////////////////////////////////////
 // CRectDlg dialog
 
+#include "afxwin.h"
 class CRectDlg : public CDialog
 {
    // Construction
@@ -1612,12 +1613,16 @@ public:
    void RecalcBM();
 
    CBitmapButton m_bmBtn;
+   CButton m_twistedBtn;
+   CStatic m_initLbl;
 
    // Dialog Data
    //{{AFX_DATA(CCounterDlg)
    enum { IDD = IDD_PROP_COUNTER };
-   UINT	m_iInit;
-   int		m_iSize;
+   UINT m_iInit;
+   int  m_iSize;
+   BOOL m_bRing;
+   BOOL m_bTwisted;
    //}}AFX_DATA
 
 
@@ -1639,6 +1644,8 @@ protected:
    afx_msg void OnCounter8bit();
    //}}AFX_MSG
    DECLARE_MESSAGE_MAP()
+public:
+   afx_msg void OnRing();
 };
 /////////////////////////////////////////////////////////////////////////////
 // CPlusDlg dialog

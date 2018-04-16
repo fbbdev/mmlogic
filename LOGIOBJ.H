@@ -1039,6 +1039,10 @@ public:
    int m_iSize;
    UINT m_iInit;
 
+   int m_iBits;
+   BOOL m_bRing;
+   BOOL m_bTwisted;
+
    virtual void Initialize(CLogiView* pView, UINT iMode);
    virtual void Serialize(CArchive& ar);
    virtual CLogiObj* Clone(CLogiDoc* pDoc);

@@ -3325,6 +3325,8 @@ CCounterDlg::CCounterDlg(CWnd* pParent /*=NULL*/)
    //{{AFX_DATA_INIT(CCounterDlg)
    m_iInit = 0;
    m_iSize = -1;
+   m_bRing = FALSE;
+   m_bTwisted = FALSE;
    //}}AFX_DATA_INIT
 }
 
@@ -3335,6 +3337,10 @@ void CCounterDlg::DoDataExchange(CDataExchange* pDX)
    //{{AFX_DATA_MAP(CCounterDlg)
    DDX_Text(pDX, IDC_COUNTER_INIT, m_iInit);
    DDX_Radio(pDX, IDC_COUNTER_4BIT, m_iSize);
+   DDX_Check(pDX, IDC_COUNTER_RING, m_bRing);
+   DDX_Check(pDX, IDC_COUNTER_TWISTED, m_bTwisted);
+   DDX_Control(pDX, IDC_COUNTER_TWISTED, m_twistedBtn);
+   DDX_Control(pDX, IDC_COUNTER_INITLBL, m_initLbl);
    //}}AFX_DATA_MAP
 }
 
@@ -3345,6 +3351,7 @@ BEGIN_MESSAGE_MAP(CCounterDlg, CDialog)
    ON_BN_CLICKED(IDC_COUNTER_4BIT, OnCounter4bit)
    ON_BN_CLICKED(IDC_COUNTER_8BIT, OnCounter8bit)
    //}}AFX_MSG_MAP
+   ON_BN_CLICKED(IDC_COUNTER_RING, &CCounterDlg::OnRing)
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
@@ -3373,9 +3380,20 @@ BOOL CCounterDlg::OnInitDialog()
    m_bmBtn.SubclassDlgItem(IDC_COUNTER_BMBTN, this);
    RecalcBM();
 
+   m_twistedBtn.EnableWindow(m_bRing);
+   m_initLbl.SetWindowTextA(m_bRing ? "Initial Value (state):" : "Initial Value (decimal):");
+
    return TRUE;  // return TRUE unless you set the focus to a control
    // EXCEPTION: OCX Property Pages should return FALSE
 }
+
+void CCounterDlg::OnRing()
+{
+   UpdateData();
+   m_twistedBtn.EnableWindow(m_bRing);
+   m_initLbl.SetWindowTextA(m_bRing ? "Initial Value (state):" : "Initial Value (decimal):");
+}
+
 /////////////////////////////////////////////////////////////////////////////
 // CPlusDlg dialog
 
