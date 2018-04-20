@@ -211,17 +211,14 @@ void CSelectTool::OnLButtonDown(CLogiView* pView, UINT nFlags, const CPoint& poi
          pGateObj = (CLogiGate*)pView->GetDocument()->ObjectAtContact(local, &io, pView->m_iPage);
          if ((pGateObj) && (pGateObj->Node[io]))
          {
-            CLogiWire* CurrentWire;
-            POSITION pos;
-
             selectMode = move;
             m_bUserMove = TRUE; // positions to be saved for undo/redo
 
             // select all connected wires
             if ((nFlags & MK_SHIFT) == 0) pView->Select(NULL);
-            for( pos = pGateObj->Wire[io].GetHeadPosition(); pos != NULL; )
+            for (auto it = pGateObj->Wire[io].begin(), end = pGateObj->Wire[io].end(); it != end; ++it)
             {
-               CurrentWire = (CLogiWire*) pGateObj->Wire[io].GetNext( pos );
+               CLogiWire* CurrentWire = (CLogiWire*) *it;
                pView->Select(CurrentWire, TRUE);
             }
          }
@@ -2063,8 +2060,8 @@ void CWireTool::OnLButtonUp(CLogiView* pView, UINT nFlags, const CPoint& point)
       pStartGateObj->Connect(StartIO, pStartAnode);
 
       // Add this Wire to the wirelist of each contact
-      pStartGateObj->Wire[StartIO].AddHead(m_pObj);
-      pEndGateObj->Wire[EndIO].AddHead(m_pObj);
+      pStartGateObj->Wire[StartIO].push_front(m_pObj);
+      pEndGateObj->Wire[EndIO].push_front(m_pObj);
 
       // Snap it to the contact
       CPoint pnt = pEndGateObj->Contact[EndIO];

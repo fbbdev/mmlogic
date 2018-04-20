@@ -100,9 +100,9 @@ protected:
 
 public:
    CString Name;
-   Anode* Node[48];
-   CObList Wire[48];
-   CPoint Contact[48];
+   std::vector<Anode*> Node;
+   std::vector<std::forward_list<CObject*>> Wire;
+   std::vector<CPoint> Contact;
    int Contacts;
    int Inputs;
    int Outputs;

@@ -1224,8 +1224,8 @@ CLogiWire* CLogiDoc::ReWire(const CRect& rect, CLogiWire* pWireObj, int iPage)
    pEndGateObj->Connect(EndIO, pStartAnode);
 
    // Add this Wire to the wirelist of each contact
-   pStartGateObj->Wire[StartIO].AddHead(pWireObj);
-   pEndGateObj->Wire[EndIO].AddHead(pWireObj);
+   pStartGateObj->Wire[StartIO].push_front(pWireObj);
+   pEndGateObj->Wire[EndIO].push_front(pWireObj);
 
    // Let wire know gate and contact
    pWireObj->pStartGateObj = pStartGateObj;

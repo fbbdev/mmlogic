@@ -380,6 +380,9 @@ IMPLEMENT_SERIAL(CLogiGate, CLogiObj, 0)
 
 CLogiGate::CLogiGate()
 {
+   Node.resize(48);
+   Wire.resize(48);
+   Contact.resize(48);
    bInitialized = FALSE;
 }
 
@@ -399,6 +402,10 @@ CLogiGate::CLogiGate(const CRect& position, const char *name, int ipage, CLogiDo
    Contacts = Outputs + Inputs;
    m_size.cx = position.Width();
    m_size.cy = -position.Height();
+
+   Node.resize(max(Contacts, 48));
+   Wire.resize(max(Contacts, 48));
+   Contact.resize(max(Contacts, 48));
 
    rgbTransparent.rgbRed = 128; // puke green
    rgbTransparent.rgbGreen = 128;
@@ -421,9 +428,6 @@ CLogiGate::CLogiGate(const CRect& position, const char *name, int ipage, CLogiDo
 
 void CLogiGate::CleanupReferences()
 {
-   CLogiWire* CurrentWire;
-   POSITION pos;
-
    ASSERT(bInitialized);
 
    if (!bInitialized)
@@ -439,9 +443,11 @@ void CLogiGate::CleanupReferences()
       {
 
          // delete all wires connected
-         for( pos = Wire[i].GetHeadPosition(); pos != NULL; )
+         for (auto it = Wire[i].begin(), end = Wire[i].end(); it != end;)
          {
-            CurrentWire = (CLogiWire*) Wire[i].GetNext( pos );
+            // XXX: CurrentWire->CleanupReferences() removes the wire from the list,
+            //      so we have to increment the iterator before that call.
+            CLogiWire* CurrentWire = (CLogiWire*) *it++;
 
             // Remove graphics representation
             CurrentWire->Remove();
@@ -513,9 +519,7 @@ void CLogiGate::Serialize(CArchive& ar)
 
 void CLogiGate::MoveTo(const CRect& /*position*/, CLogiView* pView)
 {
-   CLogiWire* CurrentWire;
    CRect dummy;
-   POSITION pos;
 
    // for each contact (node) modify each wire position
 
@@ -527,9 +531,9 @@ void CLogiGate::MoveTo(const CRect& /*position*/, CLogiView* pView)
       {
 
          //  modify all wires associated with this output contact (node)
-         for( pos = Wire[i].GetHeadPosition(); pos != NULL; )
+         for (auto it = Wire[i].begin(), end = Wire[i].end(); it != end; ++it)
          {
-            CurrentWire = (CLogiWire*) Wire[i].GetNext( pos );
+            CLogiWire* CurrentWire = (CLogiWire*) *it;
             dummy = CurrentWire->m_position;
 
             // Find the correct end, depends on which end want and direction it was drawn
@@ -684,7 +688,6 @@ void CLogiGate::Simulate(CLogiDoc* pDoc)
 {
    POSITION pos;
    CLogiGate* CurrentGate;
-   //CLogiWire* CurrentWire;
 
    // for each output node
 
@@ -724,17 +727,6 @@ void CLogiGate::Simulate(CLogiDoc* pDoc)
                CurrentGate->EventCycle = pDoc->m_uCycleCount;
             }
          }
-
-
-         //color wires
-         //  this method, although probably faster than updating the whole window,
-         //  is not very accurate, so CLogiDoc::Simulate has code to invalidate the whole window
-         //for( pos = Wire[i].GetHeadPosition(); pos != NULL; )
-         //   {
-         //	   CurrentWire = (CLogiWire*) Wire[i].GetNext( pos );
-
-         //	   CurrentWire->Invalidate();
-         //   }
       }
    }
 }

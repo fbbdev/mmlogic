@@ -40,7 +40,6 @@ CLogiWire::CLogiWire(const CRect& position, char *name, int ipage, CLogiDoc* pdo
 
 void CLogiWire::CleanupReferences()
 {
-   CLogiWire* CurrentWire;
    CLogiGate* CurrentGate;
    POSITION pos1;
    POSITION pos2;
@@ -50,15 +49,7 @@ void CLogiWire::CleanupReferences()
    {
 
       // remove contact of gates' graphical pointer to this wire
-      for( pos2 = pos1 = pStartGateObj->Wire[StartIO].GetHeadPosition(); (pos2 = pos1) != NULL; )
-      {
-         CurrentWire = (CLogiWire*) pStartGateObj->Wire[StartIO].GetNext( pos1 );
-         if (CurrentWire == this)
-         {
-            pStartGateObj->Wire[StartIO].RemoveAt( pos2 );
-            break;
-         }
-      }
+      pStartGateObj->Wire[StartIO].remove(this);
 
       // tell node to no longer "drive" the gate the other end was connected to
       for( pos2 = pos1 = pStartGateObj->Node[StartIO]->DeviceList.GetHeadPosition(); (pos2 = pos1) != NULL; )
@@ -79,7 +70,7 @@ void CLogiWire::CleanupReferences()
       else
       {
          // if nothing left then flag it so
-         if (pStartGateObj->Wire[StartIO].IsEmpty())
+         if (pStartGateObj->Wire[StartIO].empty())
          {
             //             if (pStartGateObj->Node[StartIO]->DeviceList.IsEmpty())
             //             delete pStartGateObj->Node[StartIO];
@@ -93,15 +84,7 @@ void CLogiWire::CleanupReferences()
    {
 
       // remove contact of gates' graphical pointer to this wire
-      for( pos2 = pos1 = pEndGateObj->Wire[EndIO].GetHeadPosition(); (pos2 = pos1) != NULL; )
-      {
-         CurrentWire = (CLogiWire*) pEndGateObj->Wire[EndIO].GetNext( pos1 );
-         if (CurrentWire == this)
-         {
-            pEndGateObj->Wire[EndIO].RemoveAt( pos2 );
-            break;
-         }
-      }
+      pEndGateObj->Wire[EndIO].remove(this);
 
       // tell node to no longer "drive" the gate the other end was connected to
       for( pos2 = pos1 = pEndGateObj->Node[EndIO]->DeviceList.GetHeadPosition(); (pos2 = pos1) != NULL; )
@@ -124,8 +107,6 @@ void CLogiWire::CleanupReferences()
          // if nothing left then flag it so
          if (pEndGateObj->Node[EndIO]->DeviceList.IsEmpty())
          {
-            //             if (pEndGateObj->Wire[EndIO].IsEmpty())
-            //             delete pEndGateObj->Node[EndIO];
             pEndGateObj->Node[EndIO] = m_pDocument->m_pAnodeNULL;
          }
       }
