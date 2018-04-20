@@ -1211,7 +1211,7 @@ public:
    int m_iMemorySize;
    int m_iWriteNodeNumber;
    unsigned short* m_cMemory;
-   HANDLE m_hSharedMemory;
+   std::shared_ptr<unsigned short> m_cMemoryRef;
 
    virtual void Serialize(CArchive& ar);
    virtual void Initialize(CLogiView* pView, UINT iMode);

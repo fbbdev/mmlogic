@@ -429,6 +429,10 @@ BOOL CLogiDoc::Reset(UINT iMode)
    UpdateNodeQueue2.RemoveAll();
    CallPostQueue.RemoveAll();
 
+   // Clear shared memory map
+   
+   m_cSharedMemory.clear();
+
    // Initialize all devices (switches off, lights off, etc.)
 
    bWinNT = IsWindowsNT();

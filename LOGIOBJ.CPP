@@ -8074,7 +8074,6 @@ CLogiMemoryGate::CLogiMemoryGate(const CRect& position, const char *name, int ip
    m_csFileName = pFileName;
 
    m_cMemory = NULL;
-   m_hSharedMemory = NULL;
 
    SetGateID();
    SetContacts();
@@ -8120,45 +8119,33 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
 
       if ((m_iFormat & 4) == 0) // If not shared, allocate memory
       {
-         m_cMemory = new unsigned short[m_iMemorySize];
-         m_hSharedMemory = NULL;
+         m_cMemoryRef.reset(new unsigned short[m_iMemorySize], [](unsigned short* p) { delete p; });
+         m_cMemory = m_cMemoryRef.get();
       }
       else // If shared, open shared memory object
       {
          CString csSharedMemoryName = csFullPath;
-         csSharedMemoryName.Replace('\\', '_');
+         csSharedMemoryName.MakeLower();
 
-         m_hSharedMemory = CreateFileMapping(
-            INVALID_HANDLE_VALUE,
-            NULL,
-            PAGE_READWRITE,
-            0,
-            m_iMemorySize*sizeof(unsigned short),
-            csSharedMemoryName);
-
-         if (m_hSharedMemory == NULL)
+         CLogiDoc::CMemoryBlock block = m_pDocument->m_cSharedMemory[csSharedMemoryName];
+         if (!block.second)
          {
-            ::MessageBox(::GetFocus(), csSharedMemoryName, "Could not open shared memory object", MB_OK | MB_ICONEXCLAMATION);
+            block.first = m_iMemorySize;
+            block.second.reset(new unsigned short[m_iMemorySize], [](unsigned short* p) { delete p; });
+            m_pDocument->m_cSharedMemory[csSharedMemoryName] = block;
+         }
+
+         if (block.first != m_iMemorySize)
+         {
+            ::MessageBox(::GetFocus(), csSharedMemoryName, "Shared memory block has wrong size", MB_OK | MB_ICONEXCLAMATION);
             m_pDocument->Halt();
             m_cMemory = NULL;
+            m_cMemoryRef.reset();
             return;
          }
 
-         m_cMemory = (unsigned short*) MapViewOfFile(
-            m_hSharedMemory,
-            FILE_MAP_ALL_ACCESS,
-            0,
-            0,
-            m_iMemorySize*sizeof(unsigned short));
-
-         if (m_cMemory == NULL)
-         {
-            ::MessageBox(::GetFocus(), csSharedMemoryName, "Could not map shared memory object", MB_OK | MB_ICONEXCLAMATION);
-            m_pDocument->Halt();
-            CloseHandle(m_hSharedMemory);
-            m_hSharedMemory = NULL;
-            return;
-         }
+         m_cMemoryRef.swap(block.second);
+         m_cMemory = m_cMemoryRef.get();
       }
 
       for (int i=0;i<m_iMemorySize;i++) m_cMemory[i] = 0xAAAA;
@@ -8175,19 +8162,8 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
             ::MessageBox(::GetFocus(), csFullPath, "Could not open File", MB_OK | MB_ICONEXCLAMATION);
             m_pDocument->Halt();
             //            m_pDocument->m_bKeepGoing = FALSE;
-            if ((m_iFormat & 4) == 0)
-            {
-               delete[] m_cMemory;
-               m_cMemory = NULL;
-               m_hSharedMemory = NULL;
-            }
-            else
-            {
-               UnmapViewOfFile(m_cMemory);
-               CloseHandle(m_hSharedMemory);
-               m_cMemory = NULL;
-               m_hSharedMemory = NULL;
-            }
+            m_cMemory = NULL;
+            m_cMemoryRef.reset();
             return;
          }
 
@@ -8222,19 +8198,8 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
                   m_pDocument->Halt();
                   //            m_pDocument->m_bKeepGoing = FALSE;
                   fclose(pFile);
-                  if ((m_iFormat & 4) == 0)
-                  {
-                     delete[] m_cMemory;
-                     m_cMemory = NULL;
-                     m_hSharedMemory = NULL;
-                  }
-                  else
-                  {
-                     UnmapViewOfFile(m_cMemory);
-                     CloseHandle(m_hSharedMemory);
-                     m_cMemory = NULL;
-                     m_hSharedMemory = NULL;
-                  }
+                  m_cMemory = NULL;
+                  m_cMemoryRef.reset();
                   return;
                }
 
@@ -8259,25 +8224,8 @@ void CLogiMemoryGate::Initialize(CLogiView* pView, UINT iMode)
    }
    else // simulation RESET
    {
-      if ((m_iFormat & 4) == 0)
-      {
-         if (m_cMemory != NULL)
-            delete[] m_cMemory;
-
-         m_cMemory = NULL;
-         m_hSharedMemory = NULL;
-      }
-      else
-      {
-         if (m_cMemory != NULL)
-            UnmapViewOfFile(m_cMemory);
-
-         if (m_hSharedMemory != NULL)
-            CloseHandle(m_hSharedMemory);
-
-         m_cMemory = NULL;
-         m_hSharedMemory = NULL;
-      }
+      m_cMemory = NULL;
+      m_cMemoryRef.reset();
    }
 
    SetGateID();

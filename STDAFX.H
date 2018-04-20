@@ -6,6 +6,9 @@
 //  or project specific include files that are used frequently, but
 //      are changed infrequently
 //
+#include <map>
+#include <memory>
+
 #include <afxwin.h>         // MFC core and standard components
 #include <afxext.h>         // MFC extensions (including VB)
 #include <afxcmn.h>         // MFC common controls

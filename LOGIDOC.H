@@ -111,6 +111,9 @@ public:
    CObList CallPostQueue;
    HACCEL m_haccel;
 
+   typedef std::pair<int, std::shared_ptr<unsigned short> > CMemoryBlock;
+   std::map<CString, CMemoryBlock> m_cSharedMemory;
+
    //are we in the middle of simulation?
    BOOL m_bSimulating;
    //should we color the wires?
