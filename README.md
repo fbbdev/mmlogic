@@ -3,7 +3,7 @@
 A MultiMedia Logic Design System.
 
 This is a fork of the good old
-[MultiMedia logic](http://www.softronix.com/logic.html) app by George Mills
+[MultiMedia logic](https://www.softronix.com/mmlogic-downloads/) app by George Mills
 of [Softronics](http://www.softronix.com).
 
 ## Changes
